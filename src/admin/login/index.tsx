@@ -16,146 +16,151 @@
 //     </div>
 //   );
 // };
-import { useState } from "react";
 import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
+import { KeyRound, Mail } from "lucide-react";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../components/ui/form";
+import { useNavigate } from "react-router";
 
-export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const formSchema = z.object({
+  email: z.string().email("Digite um e-mail válido"),
+  password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres"),
+});
+export const AdminLogin = () => {
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt with:", { email, password });
-  };
-
-  const handleResetPassword = () => {
-    // Handle password reset logic here
-    console.log("Password reset requested for:", email);
-  };
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("Dados do formulário:", values);
+    navigate("/admin/dashboard");
+  }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-green-50">
-      <div className="flex w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="flex w-full max-w-6xl bg-white rounded-4xl shadow-lg overflow-hidden h-[70vh] items-center border ">
         {/* Left side with logo and illustration */}
         <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center p-12 bg-white">
-          <div className="mb-8">
-            <img src="/logo.png" alt="Fazenda Online Logo" className="h-10" />
-          </div>
+          <img
+            src="/full_logo.svg"
+            alt="Fazenda Online Logo"
+            className="h-10"
+          />
+
           <div className="flex items-center justify-center">
             <img
-              src="/farm-products-illustration.png"
+              src="/login-image.svg"
               alt="Farm Products Illustration"
               className="max-w-full h-auto"
             />
           </div>
         </div>
+        <div className="h-screen w-px bg-border"></div>
 
         {/* Right side with login form */}
-        <div className="w-full md:w-1/2 p-8">
-          <div className="md:hidden mb-6 flex justify-center">
-            <img src="/logo.png" alt="Fazenda Online Logo" className="h-8" />
-          </div>
-
-          <div className="mb-8">
-            <p className="text-gray-600 text-sm">Acesse sua conta</p>
-            <h2 className="text-2xl font-bold text-gray-800">
-              Seja bem vindo de volta!
-            </h2>
-          </div>
-
-          <form onSubmit={handleLogin}>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email
-              </label>
-              <div className="relative">
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Insira seu email"
-                  className="w-full p-4 py-5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  required
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-              </div>
+        <div className="flex-1 flex justify-center">
+          <div className="w-[70%]  border-primary md:1/2 p-8">
+            <div className="md:hidden mb-6 flex justify-center">
+              <img src="/logo.png" alt="Fazenda Online Logo" className="h-8" />
             </div>
 
-            <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Senha
-              </label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Sua senha de acesso"
-                  className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  required
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-              </div>
+            <div className="mb-8">
+              <p className="text-gray-600 text-sm">Acesse sua conta</p>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Seja bem vindo de volta!
+              </h2>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-            >
-              Acessar
-            </button>
-          </form>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Email
+                      </FormLabel>
+                      <div className=" flex relative items-center">
+                        <FormControl>
+                          <Input
+                            placeholder="Insira seu email"
+                            className="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            {...field}
+                          />
+                        </FormControl>
+                        <div className=" absolute right-0 flex items-center pr-3 pointer-events-none">
+                          <Mail className="text-gray-400" size={20} />
+                        </div>
+                      </div>
+                      <FormMessage className="text-red-500 text-xs -mb-2" />{" "}
+                    </FormItem>
+                  )}
+                />
 
-          <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">
-              Esqueceu sua senha?{" "}
-              <button
-                type="button"
-                onClick={handleResetPassword}
-                className="text-green-500 hover:text-green-700 font-medium focus:outline-none"
-              >
-                Redefinir a senha
-              </button>
-            </p>
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-700 mb-1 mt-4"
+                      >
+                        Senha
+                      </FormLabel>
+                      <div className=" flex relative items-center ">
+                        <FormControl className="relative">
+                          <Input
+                            type="password"
+                            className="w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            {...field}
+                          />
+                        </FormControl>
+                        <div className=" absolute right-0 flex items-center pr-3 pointer-events-none">
+                          <KeyRound className="text-gray-400" size={20} />
+                        </div>
+                      </div>
+                      <FormMessage className="text-red-500 text-xs " />{" "}
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className=" mt-4 w-full bg-primary text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                >
+                  Acessar
+                </Button>
+              </form>
+            </Form>
+
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600">
+                Esqueceu sua senha?{" "}
+                <Button variant={"link"} className=" p-0 text-[#FE7000]">
+                  Redefinir a senha
+                </Button>
+              </p>
+            </div>
           </div>
         </div>
       </div>

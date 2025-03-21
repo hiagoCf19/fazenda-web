@@ -1,10 +1,14 @@
 import { createBrowserRouter } from "react-router";
-import Dashboard from "./admin/dashboard/dashboard";
-import Planos from "./admin/dashboard/example";
-import AdminLayout from "./admin/layout/layout";
-import { Login } from "./admin/login";
+import Dashboard from "./admin/home/dashboard";
+import Planos from "./admin/home/pedidos";
+import AdminLayout from "./admin/home/layout/layout";
+import { AdminLogin } from "./admin/login";
 
 export const router = createBrowserRouter([
+  {
+    path: "admin/login",
+    element: <AdminLogin />, // Renderiza o layout ao acessar /admin
+  },
   {
     path: "admin",
     element: <AdminLayout />, // Renderiza o layout ao acessar /admin
@@ -18,19 +22,47 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "planos",
+        path: "pedidos",
         element: <Planos />,
+      },
+      {
+        path: "produtores",
+        element: <div>produtores</div>,
+      },
+      {
+        path: "clientes",
+        element: <div>Clientes</div>,
+      },
+      {
+        path: "entregadores",
+        element: <div>Entregadores</div>,
+      },
+      {
+        path: "produtos",
+        element: <div>produtos</div>,
+      },
+      {
+        path: "emissao-relatorio",
+        element: <div>Emissão de relatório</div>,
+      },
+      {
+        path: "banners",
+        element: <div>Banners</div>,
+      },
+      {
+        path: "notificacao",
+        element: <div>Notificações</div>,
       },
     ],
   },
   {
-    path: "admin/login",
-    element: <Login />,
+    path: "*",
+    element: <div className="">404</div>,
   },
-  {
+  /*  {
     path: "/",
     element: <Login />,
-  },
+  }, */
 ]);
 
 // export const router = createBrowserRouter([
