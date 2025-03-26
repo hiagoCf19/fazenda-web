@@ -88,7 +88,7 @@ export function AppSidebar() {
                   className={`${
                     location.pathname === item.url
                       ? "bg-primary text-zinc-50 font-semibold"
-                      : "text-foreground font-normal "
+                      : "text-zinc-500 font-normal "
                   } rounded-lg h-10 text-lg items-center flex p-2 py-6`}
                 >
                   <SidebarMenuButton
@@ -100,7 +100,7 @@ export function AppSidebar() {
                         className={`${
                           location.pathname === item.url
                             ? "text-zinc-50"
-                            : "text-secondary"
+                            : "text-secondary-foreground"
                         }`}
                       />
                       <span>{item.title}</span>

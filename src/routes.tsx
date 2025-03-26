@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import Dashboard from "./admin/home/dashboard";
-import Planos from "./admin/home/pedidos";
 import AdminLayout from "./admin/home/layout/layout";
 import { AdminLogin } from "./admin/login";
+import { Produtores } from "./admin/home/produtores";
+import { Pedidos } from "./admin/home/pedidos";
+import { Clientes } from "./admin/home/clientes";
+import { Produtos } from "./admin/home/produtos";
+import { LandingPage } from "./landing/page";
 
 export const router = createBrowserRouter([
   {
@@ -23,15 +27,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "pedidos",
-        element: <Planos />,
+        element: <Pedidos />,
       },
       {
         path: "produtores",
-        element: <div>produtores</div>,
+        element: <Produtores />,
       },
       {
         path: "clientes",
-        element: <div>Clientes</div>,
+        element: <Clientes />,
       },
       {
         path: "entregadores",
@@ -39,7 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "produtos",
-        element: <div>produtos</div>,
+        element: <Produtos />,
       },
       {
         path: "emissao-relatorio",
@@ -59,10 +63,10 @@ export const router = createBrowserRouter([
     path: "*",
     element: <div className="">404</div>,
   },
-  /*  {
+  {
     path: "/",
-    element: <Login />,
-  }, */
+    element: <LandingPage />,
+  },
 ]);
 
 // export const router = createBrowserRouter([

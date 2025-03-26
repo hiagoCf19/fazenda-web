@@ -38,7 +38,9 @@ export default function Page() {
               </div>
               <div className="w-[80%] flex flex-col">
                 <p className="text-3xl font-semibold">{item.value}</p>
-                <span className="text-lg text-secondary/50">{item.title}</span>
+                <span className="text-lg text-secondary-foreground">
+                  {item.title}
+                </span>
               </div>
             </CardContent>
             <div className="absolute right-0 p-4 px-8 top-0 w-min rounded-full cursor-pointer">

@@ -19,9 +19,9 @@
   /* Verde forte do layout */
   --primary-foreground: rgba(255, 255, 255, 1);
   /* Texto branco sobre verde */
-  --secondary: rgba(18, 63, 66, 1);
+  --secondary:rgba(160, 244, 177, 1);
   /* Azul esverdeado escuro */
-  --secondary-foreground: rgba(255, 255, 255, 1);
+  --secondary-foreground: rgba(18, 63, 66, 1);
   --muted: rgba(230, 250, 235, 1);
   /* Fundo sutilmente colorido */
   --muted-foreground: rgba(100, 100, 100, 1);

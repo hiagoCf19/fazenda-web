@@ -3,9 +3,7 @@ import { Button } from "../../../../components/ui/button";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -49,10 +47,9 @@ const deliveries = [
   },
 ];
 
-export function TableDemo() {
+export function Pendentes() {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Número</TableHead>

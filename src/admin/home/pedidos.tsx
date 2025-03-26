@@ -1,35 +1,51 @@
 import { Hourglass, Search, ShoppingCart, Timer } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "../../components/ui/card";
+import { Card, CardContent, CardHeader } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
-import { Table } from "../../components/ui/table";
-import { TableDemo } from "./_components/pedidos/table";
-
-export default function OutraTela() {
+import { useState } from "react";
+import { Pendentes } from "./_components/pedidos/pendentes";
+import { EmAndamento } from "./_components/pedidos/em-andamento";
+import { Finalizados } from "./_components/pedidos/finalizados";
+import { CardOptions } from "./_components/commons/card-options";
+enum PedidosTela {
+  PENDENTES = "Pendentes",
+  EM_ANDAMENTO = "Em andamento",
+  FINALIZADOS = "Finalizados",
+}
+export const Pedidos = () => {
   const cards = [
     {
-      title: "Pendentes",
+      title: PedidosTela.PENDENTES,
       value: 5,
       icon: Hourglass,
       color: "#FF605880",
     },
     {
-      title: "Em andamento",
+      title: PedidosTela.EM_ANDAMENTO,
       value: 15,
       icon: Timer,
       color: "#fe6e008e",
     },
     {
-      title: "Concluídos",
+      title: PedidosTela.FINALIZADOS,
       value: 46,
       icon: ShoppingCart,
       color: "#A0F4B1",
     },
   ];
+  const [selectedValue, setSelectedValue] = useState(PedidosTela.PENDENTES);
+  function renderContent() {
+    switch (selectedValue) {
+      case PedidosTela.PENDENTES:
+        return <Pendentes />;
+      case PedidosTela.EM_ANDAMENTO:
+        return <EmAndamento />;
+      case PedidosTela.FINALIZADOS:
+        return <Finalizados />;
+      default:
+        return PedidosTela.PENDENTES;
+    }
+  }
+
   return (
     <>
       <div className="flex items-center space-x-5 mb-5">
@@ -61,7 +77,9 @@ export default function OutraTela() {
               </div>
               <div className="w-[80%] flex flex-col">
                 <p className="text-3xl font-semibold">{item.value}</p>
-                <span className="text-lg text-secondary/50">{item.title}</span>
+                <span className="text-lg text-secondary-foreground">
+                  {item.title}
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -69,20 +87,22 @@ export default function OutraTela() {
       </div>
       <Card className=" mt-5 pt-0">
         <CardHeader className="p-0">
-          <div className="p-0 bg-foreground/10 rounded-t-xl">
-            <Button className="rounded-none rounded-tl-xl p-6">
-              Pendentes
-            </Button>
+          <CardOptions
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
+            options={[
+              PedidosTela.PENDENTES,
+              PedidosTela.EM_ANDAMENTO,
+              PedidosTela.FINALIZADOS,
+            ]}
+          />
 
-            <Button variant={"ghost"} className="rounded-none p-6">
-              Em andamento
-            </Button>
-            <Button variant={"ghost"} className="rounded-none p-6">
-              Finalizados
-            </Button>
-          </div>
           <div className="p-8 flex justify-between">
-            <p className="text-4xl font-semibold">5 pendentes</p>
+            <p className="text-4xl font-semibold text-zinc-700">
+              {cards.find((item) => item.title === selectedValue)?.value || 0}{" "}
+              {selectedValue}
+            </p>
+
             <div className="border rounded-lg flex items-center px-4 w-[30%]">
               <input
                 placeholder="Buscar por cliente"
@@ -92,10 +112,8 @@ export default function OutraTela() {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
-          <TableDemo />
-        </CardContent>
+        <CardContent>{renderContent()}</CardContent>
       </Card>
     </>
   );
-}
+};
