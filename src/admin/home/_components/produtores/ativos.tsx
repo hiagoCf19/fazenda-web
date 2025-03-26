@@ -1,4 +1,4 @@
-import { Eye, FilePenLine, Star } from "lucide-react";
+import { FilePenLine, Star } from "lucide-react";
 import {
   Table,
   TableBody,

@@ -8,11 +8,11 @@ interface StatusTabsProps<T extends ReactNode> {
   options: T[];
 }
 
-export function CardOptions<T extends any>({
+export function CardOptions({
   selectedValue,
   setSelectedValue,
   options,
-}: StatusTabsProps<T>) {
+}: StatusTabsProps<any>) {
   return (
     <div className="p-0 bg-foreground/10 rounded-t-xl">
       {options.map((option, index) => (
@@ -24,7 +24,7 @@ export function CardOptions<T extends any>({
           onClick={() => setSelectedValue(option)}
           variant={selectedValue === option ? "default" : "ghost"}
         >
-          {option}
+          {option as any}
         </Button>
       ))}
     </div>
