@@ -7,6 +7,7 @@ import { Pedidos } from "./admin/home/pedidos";
 import { Clientes } from "./admin/home/clientes";
 import { Produtos } from "./admin/home/produtos";
 import { LandingPage } from "./landing/page";
+import { LoginWeb } from "./web/login";
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginWeb />,
   },
 ]);
 
