@@ -1,12 +1,13 @@
 import { Building, User } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../components/ui/carousel";
+} from "../../components/ui/carousel";
+import { Link } from "react-router";
 
-export function LoginWeb() {
+export function AccessPageWeb() {
   return (
     <div className="flex min-h-screen bg-green-50">
       <div className="w-1/2 flex flex-col justify-center  px-16 py-12">
@@ -19,10 +20,12 @@ export function LoginWeb() {
 
         <div className="w-full   flex items-center flex-col">
           <div className="space-y-4 w-[60%] flex justify-center items-center flex-col">
-            <Button className="w-full bg-secondary  text-secondary-foreground rounded-xl py-6 font-medium hover:bg-secondary/80  flex items-center justify-center text-xl">
-              <User />
-              Cliente
-            </Button>
+            <Link to={"/auth"} className="w-full">
+              <Button className="w-full bg-secondary  text-secondary-foreground rounded-xl py-6 font-medium hover:bg-secondary/80  flex items-center justify-center text-xl">
+                <User />
+                Cliente
+              </Button>
+            </Link>
 
             <Button
               className="w-full border-secondary-foreground rounded-xl py-6 font-medium  flex items-center justify-center text-secondary-foreground text-xl"

@@ -152,7 +152,7 @@ export const LandingPage = () => {
             className="md:w-[166px] md:h-[48px] w-28"
           />
 
-          <Link to={"/login"}>
+          <Link to={"/access"}>
             <Button
               className="bg-secondary md:rounded-2xl text-secondary-foreground md:w-[178px] "
               size={"lg"}

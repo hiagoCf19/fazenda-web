@@ -7,7 +7,9 @@ import { Pedidos } from "./admin/home/pedidos";
 import { Clientes } from "./admin/home/clientes";
 import { Produtos } from "./admin/home/produtos";
 import { LandingPage } from "./landing/page";
-import { LoginWeb } from "./web/login";
+import { AccessPageWeb } from "./web/auth/access";
+import { AuthLayout } from "./web/layout/layout";
+import { RegisterClientPage } from "./web/auth/register";
 
 export const router = createBrowserRouter([
   {
@@ -69,8 +71,22 @@ export const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: "/login",
-    element: <LoginWeb />,
+    path: "access",
+    element: <AccessPageWeb />,
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "client",
+        element: <RegisterClientPage />,
+      },
+      {
+        path: "business",
+        element: <div>empresa</div>,
+      },
+    ],
   },
 ]);
 
