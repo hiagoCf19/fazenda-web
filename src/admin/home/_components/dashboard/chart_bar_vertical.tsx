@@ -1,6 +1,14 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  XAxis,
+  YAxis,
+  LabelList,
+} from "recharts";
 
 import {
   Card,
@@ -11,6 +19,7 @@ import {
 import { ChartConfig, ChartContainer } from "../../../../components/ui/chart";
 import { Button } from "../../../../components/ui/button";
 import { Separator } from "../../../../components/ui/separator";
+
 const chartData = [
   { month: "Abacaxi", desktop: 50_779 },
   { month: "Cebola", desktop: 121_799 },
@@ -36,7 +45,12 @@ export function ChartBarVertical() {
         <CardTitle className="flex justify-between items-center">
           <div className="">
             <p className="text-foreground font-normal">Produtos</p>
-            <span className="text-lg text-zinc-600">Mais vendidos</span>
+            <span
+              className="text-lg text-zinc-600"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Mais vendidos
+            </span>
           </div>
           <div className="space-x-2 bg-foreground/10 px-2 py-1 rounded-2xl">
             <Button className="rounded-xl">Semana</Button>
@@ -46,20 +60,24 @@ export function ChartBarVertical() {
           </div>
         </CardTitle>
       </CardHeader>
+
+      {/* Linha separadora */}
       <div className="w-full px-5">
         <Separator />
       </div>
-      <CardContent className=" h-full p-2">
-        <ChartContainer config={chartConfig} className="  overflow-hidden">
+
+      <CardContent className="h-full p-2">
+        <ChartContainer config={chartConfig} className="overflow-hidden">
           <BarChart
             accessibilityLayer
             data={chartData}
             layout="vertical"
-            margin={{
-              right: 6,
-            }}
+            margin={{ right: 6 }}
           >
+            {/* Linhas pontilhadas corrigidas */}
             <CartesianGrid horizontal={false} strokeDasharray="3 3" />
+
+            {/* Ajuste do eixo Y (produtos) */}
             <YAxis
               dataKey="month"
               type="category"
@@ -67,10 +85,17 @@ export function ChartBarVertical() {
               axisLine={false}
               width={60}
             />
+
+            {/* Ajuste do eixo X (valores) */}
             <XAxis
               type="number"
+              domain={[0, 200000]}
               tickFormatter={(value) => `${value / 1000}k`}
+              tickCount={5} // Garante os rótulos 0k, 50k, 100k, 200k
+              axisLine={false}
             />
+
+            {/* Gráfico de barras */}
             <Bar
               barSize={20}
               dataKey="desktop"
@@ -78,6 +103,14 @@ export function ChartBarVertical() {
               radius={6}
               height={1}
             >
+              {/*Adicionando os valores ao final do eixo Y */}
+              <LabelList
+                dataKey="desktop"
+                position="right"
+                formatter={(value: number) => value.toLocaleString("pt-BR")}
+                fill="#333"
+                fontSize={12}
+              />
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}

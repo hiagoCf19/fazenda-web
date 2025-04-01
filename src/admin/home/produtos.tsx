@@ -25,10 +25,16 @@ export const Produtos = () => {
   }
   return (
     <>
-      <div className="flex items-center space-x-5 mb-5">
+      <div
+        className="flex items-center space-x-5 mb-5"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
         <h1 className="text-4xl text-zinc-700 font-semibold ">Produtos</h1>
       </div>
-      <div className="w-full flex space-x-4">
+      <div
+        className="w-full flex space-x-4"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
         <Button className="flex-1 p-6">
           <Plus />
           Nova categoria
@@ -39,7 +45,7 @@ export const Produtos = () => {
         </Button>
       </div>
 
-      <Card className=" mt-5 pt-0">
+      <Card className=" mt-5 pt-0" style={{ fontFamily: "Inter, sans-serif" }}>
         <CardHeader className="p-0">
           <CardOptions
             selectedValue={selectedValue}
@@ -54,8 +60,8 @@ export const Produtos = () => {
 
             <div className="border rounded-lg flex items-center px-4 w-[30%]">
               <input
-                placeholder="Buscar por cliente"
-                className=" border-none ring-none outline-none w-full "
+                placeholder={`Buscar por ${selectedValue.toLowerCase()}`}
+                className="border-none ring-none outline-none w-full"
               />
               <Search />
             </div>
