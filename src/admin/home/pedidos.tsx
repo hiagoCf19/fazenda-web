@@ -48,9 +48,15 @@ export const Pedidos = () => {
 
   return (
     <>
-      <div className="flex items-center space-x-5 mb-5">
-        <h1 className="text-4xl text-zinc-700 font-semibold ">Pedidos</h1>
-        <div className="space-x-2 bg-[#E1F3E4] px-2 py-1 rounded-2xl">
+      {/* Cabeçalho */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
+        <h1
+          className=" text-xl sm:text-2xl lg:text-4xl text-zinc-700 font-semibold"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          Pedidos
+        </h1>
+        <div className="flex flex-wrap gap-2 bg-[#E1F3E4] px-2 py-1 rounded-2xl">
           <Button className="">Hoje</Button>
           <Button variant={"ghost"} className="text-foreground">
             Semana
@@ -63,21 +69,31 @@ export const Pedidos = () => {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-3 space-x-8">
+
+      {/* Grid de Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {cards.map((item, i) => (
-          <Card key={i} className=" shadow-lg p-8">
-            <CardContent className="flex h-[10vh] justify-center items-center">
-              <div className="w-[20%]">
+          <Card key={i} className="shadow-lg p-8">
+            <CardContent className="flex items-center gap-4 sm:gap-6">
+              {/* Ícone */}
+              <div className="flex-shrink-0">
                 <div
                   style={{ backgroundColor: item.color }}
-                  className={` flex items-center justify-center rounded-full h-16 w-16`}
+                  className="flex items-center justify-center rounded-full h-16 w-16"
                 >
                   <item.icon />
                 </div>
               </div>
-              <div className="w-[80%] flex flex-col">
-                <p className="text-3xl font-semibold">{item.value}</p>
-                <span className="text-lg text-secondary-foreground">
+
+              {/* Informações */}
+              <div
+                className="flex flex-col"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                <p className="text-xl sm:text-2xl lg:text-3xl font-semibold">
+                  {item.value}
+                </p>
+                <span className="text-sm sm:text-lg text-secondary-foreground">
                   {item.title}
                 </span>
               </div>
@@ -85,8 +101,13 @@ export const Pedidos = () => {
           </Card>
         ))}
       </div>
-      <Card className=" mt-5 pt-0">
-        <CardHeader className="p-0">
+
+      {/* Card de Pedidos */}
+      <Card
+        className="mt-5 pt-0 bd"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        <CardHeader className="p-0 ">
           <CardOptions
             selectedValue={selectedValue}
             setSelectedValue={setSelectedValue}
@@ -96,17 +117,15 @@ export const Pedidos = () => {
               PedidosTela.FINALIZADOS,
             ]}
           />
-
-          <div className="p-8 flex justify-between">
-            <p className="text-4xl font-semibold text-zinc-700">
+          <div className="p-4 sm:p-8 flex flex-col sm:flex-row justify-between gap-4">
+            <p className="text-xl sm:text-2xl lg:text-4xl font-semibold text-zinc-700">
               {cards.find((item) => item.title === selectedValue)?.value || 0}{" "}
               {selectedValue}
             </p>
-
-            <div className="border rounded-lg flex items-center px-4 w-[30%]">
+            <div className="border rounded-lg flex items-center px-4 w-full sm:w-[50%] lg:w-[30%]">
               <input
                 placeholder="Buscar por cliente"
-                className=" border-none ring-none outline-none w-full "
+                className="border-none ring-none outline-none w-full"
               />
               <Search />
             </div>

@@ -44,7 +44,12 @@ export function ChartLineWave() {
         <CardTitle className="flex justify-between items-center">
           <div className="">
             <p className="text-foreground font-normal">Vendas</p>
-            <span className="text-lg text-zinc-600">Ticket médio</span>
+            <span
+              className=" text-lg text-zinc-600"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              Ticket médio
+            </span>
           </div>
           <div className="space-x-2 bg-foreground/10 px-2 py-1 rounded-2xl">
             <Button variant={"ghost"} className="text-foreground">
@@ -81,9 +86,14 @@ export function ChartLineWave() {
               axisLine={false}
               tickMargin={8}
               width={34}
-              tickFormatter={(value) => `${value / 1000}k`}
+              tickFormatter={(value) => `${Math.round(value / 1000)}k`}
             />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={
+                <ChartTooltipContent className="bg-secondary-foreground text-white" />
+              }
+            />
             <defs>
               <linearGradient id="fillvendas" x1="0" y1="0" x2="0" y2="1">
                 <stop

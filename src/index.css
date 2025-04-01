@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@import "@fontsource/inter";
+
 :root {
   --background: rgba(246, 254, 247, 1);
   /* Ajustado para um verde bem claro */
@@ -19,7 +21,7 @@
   /* Verde forte do layout */
   --primary-foreground: rgba(255, 255, 255, 1);
   /* Texto branco sobre verde */
-  --secondary:rgba(160, 244, 177, 1);
+  --secondary: rgba(160, 244, 177, 1);
   /* Azul esverdeado escuro */
   --secondary-foreground: rgba(18, 63, 66, 1);
   --muted: rgba(230, 250, 235, 1);
@@ -53,7 +55,6 @@
   --sidebar-border: rgba(200, 230, 200, 1);
   --sidebar-ring: rgba(0, 190, 98, 0.5);
 }
-
 
 @theme inline {
   --color-background: var(--background);
