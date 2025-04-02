@@ -1,4 +1,4 @@
-import { ChevronDown, Search, ShoppingCart, StarIcon } from "lucide-react";
+import { ChevronDown, Search, ShoppingCart } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 
