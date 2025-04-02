@@ -1,11 +1,19 @@
 import { Store, UserRoundCheck } from "lucide-react";
 import { useState } from "react";
-import RegisterClientForm from "./_components/cadastro/form/form";
+import RegisterClientForm from "./_components/register/form.component";
 
+export enum RegisterTypeEnum {
+  INDIVIDUAL = "individual",
+  ENTERPRISE = "enterprise",
+}
 export function RegisterClientPage() {
   const [renderForm, setRenderForm] = useState(false);
+  const [registerType, setRegisterType] = useState<RegisterTypeEnum>(
+    RegisterTypeEnum.ENTERPRISE
+  );
+
   return renderForm ? (
-    <RegisterClientForm />
+    <RegisterClientForm registerType={registerType} />
   ) : (
     <>
       <h2 className="text-3xl text-secondary-foreground text-center font-medium">
@@ -14,7 +22,13 @@ export function RegisterClientPage() {
       </h2>
       <section className="p-12 flex justify-center flex-col items-center space-y-12">
         <div className="flex gap-4">
-          <button className="bg-secondary-foreground flex flex-col rounded-4xl w-[405px] h-[154px] p-8">
+          <button
+            className="bg-secondary-foreground flex flex-col rounded-4xl w-[405px] h-[154px] p-8"
+            onClick={() => {
+              setRenderForm(true);
+              setRegisterType(RegisterTypeEnum.ENTERPRISE);
+            }}
+          >
             <div className="flex gap-2 items-center">
               <Store className="text-secondary size-8" />
               <p className="text-secondary text-2xl font-bold">Empresa</p>
@@ -25,7 +39,10 @@ export function RegisterClientPage() {
           </button>
           <button
             className="bg-secondary flex flex-col rounded-4xl w-[405px] h-[154px] p-8"
-            onClick={() => setRenderForm(true)}
+            onClick={() => {
+              setRenderForm(true);
+              setRegisterType(RegisterTypeEnum.INDIVIDUAL);
+            }}
           >
             <div className="flex gap-2 items-center">
               <UserRoundCheck className="text-secondary-foreground size-8" />

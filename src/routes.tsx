@@ -6,10 +6,10 @@ import { Produtores } from "./admin/home/produtores";
 import { Pedidos } from "./admin/home/pedidos";
 import { Clientes } from "./admin/home/clientes";
 import { Produtos } from "./admin/home/produtos";
-import { LandingPage } from "./landing/page";
-import { AccessPageWeb } from "./web/auth/access";
-import { AuthLayout } from "./web/layout/layout";
-import { RegisterClientPage } from "./web/auth/register";
+import { HomePage } from "./web/(home)/home.page";
+import { AccessPageWeb } from "./web/auth/access.page";
+import { AuthLayout } from "./web/layout/auth.layout";
+import { RegisterClientPage } from "./web/auth/register.page";
 
 export const router = createBrowserRouter([
   {
@@ -62,20 +62,17 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "*",
-    element: <div className="">404</div>,
-  },
+
   {
     path: "/",
-    element: <LandingPage />,
+    element: <HomePage />,
   },
   {
-    path: "access",
+    path: "landing-access",
     element: <AccessPageWeb />,
   },
   {
-    path: "auth",
+    path: "register",
     element: <AuthLayout />,
     children: [
       {
@@ -88,25 +85,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <div className="">404</div>,
+  },
 ]);
-
-// export const router = createBrowserRouter([
-//   {
-//     path: "admin",
-//     element: <AdminLayout />,
-//     children: [
-//       {
-//         path: "dashboard",
-//         element: <Dashboard />,
-//       },
-//       {
-//         path: "planos",
-//         element: <Planos />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/auth",
-//     element: <Login />,
-//   },
-// ]);
