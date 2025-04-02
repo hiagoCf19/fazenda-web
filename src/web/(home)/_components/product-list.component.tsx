@@ -1,11 +1,11 @@
 import { PlusIcon } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../../components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../components/ui/carousel";
-import { Product } from "../../../types/product";
+} from "../../../components/ui/carousel";
+import { Product } from "../../../../types/product";
 interface ProductListProps {
   products: Product[];
   title: string;
@@ -17,7 +17,7 @@ export function ProductList({ products, title }: ProductListProps) {
       <Carousel>
         <CarouselContent className="-ml-4">
           {products.map((product, i) => (
-            <CarouselItem className="pl-4 md:basis-1/8 basis-1/2" key={i}>
+            <CarouselItem className="pl-4 basis-auto" key={i}>
               <div className="rounded-3xl  relative shadow-lg md:w-[190px] md:h-[190px]  w-[160px] h-[160px]">
                 <img
                   src={product.image}

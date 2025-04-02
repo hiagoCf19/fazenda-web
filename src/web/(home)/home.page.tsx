@@ -1,17 +1,34 @@
-import { Search, StarIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { ChooseByCategory } from "./_components/choose-by-category";
-import { ProductList } from "./_components/product-list";
+import { ChevronDown, Search, ShoppingCart, StarIcon } from "lucide-react";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../components/ui/carousel";
-import { Link } from "react-router";
-import { Producer } from "../../types/producer";
+} from "../../components/ui/carousel";
+import { Link, useSearchParams } from "react-router";
+import { Producer } from "../../../types/producer";
+import { ChooseByCategory } from "./_components/choose-by-category.component";
+import { ProductList } from "./_components/product-list.component";
+import { Avatar, AvatarFallback } from "../../components/ui/avatar";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import { Sheet, SheetContent, SheetTrigger } from "../../components/ui/sheet";
+import { PedidosComponent } from "./_components/pedidos.component";
+import { Producers } from "./_components/producers.component";
 
-export const LandingPage = () => {
+export const HomePage = () => {
+  const [searchParams] = useSearchParams();
+  const userId = searchParams.get("user_id");
+  //TODO: durante a integração buscar o user na api com o id
+  const user = {
+    user_id: userId,
+    photo:
+      "https://s3-alpha-sig.figma.com/img/b0c6/6ee6/3d9ff405a2addac4de18a8f4774ef0e7?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=GOy5MD9Ia0v1aJOA3~TYnnI8vsW8WxGzUUsK2OXsvYsSqYyucO-EKZowAMK5Ybl2WmCTiuyqDHMU1F~6e2lA2WXcj-ndl52kbWDaPOCnH1ErPbnNzk8t4mLKrK9rU0tTbflAslfBCbOsvWmCbnVrc5BVu4sPz4buZKQI9zpjtzobPQDPW0EJ0kxc7gbnmvdIDmPvL7xqekrl5b1NBPwlciADtb5mJKMus2cDq~caNn6~LIYyBd--yFTsQUdeEC~L6eZfBe-S16TdAYOYn8nYtmkaXePnth-65kJVWns1CUJOy9FsL3Ygfbb70Lz-1Tl3f2657ZqQBP-djGY147rc6Q__",
+    name: "João Generico",
+    endereco: "Rua João Batista, 123 - Centro",
+  };
+
   const categories = [
     {
       category: "Vegetais",
@@ -32,6 +49,22 @@ export const LandingPage = () => {
     {
       category: "Vegetais",
       image: "/vegetable.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
     },
   ];
   const products = [
@@ -142,39 +175,70 @@ export const LandingPage = () => {
       assessment: 5,
     },
   ];
+
   return (
     <section className="md:p-12 p-4 overflow-x-hidden">
-      <header className="bg-foreground/8 md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4">
-        <div className="flex justify-between items-center">
-          <img
-            src="full_logo.svg"
-            alt="Fazenda online"
-            className="md:w-[166px] md:h-[48px] w-28"
-          />
+      {!user.user_id ? (
+        <header className="bg-[#E4EAE7] md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4">
+          <div className="flex justify-between items-center">
+            <img
+              src="full_logo.svg"
+              alt="Fazenda online"
+              className="md:w-[166px] md:h-[48px] w-28"
+            />
 
-          <Link to={"/access"}>
-            <Button
-              className="bg-secondary md:rounded-2xl text-secondary-foreground md:w-[178px] "
-              size={"lg"}
-            >
-              Acessar
-            </Button>
-          </Link>
-        </div>
+            <Link to={"/landing-access"}>
+              <Button
+                className="bg-secondary md:rounded-2xl text-secondary-foreground md:w-[178px] "
+                size={"lg"}
+              >
+                Acessar
+              </Button>
+            </Link>
+          </div>
 
-        <div className="flex justify-between w-full mt-4 md:mt-0">
-          <img
-            src="/vegetables_1.png"
-            alt="Cesta de vegetais"
-            className="md:block hidden"
-          />
-          <div className="flex flex-col space-y-4 text-center  items-center">
-            <h2 className="text-primary text-4xl font-semibold">
-              Do campo para a sua mesa
-            </h2>
-            <p className="text-secondary-foreground text-2xl font-semibold">
-              Alimentos frescos e naturais, diretamente de quem cultiva
-            </p>
+          <div className="flex justify-between w-full mt-4 md:mt-0">
+            <img
+              src="/vegetables_1.png"
+              alt="Cesta de vegetais"
+              className="md:block hidden"
+            />
+            <div className="flex flex-col space-y-4 text-center  items-center">
+              <h2 className="text-primary text-4xl font-semibold">
+                Do campo para a sua mesa
+              </h2>
+              <p className="text-secondary-foreground text-2xl font-semibold">
+                Alimentos frescos e naturais, diretamente de quem cultiva
+              </p>
+              <div className="bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden">
+                <Search className="ml-2" />
+                <Input
+                  type="text"
+                  className="flex-1 p-2 focus:ring-0 focus:outline-0 focus-visible:border-none focus-visible:ring-none focus-visible:ring-0 shadow-none"
+                />
+                <div className="">
+                  <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
+                    Pesquisar
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <img
+              src="/vegetables_2.png"
+              alt="Prato de vegetais"
+              className="md:block hidden"
+            />
+          </div>
+        </header>
+      ) : (
+        <header className="bg-[#E4EAE7] md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
+          <div className="md:flex gap-4 w-[50%] hidden">
+            <img
+              src="full_logo.svg"
+              alt="Fazenda online"
+              className="md:w-[166px] md:h-[48px] w-28"
+            />
+
             <div className="bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden">
               <Search className="ml-2" />
               <Input
@@ -188,13 +252,53 @@ export const LandingPage = () => {
               </div>
             </div>
           </div>
-          <img
-            src="/vegetables_2.png"
-            alt="Prato de vegetais"
-            className="md:block hidden"
-          />
-        </div>
-      </header>
+          {/* endereço */}
+          <div className="w-[20%] hidden md:block">
+            <p className="text-zinc-800 text-lg">Endereço de entrega</p>
+            <span className="flex text-zinc-600">
+              {user.endereco} <ChevronDown />
+            </span>
+          </div>
+          {/* user info e carrinho */}
+          <div className="flex gap-4 md:w-[30%] items-center justify-between w-full">
+            <div className="flex gap-1 items-center">
+              <Avatar className="md:size-20 size-12">
+                <AvatarImage className="object-cover" src={user.photo} />
+                <AvatarFallback>JO</AvatarFallback>
+              </Avatar>
+              <div className=" flex justify-baseline items-start flex-col">
+                <p className="md:text-lg tetx-sm text-secondary-foreground">
+                  Olá, <strong>{user.name}</strong>!
+                </p>
+                <Button
+                  variant={"link"}
+                  className="text-[#FE7000] p-0 text-lg hidden md:block"
+                >
+                  Editar perfil
+                </Button>
+                <p className="text-zinc-800 text-sm md:hidden">
+                  Endereço de entrega
+                </p>
+              </div>
+            </div>
+
+            <Sheet>
+              <SheetTrigger>
+                <Button className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg ">
+                  <ShoppingCart className="text-secondary-foreground md:size-7" />
+                  Pedidos
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <PedidosComponent />
+              </SheetContent>
+            </Sheet>
+
+            {/* carrinho */}
+          </div>
+        </header>
+      )}
+      <div className="w-full md:h-[128px] h-[75px]" />
       <main className="md:mb-12 md:space-y-8 space-y-5 ">
         <Carousel>
           <CarouselContent className="w-full">
@@ -216,35 +320,7 @@ export const LandingPage = () => {
         />
         <ProductList title="Mais pedidos" products={products} />
         <ProductList title="Novidades" products={products} />
-        <div className="space-y-4">
-          <h2 className="text-zinc-800 font-semibold text-2xl">Produtores</h2>
-          <Carousel>
-            <CarouselContent className="-ml-4">
-              {producers.map((producer, i) => (
-                <CarouselItem className="pl-4 md:basis-1/8 basis-1/2" key={i}>
-                  <div className="relative  rounded-t-3xl rounded-b-xs shadow-xl overflow-hidden md:w-[169px] md:h-[82px] w-[140px] h-[70px]">
-                    <img
-                      src={producer.image}
-                      alt={producer.businessName}
-                      className="aspect-video"
-                    />
-                  </div>
-                  <div className=" w-full">
-                    <p className="text-lg text-zinc-800 font-medium md:leading-normal leading-5 mt-2">
-                      {producer.businessName}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <StarIcon className="text-yellow-400 fill-yellow-400 w-5 h-5" />
-                      <span className="text-zinc-700 font-medium">
-                        {producer.assessment}.0
-                      </span>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
+        <Producers title="Produtores" producers={producers} />
       </main>
       <footer className="md:h-[309px] h-[200px] bg-foreground/8 -m-12 p-12 mt-12 flex justify-center items-center space-y-4 flex-col ">
         <img src="/full_logo.svg" />

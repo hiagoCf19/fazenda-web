@@ -20,13 +20,12 @@ export function AccessPageWeb() {
 
         <div className="w-full   flex items-center flex-col">
           <div className="space-y-4 w-[60%] flex justify-center items-center flex-col">
-            <Link to={"/auth"} className="w-full">
+            <Link to={"/register/client"} className="w-full">
               <Button className="w-full bg-secondary  text-secondary-foreground rounded-xl py-6 font-medium hover:bg-secondary/80  flex items-center justify-center text-xl">
                 <User />
                 Cliente
               </Button>
             </Link>
-
             <Button
               className="w-full border-secondary-foreground rounded-xl py-6 font-medium  flex items-center justify-center text-secondary-foreground text-xl"
               variant={"outline"}
