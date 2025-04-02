@@ -2,7 +2,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../components/ui/carousel";
+} from "../../../components/ui/carousel";
 
 type Category = {
   category: string;
@@ -19,14 +19,14 @@ export const ChooseByCategory = ({ categories, title }: SectionProps) => {
       <Carousel>
         <CarouselContent>
           {categories.map((category, i) => (
-            <CarouselItem className="md:basis-1/7 basis-1/3" key={i}>
+            <CarouselItem className="basis-auto" key={i}>
               <div
                 key={i}
                 className="bg-[#E1F3E4] size-24 flex items-center justify-center rounded-3xl"
               >
                 <img src={category.image} alt={category.category} />
               </div>
-              <p className="text-center text-lg text-zinc-800 font-medium">
+              <p className="md:text-start text-center text-lg text-zinc-800 font-medium">
                 {category.category}
               </p>
             </CarouselItem>
