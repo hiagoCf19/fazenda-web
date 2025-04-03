@@ -13,7 +13,7 @@ import {
 } from "./form/zod/schema";
 import { CodigoStep } from "./form/_components/step-2.component";
 import { useStep } from "../../../context/form-steps-register.context";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../../shadcn/ui/button";
 import { useNavigate } from "react-router";
 import { RegisterTypeEnum } from "../../register.page";
 import { StepNif } from "./form/_components/step-0.component";
@@ -89,10 +89,8 @@ export default function RegisterClientForm({
         console.log("Dados para cadastro na api company", company_user);
       }
       //todo: implementar navegação real na integração:
-
       navigate({
-        pathname: "/",
-        search: "?user_id=1",
+        pathname: "/login",
       });
     }
 
@@ -110,7 +108,7 @@ export default function RegisterClientForm({
 
   return (
     <>
-      <div className="flex gap-1">
+      <div className="flex gap-1 mt-8 md:mt-0">
         {stepSchemas.map((_, i) => (
           <div
             key={i}
@@ -121,7 +119,10 @@ export default function RegisterClientForm({
         ))}
       </div>
 
-      <form onSubmit={handleSubmit(handleNextStep)} className="p-6 max-w-lg">
+      <form
+        onSubmit={handleSubmit(handleNextStep)}
+        className="md:p-6 p-4 md:max-w-lg"
+      >
         {currentStep === 0 && <StepNif register={register} errors={errors} />}
         {currentStep === 1 && (
           <EmailAndPhoneStep

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { AppSidebar } from "./_components/sidebar";
-import { SidebarProvider } from "../../../components/ui/sidebar";
+import { SidebarProvider } from "../../../shadcn/ui/sidebar";
 
 export default function AdminLayout() {
   return (

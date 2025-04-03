@@ -1,6 +1,6 @@
 import { Plus, Search } from "lucide-react";
-import { Button } from "../../components/ui/button";
-import { Card, CardContent, CardHeader } from "../../components/ui/card";
+import { Button } from "../../shadcn/ui/button";
+import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
 import { CardOptions } from "./_components/commons/card-options";
 import { useState } from "react";
 import { Categorias } from "./_components/produtos/categorias";

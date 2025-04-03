@@ -1,0 +1,32 @@
+import { test } from "@playwright/test";
+
+test("register-particular", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+  await page.getByRole("button", { name: "Acessar" }).click();
+  await page.getByRole("button", { name: "Cliente" }).click();
+  await page.getByRole("button", { name: "Particular A conta será" }).click();
+  await page.getByRole("textbox").click();
+  await page.getByRole("textbox").fill("123456789");
+  await page.getByRole("button", { name: "Próximo" }).click();
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="email"]').fill("hiagodev@gmail.com");
+  await page.locator('input[name="phone"]').click();
+  await page.locator('input[name="phone"]').fill("3199999999");
+  await page.getByRole("button", { name: "Próximo" }).click();
+  await page.getByRole("textbox").click();
+  await page.getByRole("textbox").fill("1234");
+  await page.getByRole("button", { name: "Próximo" }).click();
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill("123456");
+  await page.locator('input[name="confirmPassword"]').click();
+  await page.locator('input[name="confirmPassword"]').fill("123456");
+  await page.getByRole("button").nth(2).click();
+  await page.getByRole("button").nth(1).click();
+  await page.getByRole("button", { name: "Próximo" }).click();
+  await page.locator('input[name="firstName"]').click();
+  await page.locator('input[name="firstName"]').fill("Hiago");
+  await page.locator('input[name="lastName"]').click();
+  await page.locator('input[name="lastName"]').fill("dev");
+  await page.getByRole("button", { name: "Finalizar" }).click();
+  await new Promise((resolve) => setTimeout(resolve, 999999));
+});

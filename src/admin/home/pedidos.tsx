@@ -1,6 +1,6 @@
 import { Hourglass, Search, ShoppingCart, Timer } from "lucide-react";
-import { Card, CardContent, CardHeader } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
+import { Button } from "../../shadcn/ui/button";
 import { useState } from "react";
 import { Pendentes } from "./_components/pedidos/pendentes";
 import { EmAndamento } from "./_components/pedidos/em-andamento";

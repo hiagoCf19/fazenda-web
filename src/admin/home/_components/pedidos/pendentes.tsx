@@ -1,5 +1,5 @@
 import { Eye, Play } from "lucide-react";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../../shadcn/ui/button";
 import {
   Table,
   TableBody,
@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../../../components/ui/table";
+} from "../../../../shadcn/ui/table";
 
 const deliveries = [
   {

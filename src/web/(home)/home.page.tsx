@@ -1,33 +1,28 @@
 import { ChevronDown, Search, ShoppingCart } from "lucide-react";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
+import { Button } from "../../shadcn/ui/button";
+import { Input } from "../../shadcn/ui/input";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../components/ui/carousel";
-import { Link, useSearchParams } from "react-router";
+} from "../../shadcn/ui/carousel";
+import { Link } from "react-router";
 import { Producer } from "../../../types/producer";
 import { ChooseByCategory } from "./_components/choose-by-category.component";
 import { ProductList } from "./_components/product-list.component";
-import { Avatar, AvatarFallback } from "../../components/ui/avatar";
+import { Avatar, AvatarFallback } from "../../shadcn/ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
-import { Sheet, SheetContent, SheetTrigger } from "../../components/ui/sheet";
+import { Sheet } from "../../shadcn/ui/sheet";
 import { PedidosComponent } from "./_components/pedidos.component";
 import { Producers } from "./_components/producers.component";
+import { useState } from "react";
+import { useSession } from "../context/session.context";
 
 export const HomePage = () => {
-  const [searchParams] = useSearchParams();
-  const userId = searchParams.get("user_id");
+  const { session } = useSession();
+  const [isOpenPedidos, setIsOpenPedidos] = useState(false);
   //TODO: durante a integração buscar o user na api com o id
-  const user = {
-    user_id: userId,
-    photo:
-      "https://s3-alpha-sig.figma.com/img/b0c6/6ee6/3d9ff405a2addac4de18a8f4774ef0e7?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=GOy5MD9Ia0v1aJOA3~TYnnI8vsW8WxGzUUsK2OXsvYsSqYyucO-EKZowAMK5Ybl2WmCTiuyqDHMU1F~6e2lA2WXcj-ndl52kbWDaPOCnH1ErPbnNzk8t4mLKrK9rU0tTbflAslfBCbOsvWmCbnVrc5BVu4sPz4buZKQI9zpjtzobPQDPW0EJ0kxc7gbnmvdIDmPvL7xqekrl5b1NBPwlciADtb5mJKMus2cDq~caNn6~LIYyBd--yFTsQUdeEC~L6eZfBe-S16TdAYOYn8nYtmkaXePnth-65kJVWns1CUJOy9FsL3Ygfbb70Lz-1Tl3f2657ZqQBP-djGY147rc6Q__",
-    name: "João Generico",
-    endereco: "Rua João Batista, 123 - Centro",
-  };
 
   const categories = [
     {
@@ -178,8 +173,8 @@ export const HomePage = () => {
 
   return (
     <section className="md:p-12 p-4 overflow-x-hidden">
-      {!user.user_id ? (
-        <header className="bg-[#E4EAE7] md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4">
+      {!session ? (
+        <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:p-12 md:mb-12 pb-4">
           <div className="flex justify-between items-center">
             <img
               src="full_logo.svg"
@@ -256,19 +251,22 @@ export const HomePage = () => {
           <div className="w-[20%] hidden md:block">
             <p className="text-zinc-800 text-lg">Endereço de entrega</p>
             <span className="flex text-zinc-600">
-              {user.endereco} <ChevronDown />
+              {session?.user.endereco.logradouro} <ChevronDown />
             </span>
           </div>
           {/* user info e carrinho */}
-          <div className="flex gap-4 md:w-[30%] items-center justify-between w-full">
+          <div className="flex gap-4 md:w-[30%] items-center justify-between w-full relative">
             <div className="flex gap-1 items-center">
               <Avatar className="md:size-20 size-12">
-                <AvatarImage className="object-cover" src={user.photo} />
+                <AvatarImage
+                  className="object-cover"
+                  src={session?.user.photo}
+                />
                 <AvatarFallback>JO</AvatarFallback>
               </Avatar>
               <div className=" flex justify-baseline items-start flex-col">
                 <p className="md:text-lg tetx-sm text-secondary-foreground">
-                  Olá, <strong>{user.name}</strong>!
+                  Olá, <strong>{session?.user.name}</strong>!
                 </p>
                 <Button
                   variant={"link"}
@@ -282,16 +280,16 @@ export const HomePage = () => {
               </div>
             </div>
 
-            <Sheet>
-              <SheetTrigger>
-                <Button className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg ">
-                  <ShoppingCart className="text-secondary-foreground md:size-7" />
-                  Pedidos
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <PedidosComponent />
-              </SheetContent>
+            <Sheet open={isOpenPedidos} onOpenChange={setIsOpenPedidos}>
+              <Button
+                className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg "
+                onClick={() => setIsOpenPedidos(!isOpenPedidos)}
+              >
+                <ShoppingCart className="text-secondary-foreground md:size-7  " />
+                Pedidos
+              </Button>
+
+              <PedidosComponent onOpenChange={setIsOpenPedidos} />
             </Sheet>
 
             {/* carrinho */}

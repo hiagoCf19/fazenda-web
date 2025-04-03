@@ -3,7 +3,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../../components/ui/carousel";
+} from "../../../shadcn/ui/carousel";
 import { Producer } from "../../../../types/producer";
 interface ProducersProps {
   producers: Producer[];

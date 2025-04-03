@@ -7,13 +7,12 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../../../components/ui/card";
+} from "../../../../shadcn/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  //ChartTooltipContent,
-} from "../../../../components/ui/chart";
+} from "../../../../shadcn/ui/chart";
 const chartData = [
   { week: "MON", usuarios: 200 },
   { week: "TUE", usuarios: 900 },
