@@ -18,7 +18,6 @@ import { useNavigate } from "react-router";
 import { RegisterTypeEnum } from "../../register.page";
 import { StepNif } from "./form/_components/step-0.component";
 import { EmailAndPhoneStep } from "./form/_components/step-1.component";
-import { useSession } from "../../../context/session.context";
 
 interface RegisterClientFormProps {
   registerType: RegisterTypeEnum;
@@ -27,7 +26,6 @@ export default function RegisterClientForm({
   registerType,
 }: RegisterClientFormProps) {
   const navigate = useNavigate();
-  const { setSession } = useSession();
   const { currentStep, setCurrentStep } = useStep();
   const [valueCode, setValueCode] = useState("");
   const [invalidCode, setInvalidCode] = useState(false);
