@@ -20,12 +20,13 @@ export function CodigoStep({
   return (
     <>
       <div>
-        <h2 className="text-3xl text-secondary-foreground text-center font-medium">
+        <h2 className="md:text-3xl text-2xl text-secondary-foreground text-center font-medium">
           Insira o código abaixo
         </h2>
         <span className="my-4 flex text-center text-zinc-700 mt-4">
-          Enviamos um código para seu email e para seu <br /> telefone via sms,
-          digite-o abaixo para continuar o <br /> cadastro:
+          Enviamos um código para seu email e para seu{" "}
+          <br className="hidden md:block" /> telefone via sms, digite-o abaixo
+          para continuar o <br className="hidden md:block" /> cadastro:
         </span>
       </div>
       <div className="w-full max-w-md mx-auto flex flex-col gap-6">

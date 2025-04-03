@@ -110,7 +110,7 @@ export default function RegisterClientForm({
 
   return (
     <>
-      <div className="flex gap-1">
+      <div className="flex gap-1 mt-8 md:mt-0">
         {stepSchemas.map((_, i) => (
           <div
             key={i}
@@ -121,7 +121,10 @@ export default function RegisterClientForm({
         ))}
       </div>
 
-      <form onSubmit={handleSubmit(handleNextStep)} className="p-6 max-w-lg">
+      <form
+        onSubmit={handleSubmit(handleNextStep)}
+        className="md:p-6 p-4 md:max-w-lg"
+      >
         {currentStep === 0 && <StepNif register={register} errors={errors} />}
         {currentStep === 1 && (
           <EmailAndPhoneStep

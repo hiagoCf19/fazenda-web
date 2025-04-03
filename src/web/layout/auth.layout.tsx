@@ -13,8 +13,8 @@ function AuthLayoutContent() {
   const { currentStep, setCurrentStep } = useStep();
 
   return (
-    <section className="p-12 flex justify-center flex-col items-center space-y-12">
-      <header className="border-b flex items-center w-[80%] justify-between ">
+    <section className="md:p-12 p-4 flex justify-center flex-col items-center md:space-y-12">
+      <header className="border-b w-full flex items-center md:w-[80%] md:justify-between ">
         <Button
           variant={"ghost"}
           className="hover:bg-background hover:underline border-none mb-2 z-40"
@@ -24,7 +24,7 @@ function AuthLayoutContent() {
           }}
         >
           <ChevronLeft className="size-7" />
-          Voltar
+          <p className="hidden md:block"> Voltar</p>
         </Button>
 
         <h1 className="text-2xl text-secondary-foreground  text-center  absolute inset-x-0 z-0">

@@ -1,11 +1,19 @@
 import { exec } from 'child_process';
 import { watch } from 'chokidar';
 
+// Obtém o nome do teste a partir dos argumentos da linha de comando
+const testName = process.argv[2];
+
+if (!testName) {
+  console.error('Por favor, informe o nome do teste como argumento.');
+  process.exit(1);
+}
+
 const watchPath = './src';
 
 // Função para rodar os testes
 const runTests = () => {
-  exec('npx playwright test --headed', (err, stdout, stderr) => {
+  exec(`npx playwright test -g "${testName}" --debug`, (err, stdout, stderr) => {
     if (err) {
       console.error(`Erro ao rodar testes: ${stderr}`);
       return;

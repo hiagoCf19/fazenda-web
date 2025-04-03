@@ -19,7 +19,7 @@ export function EmailAndPhoneStep({
 }: EmailAndPhoneStepProps) {
   return (
     <>
-      <h2 className="text-3xl text-secondary-foreground text-center font-medium">
+      <h2 className="md:text-3xl text-2xl  text-secondary-foreground text-center font-medium">
         {registerType === RegisterTypeEnum.INDIVIDUAL
           ? "Agora, informe seu email e \n telefone:"
           : "Agora, informe email e \n telefone da empresa"}

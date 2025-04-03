@@ -179,7 +179,7 @@ export const HomePage = () => {
   return (
     <section className="md:p-12 p-4 overflow-x-hidden">
       {!user.user_id ? (
-        <header className="bg-[#E4EAE7] md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4">
+        <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:p-12 md:mb-12 pb-4">
           <div className="flex justify-between items-center">
             <img
               src="full_logo.svg"

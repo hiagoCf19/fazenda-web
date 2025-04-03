@@ -11,7 +11,7 @@ interface StepNifProps {
 export function StepNif({ register, errors }: StepNifProps) {
   return (
     <>
-      <h2 className="text-3xl text-secondary-foreground text-center font-medium mb-8">
+      <h2 className="md:text-3xl text-xl text-secondary-foreground text-center font-medium mb-8">
         Para começar, informe seu <br /> NIF abaixo:
       </h2>
       <InputFormComponente
