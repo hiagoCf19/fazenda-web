@@ -16,8 +16,8 @@
 //     </div>
 //   );
 // };
-import { Input } from "../../components/ui/input";
-import { Button } from "../../components/ui/button";
+import { Input } from "../../shadcn/ui/input";
+import { Button } from "../../shadcn/ui/button";
 import { KeyRound, Mail } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -29,15 +29,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../components/ui/form";
-import { useNavigate } from "react-router";
+} from "../../shadcn/ui/form";
+import { useLocation, useNavigate } from "react-router";
+import { useSession } from "../../web/context/session.context";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
   password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres"),
 });
-export const AdminLogin = () => {
+export const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { setSession } = useSession();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -48,7 +51,43 @@ export const AdminLogin = () => {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("Dados do formulário:", values);
-    navigate("/admin/dashboard");
+    if (location.pathname.includes("admin")) {
+      setSession({
+        session: "JWT aqui posteirormente....",
+        user: {
+          user_id: "4d0b6485-08a2-4414-89b3-c97d2f5b33bd",
+          name: "Fazenda",
+          photo:
+            "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+          endereco: {
+            logradouro: "Rua Fazenda",
+            number: "444",
+            city: "Fazenda City",
+            country: "Angola",
+            uf: "Uf Fazenda",
+          },
+        },
+      });
+      navigate("/admin/dashboard");
+    } else {
+      setSession({
+        session: "JWT aqui posteirormente....",
+        user: {
+          user_id: "4d0b6485-08a2-4414-89b3-c97d2f5b33bd",
+          name: "Fazenda",
+          photo:
+            "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+          endereco: {
+            logradouro: "Rua Fazenda",
+            number: "444",
+            city: "Fazenda City",
+            country: "Angola",
+            uf: "Uf Fazenda",
+          },
+        },
+      });
+      navigate("/");
+    }
   }
 
   return (

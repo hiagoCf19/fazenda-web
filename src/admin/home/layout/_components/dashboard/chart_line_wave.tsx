@@ -7,14 +7,14 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../../../../components/ui/card";
+} from "../../../../../shadcn/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../../../../../components/ui/chart";
-import { Button } from "../../../../../components/ui/button";
+} from "../../../../../shadcn/ui/chart";
+import { Button } from "../../../../../shadcn/ui/button";
 const chartData = [
   { month: "January", vendas: 3120 },
   { month: "February", vendas: 2240 },

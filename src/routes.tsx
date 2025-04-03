@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Dashboard from "./admin/home/dashboard";
 import AdminLayout from "./admin/home/layout/layout";
-import { AdminLogin } from "./admin/login";
+import { Login } from "./common/login/login.page";
 import { Produtores } from "./admin/home/produtores";
 import { Pedidos } from "./admin/home/pedidos";
 import { Clientes } from "./admin/home/clientes";
@@ -10,11 +10,13 @@ import { HomePage } from "./web/(home)/home.page";
 import { AccessPageWeb } from "./web/auth/access.page";
 import { AuthLayout } from "./web/layout/auth.layout";
 import { RegisterClientPage } from "./web/auth/register.page";
+import { ConfirmOrderPage } from "./web/confirm-order/confirm-order.page";
 
 export const router = createBrowserRouter([
+  // ROTAS DE ADMIN
   {
     path: "admin/login",
-    element: <AdminLogin />, // Renderiza o layout ao acessar /admin
+    element: <Login />, // Renderiza o layout ao acessar /admin
   },
   {
     path: "admin",
@@ -62,10 +64,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
+  // ROTAS DE USUARIO COMUM
   {
     path: "/",
     element: <HomePage />,
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
   {
     path: "landing-access",
@@ -84,6 +90,11 @@ export const router = createBrowserRouter([
         element: <div>empresa</div>,
       },
     ],
+  },
+
+  {
+    path: "confirm-order",
+    element: <ConfirmOrderPage />,
   },
   {
     path: "*",

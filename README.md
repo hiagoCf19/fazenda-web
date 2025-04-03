@@ -1,4 +1,6 @@
-# Monitoramento de Testes Automatizados com Playwright
+# fazenda-web
+
+## Monitoramento de Testes Automatizados com Playwright
 
 Este documento explica como configurar e utilizar um sistema de monitoramento automático para testes utilizando Playwright.
 
@@ -23,7 +25,7 @@ bun run start
 Para ativar o modo de watch, que detecta alterações nos arquivos e executa os testes automaticamente, utilize o comando:
 
 ```bash
-bun run watch-tests
+bun run watch-tests "nome do teste"
 ```
 
 ## Funcionamento
@@ -31,14 +33,6 @@ bun run watch-tests
 O comando bun run watch-tests inicia um processo que monitora alterações nos arquivos dentro da pasta src.
 
 Sempre que um arquivo for modificado, os testes do Playwright serão executados automaticamente.
-
-## TODO
-
-Caso queira rodar um teste específico, utilize:
-
-bun run watch-tests tests/meu-teste.spec.ts
-
-Isso executará apenas o teste informado.
 
 ## Benefícios
 
@@ -49,4 +43,3 @@ Reduz erros manuais ao rodar testes.
 Facilita o desenvolvimento orientado a testes (TDD).
 
 Agora, basta iniciar o watch mode e continuar desenvolvendo normalmente!
-# fazenda-web

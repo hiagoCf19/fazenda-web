@@ -19,7 +19,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "../../../../components/ui/sidebar";
+} from "../../../../shadcn/ui/sidebar";
 import { useLocation } from "react-router";
 
 // Menu items.
