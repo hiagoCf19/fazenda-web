@@ -1,10 +1,10 @@
 import { PlusIcon } from "lucide-react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../../shadcn/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../../components/ui/carousel";
+} from "../../../shadcn/ui/carousel";
 import { Product } from "../../../../types/product";
 interface ProductListProps {
   products: Product[];

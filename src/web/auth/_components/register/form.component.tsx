@@ -13,11 +13,12 @@ import {
 } from "./form/zod/schema";
 import { CodigoStep } from "./form/_components/step-2.component";
 import { useStep } from "../../../context/form-steps-register.context";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../../shadcn/ui/button";
 import { useNavigate } from "react-router";
 import { RegisterTypeEnum } from "../../register.page";
 import { StepNif } from "./form/_components/step-0.component";
 import { EmailAndPhoneStep } from "./form/_components/step-1.component";
+import { useSession } from "../../../context/session.context";
 
 interface RegisterClientFormProps {
   registerType: RegisterTypeEnum;
@@ -26,6 +27,7 @@ export default function RegisterClientForm({
   registerType,
 }: RegisterClientFormProps) {
   const navigate = useNavigate();
+  const { setSession } = useSession();
   const { currentStep, setCurrentStep } = useStep();
   const [valueCode, setValueCode] = useState("");
   const [invalidCode, setInvalidCode] = useState(false);
@@ -89,10 +91,8 @@ export default function RegisterClientForm({
         console.log("Dados para cadastro na api company", company_user);
       }
       //todo: implementar navegação real na integração:
-
       navigate({
-        pathname: "/",
-        search: "?user_id=1",
+        pathname: "/login",
       });
     }
 

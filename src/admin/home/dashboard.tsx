@@ -1,5 +1,5 @@
 import { DollarSign, Ellipsis, ShoppingCart, Users } from "lucide-react";
-import { Card, CardContent } from "../../components/ui/card";
+import { Card, CardContent } from "../../shadcn/ui/card";
 import { ChartBarHorizontal } from "./_components/dashboard/chart_bar_horizontal";
 import { ChartBarVertical } from "./_components/dashboard/chart_bar_vertical";
 import { ChartLineWave } from "./_components/dashboard/chart_line_wave";

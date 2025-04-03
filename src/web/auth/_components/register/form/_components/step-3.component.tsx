@@ -1,6 +1,6 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useState } from "react";
-import { Button } from "../../../../../../components/ui/button";
+import { Button } from "../../../../../../shadcn/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { PasswordSchema } from "../zod/schema";
 interface PasswordStepProps {

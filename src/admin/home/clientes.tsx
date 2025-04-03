@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import { Card, CardContent, CardHeader } from "../../components/ui/card";
+import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
 import { ClientsTable } from "./_components/clientes/clients_table";
 
 export const Clientes = () => {

@@ -1,11 +1,11 @@
 import { Building, User } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../shadcn/ui/button";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from "../../components/ui/carousel";
+} from "../../shadcn/ui/carousel";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
@@ -79,12 +79,14 @@ export function AccessPageWeb() {
           <div className="md:mt-6 mt-2 text-center">
             <p className="text-gray-600 md:text-lg">
               Já é cadastrado?{" "}
-              <Button
-                variant={"link"}
-                className="text-[#FE7000] p-0 font-bold hover:underline md:text-lg"
-              >
-                Faça login
-              </Button>
+              <Link to={"/login"}>
+                <Button
+                  variant={"link"}
+                  className="text-[#FE7000] p-0 font-bold hover:underline md:text-lg"
+                >
+                  Faça login
+                </Button>
+              </Link>
             </p>
           </div>
         </div>

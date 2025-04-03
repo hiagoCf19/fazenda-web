@@ -1,9 +1,9 @@
-import { Button } from "../../../../../../components/ui/button";
+import { Button } from "../../../../../../shadcn/ui/button";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "../../../../../../components/ui/input-otp";
+} from "../../../../../../shadcn/ui/input-otp";
 
 interface CodigoStepProps {
   value: string;

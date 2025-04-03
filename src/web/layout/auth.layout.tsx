@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../shadcn/ui/button";
 import { Outlet } from "react-router";
 import { StepProvider, useStep } from "../context/form-steps-register.context";
 export function AuthLayout() {

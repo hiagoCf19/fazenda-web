@@ -2,7 +2,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "../../../components/ui/carousel";
+} from "../../../shadcn/ui/carousel";
 
 type Category = {
   category: string;

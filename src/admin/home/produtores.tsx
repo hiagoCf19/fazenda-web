@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import { Card, CardContent, CardHeader } from "../../components/ui/card";
+import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
 import { useState } from "react";
 import { AguardandoAprovacao } from "./_components/produtores/aguardando-aprovacao";
 import { Ativos } from "./_components/produtores/ativos";
