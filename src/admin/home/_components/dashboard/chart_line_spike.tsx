@@ -38,7 +38,12 @@ export function ChartLineSpike() {
         <CardTitle className="flex justify-between items-center">
           <div className="">
             <p className="text-foreground font-normal">Usuários ativos</p>
-            <span className="text-lg text-zinc-600">6,345</span>
+            <span
+              className="text-lg text-zinc-600"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              6,345
+            </span>
           </div>
           <div className="space-y-1">
             <div className="space-x-3 flex items-center justify-end">
@@ -74,11 +79,24 @@ export function ChartLineSpike() {
               axisLine={false}
               tickMargin={8}
               width={34}
-              tickFormatter={(value) => `${value / 1000}k`}
+              tickFormatter={(value) => `${Math.round(value / 1000)}k`}
             />
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dot" hideLabel />}
+              cursor={{ strokeDasharray: "3 3" }}
+              content={({ active, payload }) => {
+                if (active && payload && payload.length) {
+                  return (
+                    <div className="bg-[#0D1B2A] text-white px-4 py-2 rounded-lg shadow-lg">
+                      <div className="flex flex-col items-center">
+                        <span className="text-lg font-semibold">
+                          {(payload[0]?.value ?? 0).toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              }}
             />
             <Area
               dataKey="usuarios"

@@ -126,7 +126,7 @@ export const Finalizados = () => {
         <TableRow>
           <TableHead className="w-[100px]">Número</TableHead>
           <TableHead>Cliente</TableHead>
-          <TableHead className="text-right">Valor</TableHead>
+          <TableHead className="text-left">Valor</TableHead>
           <TableHead>Produtor</TableHead>
           <TableHead>Status</TableHead>
           <TableHead>Avaliação</TableHead>
@@ -138,7 +138,7 @@ export const Finalizados = () => {
           <TableRow key={index}>
             <TableCell className="font-medium">{delivery.numero}</TableCell>
             <TableCell>{delivery.cliente}</TableCell>
-            <TableCell className="text-right">{delivery.valor}</TableCell>
+            <TableCell className="text-left">{delivery.valor}</TableCell>
             <TableCell>{delivery.produtor}</TableCell>
             <TableCell>
               <p

@@ -74,7 +74,10 @@ const items = [
 export function AppSidebar() {
   const location = useLocation();
   return (
-    <Sidebar className="border-none w-[15%] ">
+    <Sidebar
+      className="border-none w-[15%] "
+      style={{ fontFamily: "Inter, sans-serif" }}
+    >
       <SidebarContent className="bg-[#E4EAE780] ">
         <SidebarGroup>
           <SidebarGroupLabel className="my-5">

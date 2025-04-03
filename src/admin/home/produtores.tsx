@@ -29,11 +29,19 @@ export const Produtores = () => {
 
   return (
     <>
-      <div className="flex items-center space-x-5 mb-5">
-        <h1 className="text-4xl text-zinc-700 font-semibold ">Produtores</h1>
+      <div
+        className="flex items-center space-x-5 mb-5"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
+        <h1
+          className="text-4xl text-zinc-700 font-semibold "
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          Produtores
+        </h1>
       </div>
 
-      <Card className=" mt-5 pt-0">
+      <Card className=" mt-5 pt-0" style={{ fontFamily: "Inter, sans-serif" }}>
         <CardHeader className="p-0">
           <CardOptions
             selectedValue={selectedValue}
@@ -50,7 +58,7 @@ export const Produtores = () => {
 
             <div className="border rounded-lg flex items-center px-4 w-[30%]">
               <input
-                placeholder="Buscar por cliente"
+                placeholder="Buscar por produtor"
                 className=" border-none ring-none outline-none w-full "
               />
               <Search />

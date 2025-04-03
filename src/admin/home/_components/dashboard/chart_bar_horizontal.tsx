@@ -1,7 +1,6 @@
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -16,6 +15,7 @@ import {
 } from "../../../../shadcn/ui/chart";
 import { Button } from "../../../../shadcn/ui/button";
 import { Separator } from "../../../../shadcn/ui/separator";
+
 const chartData = [
   { month: "January", vendas: 500 },
   { month: "February", vendas: 1800 },
@@ -33,45 +33,64 @@ const chartData = [
 
 const chartConfig = {
   vendas: {
-    label: "vendas",
+    label: "Vendas",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
+
 export function ChartBarHorizontal() {
   return (
     <Card className="w-full h-full">
+      {/* Cabeçalho do gráfico */}
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
-          <div className="">
+          <div>
             <p className="text-foreground font-normal">Vendas</p>
-            <span className="text-lg text-zinc-600">
+            <span
+              className="text-lg text-zinc-600"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
               Maior registro de vendas
             </span>
           </div>
-          <div className="space-x-2 bg-foreground/10 px-2 py-1 rounded-2xl">
-            <Button variant={"ghost"} className="text-foreground">
+          <div className="flex bg-foreground/10 px-2 py-1 rounded-2xl space-x-2">
+            <Button variant="ghost" size="sm">
               Semana
             </Button>
-            <Button variant={"ghost"} className="text-foreground">
+            <Button variant="ghost" size="sm">
               Semestre
             </Button>
-            <Button className="rounded-xl">Ano</Button>
+            <Button size="sm" className="rounded-xl">
+              Ano
+            </Button>
           </div>
         </CardTitle>
       </CardHeader>
+
+      {/* Linha separadora */}
       <div className="w-full px-5">
         <Separator />
       </div>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
+
+      {/* Conteúdo do gráfico */}
+      <CardContent className="flex justify-center items-center p-4">
+        <ChartContainer config={chartConfig} className="w-full h-[350px]">
+          <BarChart
+            data={chartData}
+            width={500}
+            height={350}
+            margin={{ top: 10, right: 30, left: 10, bottom: 5 }}
+          >
+            {/* Linha pontilhada */}
+            <CartesianGrid vertical={false} strokeDasharray="3 3" />
+
+            {/*  eixo y */}
             <YAxis
               domain={[0, 6000]}
               tickCount={7}
               axisLine={false}
               tickLine={false}
-              width={20}
+              width={30}
               tickFormatter={(value) => `${value / 1000}k`}
             />
             <XAxis
@@ -81,16 +100,23 @@ export function ChartBarHorizontal() {
               axisLine={false}
               tickFormatter={(value) => value.slice(0, 3)}
             />
+
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+              cursor={{ fill: "rgba(0, 0, 0, 0.05)" }}
+              content={
+                <ChartTooltipContent
+                  indicator="dashed"
+                  className="bg-secondary-foreground text-white"
+                />
+              }
             />
+
             <Bar
               dataKey="vendas"
               barSize={16}
               fill="var(--color-vendas)"
-              radius={8}
-              background={{ fill: "#e5e7eb", radius: 8 }}
+              radius={[6, 6, 0, 0]}
+              background={{ fill: "#e5e7eb", radius: 6 }}
             />
           </BarChart>
         </ChartContainer>
