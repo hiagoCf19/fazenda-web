@@ -12,7 +12,6 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "../../../../shadcn/ui/chart";
 const chartData = [
   { week: "MON", usuarios: 200 },
