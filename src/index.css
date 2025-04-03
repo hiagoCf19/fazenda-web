@@ -4,8 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "@fontsource/inter";
-
 :root {
   --background: rgba(246, 254, 247, 1);
   /* Ajustado para um verde bem claro */
