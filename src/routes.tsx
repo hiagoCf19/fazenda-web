@@ -11,6 +11,8 @@ import { AccessPageWeb } from "./web/auth/access.page";
 import { AuthLayout } from "./web/layout/auth.layout";
 import { RegisterClientPage } from "./web/auth/register.page";
 import { ConfirmOrderPage } from "./web/confirm-order/confirm-order.page";
+import { MyOrders } from "./web/my-orders/my-orders.page";
+import NotFound from "./web/_components/not-found.component";
 
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
@@ -97,7 +99,11 @@ export const router = createBrowserRouter([
     element: <ConfirmOrderPage />,
   },
   {
+    path: "my-orders",
+    element: <MyOrders />,
+  },
+  {
     path: "*",
-    element: <div className="">404</div>,
+    element: <NotFound />,
   },
 ]);

@@ -110,23 +110,22 @@ export function ConfirmOrderPage() {
 
   return (
     <>
-      {" "}
       {isLoading && (
-        <div className="absolute w-full h-screen bg-black/25  z-50">
+        <div className="fixed w-full h-screen bg-black/35  z-50">
           <LoadingComponent progress={progress} />
         </div>
       )}
-      <div className="p-12 relative">
+      <div className="md:p-12 p-4 relative">
         {/* Progress bar at the top of the screen */}
 
         <header className="flex w-full justify-center items-center border-b-2 pb-4">
           <img src="/full_logo.svg" alt="" />
         </header>
-        <main className="space-y-12 flex flex-col justify-center items-center py-12">
-          <h1 className="text-secondary-foreground font-semibold text-3xl">
+        <main className="md:space-y-12 space-y-4 flex flex-col justify-center items-center md:py-12 py-4">
+          <h1 className="text-secondary-foreground font-semibold md:text-3xl text-2xl">
             Finalize seu pedido
           </h1>
-          <div className="grid grid-cols-3 w-full space-x-20">
+          <div className="md:grid grid-cols-3 w-full md:space-x-20 space-y-4 md:space-y-0">
             <DeliveryOptionsComponent
               selectedDeliveryOption={selectedDeliveryOption}
               setSelectedDeliveryOption={setSelectedDeliveryOption}
@@ -141,7 +140,7 @@ export function ConfirmOrderPage() {
         </main>
         <footer className="flex justify-center items-center ">
           <Button
-            className="rounded-full text-secondary-foreground bg-secondary text-xl w-[30%] py-6"
+            className="rounded-full text-secondary-foreground bg-secondary text-xl md:w-[30%] w-full py-6"
             onClick={sendToServer}
             disabled={isLoading}
           >

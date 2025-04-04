@@ -14,12 +14,12 @@ interface SectionProps {
 }
 export const ChooseByCategory = ({ categories, title }: SectionProps) => {
   return (
-    <div className="space-y-4 ">
+    <div className="space-y-4 p-4 pb-0  ">
       <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
-      <Carousel>
-        <CarouselContent>
+      <Carousel className="-mx-4">
+        <CarouselContent className="">
           {categories.map((category, i) => (
-            <CarouselItem className="basis-auto" key={i}>
+            <CarouselItem className="basis-auto ml-4" key={i}>
               <div
                 key={i}
                 className="bg-[#E1F3E4] size-24 flex items-center justify-center rounded-3xl"

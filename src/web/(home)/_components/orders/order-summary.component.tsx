@@ -4,7 +4,7 @@ export function OrderSummary() {
       <h1 className="text-lg text-zinc-700 font-semibold">
         Resumo dos valores
       </h1>
-      <div className="space-y-2">
+      <div className="md:space-y-2">
         <div className="flex justify-between">
           <p>Subtotal</p>
           <span>Kz 480,00</span>

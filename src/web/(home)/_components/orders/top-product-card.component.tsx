@@ -24,7 +24,7 @@ export function TopProductCard({ order }: TopProductCardProps) {
       <p className="text-zinc-700">{order.name}</p>
       <div className="leading-3">
         <p className="text-xs">{order.priceT}</p>
-        <p className="text-zinc-800">{order.priceKg}</p>
+        <p className="text-zinc-800 text-sm md:text-base">{order.priceKg}</p>
       </div>
     </div>
   );
