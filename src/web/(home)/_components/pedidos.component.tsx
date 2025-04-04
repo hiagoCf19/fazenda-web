@@ -13,7 +13,7 @@ import { Link } from "react-router";
 import { OrderSummary } from "./orders/order-summary.component";
 
 interface PedidosComponentProps {
-  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+  onOpenChange: (step: boolean) => void;
 }
 export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
   const items = [
@@ -44,10 +44,10 @@ export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
   ];
 
   return (
-    <SheetContent className="mb-4">
-      <div className="w-full md:h-[125px] h-[75px]" />
+    <SheetContent className="mb-4 md:w-auto w-full">
+      <div className="w-full md:h-[125px] h-[60px]" />
 
-      <SheetHeader className="flex flex-row items-center justify-between p-0 px-4">
+      <SheetHeader className="flex flex-row items-center justify-between p-0 md:px-4 -mb-3 md:-mb-0">
         <Button
           size={"icon"}
           variant={"ghost"}
@@ -56,23 +56,25 @@ export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
         >
           <X className="size-5" />
         </Button>
-        <SheetTitle className="text-2xl text-zinc-700">Pedidos</SheetTitle>
+        <SheetTitle className="text-2xl text-zinc-700 text-center w-full md:w-auto">
+          Pedidos
+        </SheetTitle>
         <SheetDescription />
         <Button size={"sm"} variant={"ghost"} className="text-[#FE7000]">
           Limpar
         </Button>
       </SheetHeader>
-      <div className=" px-4 space-y-4">
-        <div className="h-[28vh] flex flex-col justify-between overflow-y-scroll [&::-webkit-scrollbar]:hidden ">
+      <div className=" md:px-4 px-2 md:space-y-4">
+        <div className="md:h-[28vh] h-[30vh] flex flex-col justify-between overflow-y-scroll [&::-webkit-scrollbar]:hidden ">
           <OrderList items={items} />
         </div>
         <Separator />
 
-        <div className="h-[20vh]  flex flex-col justify-between">
+        <div className="min-h-[20vh] md:h-[20vh] mb-2  flex flex-col justify-between">
           <TopProductsList items={items} />
         </div>
         <Separator />
-        <div className="h-[18vh] flex flex-col space-y-4">
+        <div className="md:h-[18vh] flex flex-col md:space-y-4 space-y-2 mt-2">
           <OrderSummary />
         </div>
       </div>

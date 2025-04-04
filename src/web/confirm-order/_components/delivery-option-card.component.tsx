@@ -19,9 +19,7 @@ export function DeliveryOptionCard({
         onClick={onSelect}
       >
         <div>
-          <h5 className="text-lg text-zinc-800 font-medium">
-            {option.option}a
-          </h5>
+          <h5 className="text-lg text-zinc-800 font-medium">{option.option}</h5>
           <p>{option.time}</p>
         </div>
         <p

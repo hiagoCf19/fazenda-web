@@ -1,21 +1,6 @@
-import { createContext, useContext, useState } from "react";
-type Adress = {
-  logradouro: string;
-  number: string;
-  city: string;
-  uf: string;
-  country: string;
-};
-type User = {
-  user_id: string;
-  photo: string;
-  name: string;
-  endereco: Adress;
-};
-type Session = {
-  session: string;
-  user: User;
-};
+import { createContext, useContext, useState, useEffect } from "react";
+import { Session } from "../../../types/session.type";
+
 type SessionContextType = {
   session: Session | null;
   setSession: (session: Session) => void;
@@ -30,10 +15,23 @@ export const SessionProvider = ({
 }) => {
   const [session, setSession] = useState<Session | null>(null);
 
+  useEffect(() => {
+    // Recupera os dados do localStorage ao iniciar o app
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
+      try {
+        const parsedUser = JSON.parse(user);
+        setSession({ user: parsedUser, token }); // depende de como está seu tipo `Session`
+      } catch (err) {
+        console.error("Erro ao parsear user do localStorage", err);
+      }
+    }
+  }, []);
+
   return (
-    <SessionContext.Provider
-      value={{ session: session, setSession: setSession }}
-    >
+    <SessionContext.Provider value={{ session, setSession }}>
       {children}
     </SessionContext.Provider>
   );
@@ -42,7 +40,7 @@ export const SessionProvider = ({
 export const useSession = () => {
   const context = useContext(SessionContext);
   if (!context) {
-    throw new Error("useStep deve ser usado dentro de um StepProvider");
+    throw new Error("useSession deve ser usado dentro de um SessionProvider");
   }
   return context;
 };

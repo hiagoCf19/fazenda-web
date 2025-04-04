@@ -1,21 +1,3 @@
-// import { LoginForm } from "./_components/form";
-
-// export const Login = () => {
-//   return (
-//     <div className="flex w-full h-screen border">
-//       <div className="flex flex-1 justify-center items-center ">
-//         <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-//           <div className="w-full max-w-sm">
-//             <LoginForm />
-//           </div>
-//         </div>
-//       </div>
-//       <div className="flex flex-1 justify-center items-center bg-foreground">
-//         image
-//       </div>
-//     </div>
-//   );
-// };
 import { Input } from "../../shadcn/ui/input";
 import { Button } from "../../shadcn/ui/button";
 import { KeyRound, Mail } from "lucide-react";
@@ -32,6 +14,7 @@ import {
 } from "../../shadcn/ui/form";
 import { useLocation, useNavigate } from "react-router";
 import { useSession } from "../../web/context/session.context";
+import { login } from "../../service/auth.service";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
@@ -49,45 +32,27 @@ export const Login = () => {
       password: "",
     },
   });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log("Dados do formulário:", values);
-    if (location.pathname.includes("admin")) {
-      setSession({
-        session: "JWT aqui posteirormente....",
-        user: {
-          user_id: "4d0b6485-08a2-4414-89b3-c97d2f5b33bd",
-          name: "Fazenda",
-          photo:
-            "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
-          endereco: {
-            logradouro: "Rua Fazenda",
-            number: "444",
-            city: "Fazenda City",
-            country: "Angola",
-            uf: "Uf Fazenda",
-          },
-        },
+    login(values)
+      .then(({ token, user }) => {
+        setSession({
+          token: token,
+          user,
+        });
+
+        if (location.pathname.includes("admin")) {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro no login:", error);
+        form.setError("email", {
+          message: "Credenciais inválidas ou erro ao autenticar",
+        });
       });
-      navigate("/admin/dashboard");
-    } else {
-      setSession({
-        session: "JWT aqui posteirormente....",
-        user: {
-          user_id: "4d0b6485-08a2-4414-89b3-c97d2f5b33bd",
-          name: "Fazenda",
-          photo:
-            "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
-          endereco: {
-            logradouro: "Rua Fazenda",
-            number: "444",
-            city: "Fazenda City",
-            country: "Angola",
-            uf: "Uf Fazenda",
-          },
-        },
-      });
-      navigate("/");
-    }
   }
 
   return (
