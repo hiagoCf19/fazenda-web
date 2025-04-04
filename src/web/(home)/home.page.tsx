@@ -1,43 +1,16 @@
-import {
-  ChevronDown,
-  LogOut,
-  MapIcon,
-  Search,
-  Settings,
-  ShieldCheck,
-  ShoppingCart,
-  TriangleAlert,
-  Wallet,
-} from "lucide-react";
-import { Button } from "../../shadcn/ui/button";
-import { Input } from "../../shadcn/ui/input";
-
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../../shadcn/ui/carousel";
-import { Link } from "react-router";
 import { Producer } from "../../../types/producer";
 import { ChooseByCategory } from "./_components/choose-by-category.component";
 import { ProductList } from "./_components/product-list.component";
-import { Avatar, AvatarFallback } from "../../shadcn/ui/avatar";
-import { AvatarImage } from "@radix-ui/react-avatar";
-import { Sheet } from "../../shadcn/ui/sheet";
-import { PedidosComponent } from "./_components/pedidos.component";
-import { Producers } from "./_components/producers.component";
-import { useState } from "react";
+import { ProducersList } from "./_components/producers.component";
 import { useSession } from "../context/session.context";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../../shadcn/ui/popover";
 import BottomNav from "../_components/bottom-navigator-mobile.component";
+import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
+import { Footer } from "./_components/footer.component";
+import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
+import { Banners } from "./_components/banners.component";
 
 export const HomePage = () => {
   const { session } = useSession();
-  const [isOpenPedidos, setIsOpenPedidos] = useState(false);
   //TODO: durante a integração buscar o user na api com o id
 
   const categories = [
@@ -187,235 +160,27 @@ export const HomePage = () => {
     },
   ];
 
-  const EditProfileActions = [
-    {
-      title: "Pagamentos",
-      description: "Métodos de pagamento",
-      navigate: "/payment-methods",
-      icon: Wallet,
-    },
-    {
-      title: "Endereços",
-      description: "Meus endereços de entrega",
-      navigate: "/address",
-      icon: MapIcon,
-    },
-    {
-      title: "Minha conta",
-      description: "Informações de conta",
-      navigate: "/account-info",
-      icon: Settings,
-    },
-    {
-      title: "Segurança",
-      description: "Altere seus dados de acesso",
-      navigate: "/security",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Ajude",
-      description: "Entre em contato para dúvidas e suporte",
-      navigate: "/help",
-      icon: TriangleAlert,
-    },
-    {
-      title: "Sair",
-      description: "Sair da conta",
-      navigate: "",
-      icon: LogOut,
-    },
-  ];
-
   return (
     <section className="md:p-12 overflow-x-hidden relative min-h-screen">
       {!session ? (
-        <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:p-12 md:mb-12 pb-4">
-          <div className="flex justify-between items-center">
-            <img
-              src="full_logo.svg"
-              alt="Fazenda online"
-              className="md:w-[166px] md:h-[48px] w-28"
-            />
-
-            <Link to={"/landing-access"}>
-              <Button
-                className="bg-secondary md:rounded-2xl text-secondary-foreground md:w-[178px] "
-                size={"lg"}
-              >
-                Acessar
-              </Button>
-            </Link>
-          </div>
-
-          <div className="flex justify-between w-full mt-4 md:mt-0">
-            <img
-              src="/vegetables_1.png"
-              alt="Cesta de vegetais"
-              className="md:block hidden"
-            />
-            <div className="flex flex-col space-y-4 text-center  items-center">
-              <h2 className="text-primary text-4xl font-semibold">
-                Do campo para a sua mesa
-              </h2>
-              <p className="text-secondary-foreground text-2xl font-semibold">
-                Alimentos frescos e naturais, diretamente de quem cultiva
-              </p>
-              <div className="bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden">
-                <Search className="ml-2" />
-                <Input
-                  type="text"
-                  className="flex-1 p-2 focus:ring-0 focus:outline-0 focus-visible:border-none focus-visible:ring-none focus-visible:ring-0 shadow-none"
-                />
-                <div className="">
-                  <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
-                    Pesquisar
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <img
-              src="/vegetables_2.png"
-              alt="Prato de vegetais"
-              className="md:block hidden"
-            />
-          </div>
-        </header>
+        <UnauthenticatedHeader />
       ) : (
-        <header className="bg-[#E4EAE7] md:-m-12 p-4   md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
-          <div className="md:flex gap-4 w-[50%] hidden">
-            <img
-              src="full_logo.svg"
-              alt="Fazenda online"
-              className="md:w-[166px] md:h-[48px] w-28"
-            />
-
-            <div className="bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden">
-              <Search className="ml-2" />
-              <Input
-                type="text"
-                className="flex-1 p-2 focus:ring-0 focus:outline-0 focus-visible:border-none focus-visible:ring-none focus-visible:ring-0 shadow-none"
-              />
-              <div className="">
-                <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
-                  Pesquisar
-                </Button>
-              </div>
-            </div>
-          </div>
-          {/* endereço */}
-          <div className="w-[20%] hidden md:block">
-            <p className="text-zinc-800 text-lg">Endereço de entrega</p>
-            <span className="flex text-zinc-600">
-              {session?.user.endereco.logradouro},{" "}
-              {session?.user.endereco.number} - {session?.user.endereco.city}{" "}
-              <ChevronDown />
-            </span>
-          </div>
-          {/* user info e carrinho */}
-          <div className="flex gap-4 md:w-[30%] items-center justify-between w-full relative">
-            <div className="flex gap-2 items-center">
-              <Avatar className="md:size-20 size-12">
-                <AvatarImage
-                  className="object-cover"
-                  src={session?.user.photo}
-                />
-                <AvatarFallback>JO</AvatarFallback>
-              </Avatar>
-              <div className=" flex justify-baseline items-start flex-col ">
-                <p className="md:text-lg tetx-sm text-secondary-foreground">
-                  Olá, <strong>{session?.user.name}</strong>!
-                </p>
-
-                <Popover>
-                  <PopoverTrigger className="hidden md:block text-[#FE7000]">
-                    Editar perfil
-                  </PopoverTrigger>
-                  <PopoverContent className=" w-full rounded-3xl rounded-t-none flex flex-col gap-4 ">
-                    <div className="w-2 h-4" />
-                    {EditProfileActions.map((action) => (
-                      <Link to={action.navigate} className="flex flex-col ">
-                        <div className="flex items-center gap-3 border-b pb-2">
-                          <action.icon className="size-7 text-accent-foreground/50" />
-                          <div>
-                            <p className="text-zinc-800">{action.title}</p>
-                            <span className="text-foreground">
-                              {action.description}
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-
-                    <div className="flex items-center flex-col">
-                      <Link className="text-zinc-600" to={"/terms-of-use"}>
-                        Termos de uso
-                      </Link>
-                      <Link className="text-zinc-600" to={"privacy-policy"}>
-                        Políticas de privacidade
-                      </Link>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-                <p className="text-zinc-800 text-sm md:hidden">
-                  {session?.user.endereco.logradouro}
-                </p>
-              </div>
-            </div>
-
-            <Sheet open={isOpenPedidos} onOpenChange={setIsOpenPedidos}>
-              <Button
-                className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg "
-                onClick={() => setIsOpenPedidos(!isOpenPedidos)}
-              >
-                <ShoppingCart className="text-secondary-foreground md:size-7  " />
-                Pedidos
-              </Button>
-
-              <PedidosComponent onOpenChange={setIsOpenPedidos} />
-            </Sheet>
-
-            {/* carrinho */}
-          </div>
-        </header>
+        <HeaderAuthenticaded session={session} />
       )}
       <div className="w-full md:h-[128px] h-[88px]" />
       <main className="md:mb-12 md:space-y-8  h-full">
-        <Carousel>
-          <CarouselContent className="w-full pl-2">
-            <CarouselItem className="md:basis-1/3 md:w-1/2 w-full">
-              <img src="/banner2.png" alt="" />
-            </CarouselItem>
-            <CarouselItem className="md:basis-1/3 md:w-1/2 w-full">
-              <img src="/banner1.png" alt="" />
-            </CarouselItem>
-            <CarouselItem className="md:basis-1/3 md:w-1/2 w-full">
-              <img src="/banner3.png" alt="" />
-            </CarouselItem>
-          </CarouselContent>
-        </Carousel>
-
+        <Banners />
         <ChooseByCategory
           title="Explore por categoria"
           categories={categories}
         />
         <ProductList title="Mais pedidos" products={products} />
         <ProductList title="Novidades" products={products} />
-        <Producers title="Produtores" producers={producers} />
+        <ProducersList title="Produtores" producers={producers} />
       </main>
 
-      <BottomNav
-        isOpenPedidos={isOpenPedidos}
-        setIsOpenPedidos={setIsOpenPedidos}
-      />
-      <footer className="md:h-[309px] h-[200px] w-full  bg-foreground/8  md:p-12 p-4 md:mt-12 mt-4 flex justify-center items-center space-y-4 flex-col ">
-        <img src="/full_logo.svg" />
-        <div className="flex flex-col gap-2 text-center text-zinc-600">
-          <p className="">Fazenda online LTDA</p>
-          <p>CNPJ 123456789</p>
-          <span className="text-sm">Todos os direitos reservados</span>
-        </div>
-      </footer>
-      <div className="md:hidden h-16" />
+      <BottomNav />
+      <Footer />
     </section>
   );
 };

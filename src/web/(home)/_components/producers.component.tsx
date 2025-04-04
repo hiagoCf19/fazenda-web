@@ -9,7 +9,7 @@ interface ProducersProps {
   producers: Producer[];
   title: string;
 }
-export function Producers({ producers, title }: ProducersProps) {
+export function ProducersList({ producers, title }: ProducersProps) {
   return (
     <div className="space-y-4 p-4 pb-0">
       <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>

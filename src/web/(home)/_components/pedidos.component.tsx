@@ -13,7 +13,7 @@ import { Link } from "react-router";
 import { OrderSummary } from "./orders/order-summary.component";
 
 interface PedidosComponentProps {
-  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+  onOpenChange: (step: boolean) => void;
 }
 export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
   const items = [

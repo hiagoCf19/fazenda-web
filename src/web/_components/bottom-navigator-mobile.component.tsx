@@ -1,14 +1,12 @@
 import { Home, SearchIcon, ShoppingCart, User } from "lucide-react";
 import { Link, useLocation } from "react-router";
+import { useOpenOrders } from "../context/open-orders.context";
 
-interface BottomNavProps {
-  isOpenPedidos: boolean;
-  setIsOpenPedidos: (isOpen: boolean) => void;
-}
-const BottomNav = ({ isOpenPedidos, setIsOpenPedidos }: BottomNavProps) => {
+// SOMENTE MOBILE
+const BottomNav = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-
+  const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
   const links = [
     { to: "/", label: "Início", icon: Home },
     { to: "/search", label: "Buscar", icon: SearchIcon },
@@ -20,7 +18,7 @@ const BottomNav = ({ isOpenPedidos, setIsOpenPedidos }: BottomNavProps) => {
       {links.map(({ to, label, icon: Icon }) => {
         const isActive = currentPath === to;
         const textColor =
-          isActive && !isOpenPedidos ? "text-primary" : "text-zinc-500";
+          isActive && !isOpenOrders ? "text-primary" : "text-zinc-500";
         return (
           <Link
             key={to}
@@ -33,16 +31,16 @@ const BottomNav = ({ isOpenPedidos, setIsOpenPedidos }: BottomNavProps) => {
         );
       })}
       <button
-        onClick={() => setIsOpenPedidos(!isOpenPedidos)}
+        onClick={() => setIsOpenOrders(!isOpenOrders)}
         className="flex flex-col items-center justify-center gap-0.5 hover:text-primary transition-colors duration-200"
       >
         <ShoppingCart
           size={22}
-          className={`${isOpenPedidos ? "text-primary" : "text-zinc-500"}`}
+          className={`${isOpenOrders ? "text-primary" : "text-zinc-500"}`}
         />
         <span
           className={`text-xs font-medium ${
-            isOpenPedidos ? "text-primary" : "text-zinc-500"
+            isOpenOrders ? "text-primary" : "text-zinc-500"
           } `}
         >
           pedidos
