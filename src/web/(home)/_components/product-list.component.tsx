@@ -12,12 +12,12 @@ interface ProductListProps {
 }
 export function ProductList({ products, title }: ProductListProps) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-4 pb-0">
       <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
-      <Carousel>
-        <CarouselContent className="-ml-4">
+      <Carousel className="-mx-4">
+        <CarouselContent>
           {products.map((product, i) => (
-            <CarouselItem className="pl-4 basis-auto" key={i}>
+            <CarouselItem className="basis-auto ml-4" key={i}>
               <div className="rounded-3xl  relative shadow-lg md:w-[190px] md:h-[190px]  w-[160px] h-[160px]">
                 <img
                   src={product.image}

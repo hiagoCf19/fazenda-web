@@ -1,4 +1,14 @@
-import { ChevronDown, Search, ShoppingCart } from "lucide-react";
+import {
+  ChevronDown,
+  LogOut,
+  MapIcon,
+  Search,
+  Settings,
+  ShieldCheck,
+  ShoppingCart,
+  TriangleAlert,
+  Wallet,
+} from "lucide-react";
 import { Button } from "../../shadcn/ui/button";
 import { Input } from "../../shadcn/ui/input";
 
@@ -18,6 +28,12 @@ import { PedidosComponent } from "./_components/pedidos.component";
 import { Producers } from "./_components/producers.component";
 import { useState } from "react";
 import { useSession } from "../context/session.context";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../../shadcn/ui/popover";
+import BottomNav from "../_components/bottom-navigator-mobile.component";
 
 export const HomePage = () => {
   const { session } = useSession();
@@ -171,8 +187,47 @@ export const HomePage = () => {
     },
   ];
 
+  const EditProfileActions = [
+    {
+      title: "Pagamentos",
+      description: "Métodos de pagamento",
+      navigate: "/payment-methods",
+      icon: Wallet,
+    },
+    {
+      title: "Endereços",
+      description: "Meus endereços de entrega",
+      navigate: "/address",
+      icon: MapIcon,
+    },
+    {
+      title: "Minha conta",
+      description: "Informações de conta",
+      navigate: "/account-info",
+      icon: Settings,
+    },
+    {
+      title: "Segurança",
+      description: "Altere seus dados de acesso",
+      navigate: "/security",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Ajude",
+      description: "Entre em contato para dúvidas e suporte",
+      navigate: "/help",
+      icon: TriangleAlert,
+    },
+    {
+      title: "Sair",
+      description: "Sair da conta",
+      navigate: "",
+      icon: LogOut,
+    },
+  ];
+
   return (
-    <section className="md:p-12 p-4 overflow-x-hidden">
+    <section className="md:p-12 overflow-x-hidden relative min-h-screen">
       {!session ? (
         <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:p-12 md:mb-12 pb-4">
           <div className="flex justify-between items-center">
@@ -226,7 +281,7 @@ export const HomePage = () => {
           </div>
         </header>
       ) : (
-        <header className="bg-[#E4EAE7] md:-m-12 p-4  -m-4 md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
+        <header className="bg-[#E4EAE7] md:-m-12 p-4   md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
           <div className="md:flex gap-4 w-[50%] hidden">
             <img
               src="full_logo.svg"
@@ -251,12 +306,14 @@ export const HomePage = () => {
           <div className="w-[20%] hidden md:block">
             <p className="text-zinc-800 text-lg">Endereço de entrega</p>
             <span className="flex text-zinc-600">
-              {session?.user.endereco.logradouro} <ChevronDown />
+              {session?.user.endereco.logradouro},{" "}
+              {session?.user.endereco.number} - {session?.user.endereco.city}{" "}
+              <ChevronDown />
             </span>
           </div>
           {/* user info e carrinho */}
           <div className="flex gap-4 md:w-[30%] items-center justify-between w-full relative">
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-2 items-center">
               <Avatar className="md:size-20 size-12">
                 <AvatarImage
                   className="object-cover"
@@ -264,18 +321,43 @@ export const HomePage = () => {
                 />
                 <AvatarFallback>JO</AvatarFallback>
               </Avatar>
-              <div className=" flex justify-baseline items-start flex-col">
+              <div className=" flex justify-baseline items-start flex-col ">
                 <p className="md:text-lg tetx-sm text-secondary-foreground">
                   Olá, <strong>{session?.user.name}</strong>!
                 </p>
-                <Button
-                  variant={"link"}
-                  className="text-[#FE7000] p-0 text-lg hidden md:block"
-                >
-                  Editar perfil
-                </Button>
+
+                <Popover>
+                  <PopoverTrigger className="hidden md:block text-[#FE7000]">
+                    Editar perfil
+                  </PopoverTrigger>
+                  <PopoverContent className=" w-full rounded-3xl rounded-t-none flex flex-col gap-4 ">
+                    <div className="w-2 h-4" />
+                    {EditProfileActions.map((action) => (
+                      <Link to={action.navigate} className="flex flex-col ">
+                        <div className="flex items-center gap-3 border-b pb-2">
+                          <action.icon className="size-7 text-accent-foreground/50" />
+                          <div>
+                            <p className="text-zinc-800">{action.title}</p>
+                            <span className="text-foreground">
+                              {action.description}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+
+                    <div className="flex items-center flex-col">
+                      <Link className="text-zinc-600" to={"/terms-of-use"}>
+                        Termos de uso
+                      </Link>
+                      <Link className="text-zinc-600" to={"privacy-policy"}>
+                        Políticas de privacidade
+                      </Link>
+                    </div>
+                  </PopoverContent>
+                </Popover>
                 <p className="text-zinc-800 text-sm md:hidden">
-                  Endereço de entrega
+                  {session?.user.endereco.logradouro}
                 </p>
               </div>
             </div>
@@ -296,10 +378,10 @@ export const HomePage = () => {
           </div>
         </header>
       )}
-      <div className="w-full md:h-[128px] h-[75px]" />
-      <main className="md:mb-12 md:space-y-8 space-y-5 ">
+      <div className="w-full md:h-[128px] h-[88px]" />
+      <main className="md:mb-12 md:space-y-8  h-full">
         <Carousel>
-          <CarouselContent className="w-full">
+          <CarouselContent className="w-full pl-2">
             <CarouselItem className="md:basis-1/3 md:w-1/2 w-full">
               <img src="/banner2.png" alt="" />
             </CarouselItem>
@@ -320,7 +402,12 @@ export const HomePage = () => {
         <ProductList title="Novidades" products={products} />
         <Producers title="Produtores" producers={producers} />
       </main>
-      <footer className="md:h-[309px] h-[200px] bg-foreground/8 -m-12 p-12 mt-12 flex justify-center items-center space-y-4 flex-col ">
+
+      <BottomNav
+        isOpenPedidos={isOpenPedidos}
+        setIsOpenPedidos={setIsOpenPedidos}
+      />
+      <footer className="md:h-[309px] h-[200px] w-full  bg-foreground/8  md:p-12 p-4 md:mt-12 mt-4 flex justify-center items-center space-y-4 flex-col ">
         <img src="/full_logo.svg" />
         <div className="flex flex-col gap-2 text-center text-zinc-600">
           <p className="">Fazenda online LTDA</p>
@@ -328,6 +415,7 @@ export const HomePage = () => {
           <span className="text-sm">Todos os direitos reservados</span>
         </div>
       </footer>
+      <div className="md:hidden h-16" />
     </section>
   );
 };

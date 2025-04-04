@@ -11,12 +11,12 @@ interface ProducersProps {
 }
 export function Producers({ producers, title }: ProducersProps) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-4 pb-0">
       <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
-      <Carousel>
-        <CarouselContent className="-ml-4">
+      <Carousel className="-mx-4">
+        <CarouselContent>
           {producers.map((producer, i) => (
-            <CarouselItem className="pl-4 basis-auto " key={i}>
+            <CarouselItem className="ml-4 basis-auto " key={i}>
               <div className="relative  rounded-t-3xl rounded-b-xs shadow-xl overflow-hidden md:w-[169px] md:h-[82px] w-[140px] h-[70px]">
                 <img
                   src={producer.image}
