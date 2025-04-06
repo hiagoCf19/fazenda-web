@@ -6,7 +6,7 @@ import { useOpenOrders } from "../context/open-orders.context";
 const BottomNav = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
+  const { isOpenOrders } = useOpenOrders();
   const links = [
     { to: "/", label: "Início", icon: Home },
     { to: "/search", label: "Buscar", icon: SearchIcon },
