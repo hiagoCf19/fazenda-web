@@ -1,5 +1,5 @@
-import { OrderList } from "../../(home)/_components/orders/order-list.component";
-import { OrderSummary } from "../../(home)/_components/orders/order-summary.component";
+import { OrderList } from "../../(home)/_components/cart-sheet/order-cart-list.component";
+import { OrderSummary } from "../../(home)/_components/cart-sheet/order-cart--summary.component";
 import { Product } from "../../../../types/product";
 interface OrderResumeComponentProps {
   items: Product[];

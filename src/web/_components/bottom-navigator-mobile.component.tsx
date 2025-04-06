@@ -6,11 +6,12 @@ import { useOpenOrders } from "../context/open-orders.context";
 const BottomNav = () => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
+  const { isOpenOrders } = useOpenOrders();
   const links = [
     { to: "/", label: "Início", icon: Home },
     { to: "/search", label: "Buscar", icon: SearchIcon },
     { to: "/profile", label: "Perfil", icon: User },
+    { to: "/my-orders", label: "Pedidos", icon: ShoppingCart },
   ];
 
   return (
@@ -30,22 +31,6 @@ const BottomNav = () => {
           </Link>
         );
       })}
-      <button
-        onClick={() => setIsOpenOrders(!isOpenOrders)}
-        className="flex flex-col items-center justify-center gap-0.5 hover:text-primary transition-colors duration-200"
-      >
-        <ShoppingCart
-          size={22}
-          className={`${isOpenOrders ? "text-primary" : "text-zinc-500"}`}
-        />
-        <span
-          className={`text-xs font-medium ${
-            isOpenOrders ? "text-primary" : "text-zinc-500"
-          } `}
-        >
-          pedidos
-        </span>
-      </button>
     </div>
   );
 };

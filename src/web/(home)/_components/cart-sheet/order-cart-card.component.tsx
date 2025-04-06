@@ -7,7 +7,7 @@ interface OrderCardProps {
 }
 export function OrderCard({ item }: OrderCardProps) {
   return (
-    <div className="flex items-center justify-between mb-2 md:mb-0">
+    <div className="flex items-center justify-between  md:mb-0">
       <div className="flex items-center gap-2">
         <img src={item.image} alt={item.name} className="size-20 rounded-xl" />
         <div className="flex flex-col gap-1">

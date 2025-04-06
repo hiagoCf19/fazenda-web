@@ -1,14 +1,37 @@
-import { CreditCard, MapPin } from "lucide-react";
+import { ChevronLeft, CreditCard, MapPin } from "lucide-react";
 import { Order } from "../../../../types/order.type";
 import { FormatDateHelper } from "../../../helpers/format-date.helper";
+import { Button } from "../../../shadcn/ui/button";
+import { OrderStatusEnum } from "../../../../enums/order-status.enum";
 
 interface MyOrderDetailsProps {
   order: Order;
+  setSelectedOrder: React.Dispatch<React.SetStateAction<Order | null>>;
 }
-export function MyOrderDetails({ order }: MyOrderDetailsProps) {
-  console.log(order);
+export function MyOrderDetails({
+  order,
+  setSelectedOrder,
+}: MyOrderDetailsProps) {
+  const statusStyle =
+    order.status === OrderStatusEnum.PENDING
+      ? "bg-[#FE70004D]"
+      : order.status === OrderStatusEnum.DELIVERED
+      ? "bg-[#20202033]"
+      : "bg-[#00BE62]";
   return (
-    <div className="  overflow-y-auto">
+    <div className=" px-4 md:p-0  overflow-y-auto">
+      <div className="md:hidden flex items-center ">
+        <Button
+          size={"icon"}
+          variant={"ghost"}
+          onClick={() => setSelectedOrder(null)}
+        >
+          <ChevronLeft className="size-6 text-[#FE7000]" />
+        </Button>
+        <h1 className="w-full text-center text-zinc-700 font-medium">
+          Detalhes do pedido
+        </h1>
+      </div>
       <div className="max-w-md mx-auto pb-6 bg-white shadow-lg rounded-2xl mb-12">
         {/* Cabeçalho do pedido */}
         <div className="p-4 border-b">
@@ -29,17 +52,15 @@ export function MyOrderDetails({ order }: MyOrderDetailsProps) {
             </div>
           </div>
         </div>
-
         {/* Status do pedido */}
         <div className="p-4">
-          <div className="bg-gray-200 rounded-full p-1 text-center mb-2">
-            <p className="font-medium text-zinc-800">Entregue</p>
+          <div className={`${statusStyle} rounded-full p-1 text-center mb-2`}>
+            <p className="font-medium text-zinc-800">{order.status}</p>
           </div>
           <p className="text-center text-sm text-gray-600">
             O pedido foi entregue ao comprador.
           </p>
         </div>
-
         {/* Itens do pedido */}
         <div className="p-4 space-y-4">
           {order.items.map((item, index) => (
@@ -68,7 +89,6 @@ export function MyOrderDetails({ order }: MyOrderDetailsProps) {
             </div>
           ))}
         </div>
-
         {/* Endereço de entrega */}
         <div className="p-4 border-t">
           <h2 className="font-medium mb-3 text-zinc-800">
@@ -81,7 +101,6 @@ export function MyOrderDetails({ order }: MyOrderDetailsProps) {
             <p className="text-sm">{order.address_delivery}</p>
           </div>
         </div>
-
         {/* Resumo dos valores */}
         <div className="p-4 border-t">
           <h2 className="font-medium mb-3 text-zinc-800">Resumo dos valores</h2>
@@ -100,7 +119,6 @@ export function MyOrderDetails({ order }: MyOrderDetailsProps) {
             </div>
           </div>
         </div>
-
         {/* Método de pagamento */}
         <div className="p-4 border-t">
           <h2 className="font-medium mb-3 text-zinc-800">Pago pelo app</h2>
@@ -114,6 +132,16 @@ export function MyOrderDetails({ order }: MyOrderDetailsProps) {
             </div>
           </div>
         </div>
+        {order.status === "Pendente" && (
+          <div className="flex justify-center px-4">
+            <Button
+              variant={"outline"}
+              className="border-red-600 text-red-600 w-full rounded-2xl md:py-6 py-5"
+            >
+              Cancelar
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

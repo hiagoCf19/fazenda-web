@@ -1,5 +1,5 @@
 import { Product } from "../../../../../types/product";
-import { OrderCard } from "./order-card.component";
+import { OrderCard } from "./order-cart-card.component";
 
 interface OrderListProps {
   items: Product[];

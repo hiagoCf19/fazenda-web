@@ -1,21 +1,21 @@
 import { X } from "lucide-react";
-import { Button } from "../../../shadcn/ui/button";
+import { Button } from "../../../../shadcn/ui/button";
 import {
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "../../../shadcn/ui/sheet";
-import { Separator } from "../../../shadcn/ui/separator";
-import { TopProductsList } from "./orders/top-product-list.component";
-import { OrderList } from "./orders/order-list.component";
+} from "../../../../shadcn/ui/sheet";
+import { Separator } from "../../../../shadcn/ui/separator";
+import { TopProductsList } from "./top-product-list.component";
+import { OrderList } from "./order-cart-list.component";
 import { Link } from "react-router";
-import { OrderSummary } from "./orders/order-summary.component";
+import { OrderSummary } from "./order-cart--summary.component";
 
 interface PedidosComponentProps {
   onOpenChange: (step: boolean) => void;
 }
-export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
+export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
   const items = [
     {
       id: "3",
@@ -45,9 +45,9 @@ export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
 
   return (
     <SheetContent className="mb-4 md:w-auto w-full">
-      <div className="w-full md:h-[125px] h-[60px]" />
+      <div className="w-full md:h-[125px] h-[60px] " />
 
-      <SheetHeader className="flex flex-row items-center justify-between p-0 md:px-4 -mb-3 md:-mb-0">
+      <SheetHeader className="flex gap-0 flex-row justify-between p-0">
         <Button
           size={"icon"}
           variant={"ghost"}
@@ -56,7 +56,7 @@ export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
         >
           <X className="size-5" />
         </Button>
-        <SheetTitle className="text-2xl text-zinc-700 text-center w-full md:w-auto">
+        <SheetTitle className="text-2xl text-zinc-700 text-center w-full">
           Pedidos
         </SheetTitle>
         <SheetDescription />
@@ -68,7 +68,7 @@ export function PedidosComponent({ onOpenChange }: PedidosComponentProps) {
         <div className="md:h-[28vh] h-[30vh] flex flex-col justify-between overflow-y-scroll [&::-webkit-scrollbar]:hidden ">
           <OrderList items={items} />
         </div>
-        <Separator />
+        <Separator className="mt-2" />
 
         <div className="min-h-[20vh] md:h-[20vh] mb-2  flex flex-col justify-between">
           <TopProductsList items={items} />
