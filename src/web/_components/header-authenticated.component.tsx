@@ -19,7 +19,7 @@ import {
 } from "../../shadcn/ui/popover";
 import { Link } from "react-router";
 import { Sheet } from "../../shadcn/ui/sheet";
-import { PedidosComponent } from "../(home)/_components/pedidos.component";
+import { OrdersCartComponent } from "../(home)/_components/cart-sheet/orders-cart-sheet.component";
 import { Session } from "../../../types/session.type";
 import { useOpenOrders } from "../context/open-orders.context";
 
@@ -157,10 +157,10 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
             onClick={() => setIsOpenOrders(!isOpenOrders)}
           >
             <ShoppingCart className="text-secondary-foreground md:size-7  " />
-            Pedidos
+            Carrinho
           </Button>
 
-          <PedidosComponent onOpenChange={setIsOpenOrders} />
+          <OrdersCartComponent onOpenChange={setIsOpenOrders} />
         </Sheet>
 
         {/* carrinho */}
