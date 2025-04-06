@@ -6,11 +6,12 @@ import { MyOrdersList } from "./_components/my-orders-list.component";
 import { Order } from "../../../types/order.type";
 
 import { MyOrderDetails } from "./_components/my-order-details.component";
-
+import { OrderStatusEnum } from "../../../enums/order-status.enum";
+import BottomNav from "../_components/bottom-navigator-mobile.component";
 const pendingOrders = [
   {
     id: 7,
-    status: "Pendente",
+    status: OrderStatusEnum.PENDING,
     address_delivery: "Travessa Fictícia, 789",
     total_value: "100",
     latitude: null,
@@ -46,7 +47,7 @@ const pendingOrders = [
 const deliveredOrders = [
   {
     id: 1,
-    status: "Pedido Entregue",
+    status: OrderStatusEnum.DELIVERED,
     address_delivery: "Rua Exemplo, 123",
     total_value: "100",
     latitude: null,
@@ -79,7 +80,7 @@ const deliveredOrders = [
   },
   {
     id: 2,
-    status: "Pedido Entregue",
+    status: OrderStatusEnum.DELIVERED,
     address_delivery: "Avenida Teste, 456",
     total_value: "150",
     latitude: null,
@@ -112,7 +113,7 @@ const deliveredOrders = [
   },
   {
     id: 3,
-    status: "Pedido Entregue",
+    status: OrderStatusEnum.DELIVERED,
     address_delivery: "Travessa Fictícia, 789",
     total_value: "200",
     latitude: null,
@@ -145,7 +146,7 @@ const deliveredOrders = [
   },
   {
     id: 4,
-    status: "Pedido Entregue",
+    status: OrderStatusEnum.DELIVERED,
     address_delivery: "Travessa Fictícia, 789",
     total_value: "100",
     latitude: null,
@@ -186,7 +187,10 @@ export function MyOrders() {
       <HeaderAuthenticaded session={session as Session} />
       <div className="w-full md:h-[128px] h-[88px]" />
       {selectedOrder ? (
-        <MyOrderDetails order={selectedOrder} />
+        <MyOrderDetails
+          order={selectedOrder}
+          setSelectedOrder={setSelectedOrder}
+        />
       ) : (
         <div className="md:h-screen md:p-12 p-4 pt-0">
           {/* Seção: Meus pedidos */}
@@ -213,6 +217,8 @@ export function MyOrders() {
           </section>
         </div>
       )}
+      <div className="h-16" />
+      <BottomNav />
     </section>
   );
 }
