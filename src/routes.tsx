@@ -13,6 +13,11 @@ import { RegisterClientPage } from "./web/auth/register.page";
 import { ConfirmOrderPage } from "./web/confirm-order/confirm-order.page";
 import { MyOrders } from "./web/my-orders/my-orders.page";
 import NotFound from "./web/_components/not-found.component";
+import { PaymentMethodsPage } from "./web/payment-methods/payment-methods.page";
+import { AddressPage } from "./web/adress/address.page";
+import { SecurityPage } from "./web/security/security.page";
+import { MyAccountPage } from "./web/my-account/my-account.page";
+import { SearchPage } from "./web/search/search.page";
 
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
@@ -102,6 +107,27 @@ export const router = createBrowserRouter([
     path: "my-orders",
     element: <MyOrders />,
   },
+  {
+    path: "payment-methods",
+    element: <PaymentMethodsPage />,
+  },
+  {
+    path: "address",
+    element: <AddressPage />,
+  },
+  {
+    path: "my-account",
+    element: <MyAccountPage />,
+  },
+  {
+    path: "security",
+    element: <SecurityPage />,
+  },
+  {
+    path: "search/:query",
+    element: <SearchPage />,
+  },
+
   {
     path: "*",
     element: <NotFound />,

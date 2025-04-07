@@ -17,16 +17,20 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../shadcn/ui/popover";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { Sheet } from "../../shadcn/ui/sheet";
 import { OrdersCartComponent } from "../(home)/_components/cart-sheet/orders-cart-sheet.component";
 import { Session } from "../../../types/session.type";
 import { useOpenOrders } from "../context/open-orders.context";
+import { useState } from "react";
 
 interface HeaderAuthenticadedProps {
   session: Session;
 }
 export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
+  const { query } = useParams();
+  const [error, setError] = useState(false);
+
   const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
   const EditProfileActions = [
     {
@@ -50,7 +54,7 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
     {
       title: "Minha conta",
       description: "Informações de conta",
-      navigate: "/account-info",
+      navigate: "/my-account",
       icon: Settings,
     },
     {
@@ -72,27 +76,47 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       icon: LogOut,
     },
   ];
-
+  const [search, setSearch] = useState(query);
   return (
     <header className="bg-[#E4EAE7] md:-m-12 p-4   md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
       <div className="md:flex gap-4 w-[50%] hidden">
         <img
-          src="full_logo.svg"
+          src="/full_logo.svg"
           alt="Fazenda online"
           className="md:w-[166px] md:h-[48px] w-28"
         />
 
-        <div className="bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden">
+        <div
+          className={`bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden ${
+            error && "border-red-500/50"
+          }`}
+        >
           <Search className="ml-2" />
           <Input
             type="text"
             className="flex-1 p-2 focus:ring-0 focus:outline-0 focus-visible:border-none focus-visible:ring-none focus-visible:ring-0 shadow-none"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setError(false);
+            }}
           />
-          <div className="">
-            <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
+          {search ? (
+            <Link to={`/search/${search}`}>
+              <Button
+                className={`bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl `}
+              >
+                Pesquisar
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl"
+              onClick={() => search === "" && setError(!error)}
+            >
               Pesquisar
             </Button>
-          </div>
+          )}
         </div>
       </div>
       {/* endereço */}

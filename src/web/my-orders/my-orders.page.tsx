@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Session } from "../../../types/session.type";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
 import { useSession } from "../context/session.context";
 import { MyOrdersList } from "./_components/my-orders-list.component";
@@ -8,6 +7,7 @@ import { Order } from "../../../types/order.type";
 import { MyOrderDetails } from "./_components/my-order-details.component";
 import { OrderStatusEnum } from "../../../enums/order-status.enum";
 import BottomNav from "../_components/bottom-navigator-mobile.component";
+import NotFound from "../_components/not-found.component";
 const pendingOrders = [
   {
     id: 7,
@@ -180,11 +180,12 @@ const deliveredOrders = [
 ];
 export function MyOrders() {
   const { session } = useSession();
+  if (!session) return <NotFound />;
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   return (
     <section className="md:p-12 overflow-x-hidden relative min-h-screen">
-      <HeaderAuthenticaded session={session as Session} />
+      <HeaderAuthenticaded session={session} />
       <div className="w-full md:h-[128px] h-[88px]" />
       {selectedOrder ? (
         <MyOrderDetails

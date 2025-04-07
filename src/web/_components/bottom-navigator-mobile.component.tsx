@@ -10,12 +10,12 @@ const BottomNav = () => {
   const links = [
     { to: "/", label: "Início", icon: Home },
     { to: "/search", label: "Buscar", icon: SearchIcon },
-    { to: "/profile", label: "Perfil", icon: User },
+    { to: "/my-account", label: "Perfil", icon: User },
     { to: "/my-orders", label: "Pedidos", icon: ShoppingCart },
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 px-6 bg-white h-16 w-full shadow-md flex justify-between items-center border-t z-50">
+    <div className="md:hidden fixed bottom-0 px-6 bg-white h-16 w-full shadow-md flex justify-between items-center z-50">
       {links.map(({ to, label, icon: Icon }) => {
         const isActive = currentPath === to;
         const textColor =
