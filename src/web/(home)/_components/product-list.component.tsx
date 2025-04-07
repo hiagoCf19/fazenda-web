@@ -1,4 +1,8 @@
-import { Carousel, CarouselContent } from "../../../shadcn/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "../../../shadcn/ui/carousel";
 import { Product } from "../../../../types/product";
 import { ProductCard } from "./product-card.component";
 
@@ -13,7 +17,9 @@ export function ProductList({ products, title }: ProductListProps) {
       <Carousel className="-mx-4">
         <CarouselContent>
           {products.map((product, i) => (
-            <ProductCard key={i} product={product} />
+            <CarouselItem className="basis-auto ml-4" key={i}>
+              <ProductCard product={product} />
+            </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>

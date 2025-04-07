@@ -5,14 +5,13 @@ import {
 } from "../../../shadcn/ui/dialog";
 import { PlusIcon } from "lucide-react";
 import { Button } from "../../../shadcn/ui/button";
-import { CarouselItem } from "../../../shadcn/ui/carousel";
 import { Product } from "../../../../types/product";
 interface ProductCardProps {
   product: Product;
 }
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <CarouselItem className="basis-auto ml-4">
+    <>
       <div className="rounded-3xl  relative shadow-lg md:w-[190px] md:h-[190px]  w-[160px] h-[160px]">
         <Dialog>
           <DialogTrigger>
@@ -97,6 +96,6 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </div>
-    </CarouselItem>
+    </>
   );
 }
