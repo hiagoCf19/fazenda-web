@@ -68,7 +68,7 @@ export function AddressPage() {
       <Card className="w-full max-w-md mx-auto shadow-lg min-h-[50vh]">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-medium text-secondary-foreground">
-            Pagamentos
+            Endereços
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -101,7 +101,7 @@ export function AddressPage() {
             onClick={adicionarNovoCartao}
             className="w-full bg-secondary hover:bg-green-500 text-secondary-foreground font-medium rounded-full text-xl py-6"
           >
-            Adicionar novo cartão
+            Adicionar novo endereço
           </Button>
         </CardContent>
       </Card>

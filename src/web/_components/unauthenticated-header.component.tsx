@@ -5,8 +5,8 @@ import { Link } from "react-router";
 
 export function UnauthenticatedHeader() {
   return (
-    <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:p-12 md:mb-12 pb-4">
-      <div className="flex justify-between items-center">
+    <header className="bg-[#E4EAE7] md:-m-12 p-5  -m-4 md:px-12 md:mb-12 pb-4">
+      <div className="flex justify-between items-center p-2 md:p-0">
         <img
           src="full_logo.svg"
           alt="Fazenda online"

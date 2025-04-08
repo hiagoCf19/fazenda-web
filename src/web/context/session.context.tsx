@@ -3,7 +3,7 @@ import { Session } from "../../../types/session.type";
 
 type SessionContextType = {
   session: Session | null;
-  setSession: (session: Session) => void;
+  setSession: (session: Session | null) => void;
 };
 
 const SessionContext = createContext<SessionContextType | null>(null);
