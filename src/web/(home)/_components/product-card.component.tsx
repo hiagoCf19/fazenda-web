@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
               className="aspect-square md:rounded-3xl rounded-xl w-full"
             />
           </DialogTrigger>
-          <DialogContent className="flex w-full md:max-w-[50%] h-[40%] border">
+          <DialogContent className="flex w-full md:max-w-[50%] h-[40%] md:h-[50%] border">
             <div className="flex-1">
               <img
                 src={product.image}

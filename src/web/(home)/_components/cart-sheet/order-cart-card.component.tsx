@@ -1,11 +1,17 @@
 import { Minus, Plus } from "lucide-react";
 import { Product } from "../../../../../types/product";
 import { Button } from "../../../../shadcn/ui/button";
+import { useState } from "react";
 
 interface OrderCardProps {
   item: Product;
 }
 export function OrderCard({ item }: OrderCardProps) {
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => setQuantity((prev) => prev + 1);
+  const decreaseQuantity = () =>
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   return (
     <div className="flex items-center justify-between  md:mb-0">
       <div className="flex items-center gap-2">
@@ -23,14 +29,16 @@ export function OrderCard({ item }: OrderCardProps) {
           size={"icon"}
           variant={"ghost"}
           className="text-zinc-700 hover:bg-background"
+          onClick={decreaseQuantity}
         >
           <Minus />
         </Button>
-        <p className="text-zinc-800">2 kg</p>
+        <p className="text-zinc-800">{quantity} kg</p>
         <Button
           size={"icon"}
           variant={"ghost"}
           className="text-zinc-700  hover:bg-background"
+          onClick={increaseQuantity}
         >
           <Plus />
         </Button>
