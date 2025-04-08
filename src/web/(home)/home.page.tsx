@@ -151,7 +151,11 @@ export const HomePage = () => {
       ) : (
         <HeaderAuthenticaded session={session} />
       )}
-      <div className="w-full md:h-[128px] h-[88px]" />
+      <div
+        className={`w-full ${
+          session ? "md:h-[129px] h-[88px]" : "md:h-0 h-[25px]"
+        } `}
+      />
       <main className="md:mb-12 md:space-y-8  h-full">
         <Banners />
         <ChooseByCategory

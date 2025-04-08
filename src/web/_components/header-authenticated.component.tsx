@@ -17,12 +17,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../shadcn/ui/popover";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { Sheet } from "../../shadcn/ui/sheet";
 import { OrdersCartComponent } from "../(home)/_components/cart-sheet/orders-cart-sheet.component";
 import { Session } from "../../../types/session.type";
 import { useOpenOrders } from "../context/open-orders.context";
 import { useState } from "react";
+import { logout } from "../../service/auth.service";
+import { useSession } from "../context/session.context";
 
 interface HeaderAuthenticadedProps {
   session: Session;
@@ -30,6 +32,8 @@ interface HeaderAuthenticadedProps {
 export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
   const { query } = useParams();
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
+  const { setSession } = useSession();
 
   const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
   const EditProfileActions = [
@@ -69,22 +73,18 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       navigate: "/help",
       icon: TriangleAlert,
     },
-    {
-      title: "Sair",
-      description: "Sair da conta",
-      navigate: "",
-      icon: LogOut,
-    },
   ];
   const [search, setSearch] = useState(query);
   return (
     <header className="bg-[#E4EAE7] md:-m-12 p-4   md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
       <div className="md:flex gap-4 w-[50%] hidden">
-        <img
-          src="/full_logo.svg"
-          alt="Fazenda online"
-          className="md:w-[166px] md:h-[48px] w-28"
-        />
+        <Link to={"/"}>
+          <img
+            src="/full_logo.svg"
+            alt="Fazenda online"
+            className="md:w-[166px] md:h-[48px] w-28"
+          />
+        </Link>
 
         <div
           className={`bg-white md:flex items-center  space-x-3 rounded-4xl border w-full hidden ${
@@ -158,6 +158,22 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
                     </div>
                   </Link>
                 ))}
+                <a
+                  onClick={() => {
+                    logout();
+                    navigate("/login");
+                    setSession(null);
+                  }}
+                  className="flex flex-col "
+                >
+                  <div className="flex items-center gap-3 border-b pb-2">
+                    <LogOut className="size-7 text-accent-foreground/50" />
+                    <div>
+                      <p className="text-zinc-800">Sair</p>
+                      <span className="text-foreground">Sair da conta</span>
+                    </div>
+                  </div>
+                </a>
 
                 <div className="flex items-center flex-col">
                   <Link className="text-zinc-600" to={"/terms-of-use"}>
