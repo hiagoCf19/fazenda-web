@@ -6,7 +6,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../../../../shadcn/ui/sheet";
-import { Separator } from "../../../../shadcn/ui/separator";
 import { TopProductsList } from "./top-product-list.component";
 import { OrderList } from "./order-cart-list.component";
 import { Link } from "react-router";
@@ -41,8 +40,8 @@ export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
   ];
 
   return (
-    <SheetContent className="mb-4 md:w-auto w-full">
-      <div className="w-full md:h-[125px] h-[60px] " />
+    <SheetContent className="mb-4 md:w-[398px] w-full">
+      <div className="w-full md:h-[128px] h-[60px] " />
 
       <SheetHeader className="flex gap-0 flex-row justify-between p-0">
         <Button
@@ -61,17 +60,16 @@ export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
           Limpar
         </Button>
       </SheetHeader>
-      <div className=" md:px-4 px-2 md:space-y-4">
-        <div className="md:h-[28vh] h-[30vh] flex flex-col justify-between overflow-y-scroll [&::-webkit-scrollbar]:hidden ">
+      <div className="flex  flex-col space-y-4 px-2 md:px-4 ">
+        <div className="md:h-[270px] h-[30vh] flex flex-col justify-between overflow-y-scroll [&::-webkit-scrollbar]:hidden  border-b pb-4">
           <OrderList items={items} />
         </div>
-        <Separator className="mt-2" />
 
-        <div className="min-h-[20vh] md:h-[22vh] mb-2 md:mb-0  flex flex-col justify-between">
+        <div className=" md:h-[220px] mb-2 md:mb-0  flex flex-col justify-between border-b">
           <TopProductsList items={items} />
         </div>
-        <Separator className="md:mt-2" />
-        <div className="md:h-[15vh] flex flex-col md:space-y-4 space-y-2 mt-2">
+
+        <div className="md:h-auto flex flex-col md:space-y-4 space-y-2 mt-2">
           <OrderSummary />
         </div>
       </div>

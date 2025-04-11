@@ -16,7 +16,7 @@ interface MyOrdersCardProps {
 }
 export function MyOrdersCard({ order, setSelectedOrder }: MyOrdersCardProps) {
   return (
-    <Card className="bg-white shadow-md rounded-2xl md;p-8 max-w-lg flex flex-col md:gap-4 border">
+    <Card className="bg-white shadow-md rounded-2xl md-p-8 w-auto h-[248px] flex flex-col md:gap-4 border">
       {/* Status */}
       <CardHeader>
         <Badge

@@ -7,13 +7,11 @@ interface MyOrdersListProps {
 }
 export function MyOrdersList({ list, setSelectedOrder }: MyOrdersListProps) {
   return (
-    <div className="md:grid grid-cols-3 space-y-4 ">
+    <div className="flex flex-wrap gap-4">
       {list.map((order) => (
-        <MyOrdersCard
-          key={order.id}
-          setSelectedOrder={setSelectedOrder}
-          order={order}
-        />
+        <div key={order.id} className="basis-full sm:basis-[32%]">
+          <MyOrdersCard order={order} setSelectedOrder={setSelectedOrder} />
+        </div>
       ))}
     </div>
   );
