@@ -2,18 +2,18 @@ import { Store, UserRoundCheck } from "lucide-react";
 import { useState } from "react";
 import RegisterClientForm from "./_components/register/form.component";
 
-export enum RegisterTypeEnum {
+export enum ProfileTypeEnum {
   INDIVIDUAL = "individual",
-  ENTERPRISE = "enterprise",
+  BUSINESS = "business",
 }
 export function RegisterClientPage() {
   const [renderForm, setRenderForm] = useState(false);
-  const [registerType, setRegisterType] = useState<RegisterTypeEnum>(
-    RegisterTypeEnum.ENTERPRISE
+  const [registerType, setRegisterType] = useState<ProfileTypeEnum>(
+    ProfileTypeEnum.BUSINESS
   );
 
   return renderForm ? (
-    <RegisterClientForm registerType={registerType} />
+    <RegisterClientForm profile_type={registerType} />
   ) : (
     <>
       <h2 className="md:text-3xl text-xl mt-6 md:mt-0 text-secondary-foreground text-center font-medium">
@@ -26,7 +26,7 @@ export function RegisterClientPage() {
             className="bg-secondary-foreground flex flex-col rounded-4xl md:w-[405px] md:h-[154px] md:p-8 p-4 flex-1"
             onClick={() => {
               setRenderForm(true);
-              setRegisterType(RegisterTypeEnum.ENTERPRISE);
+              setRegisterType(ProfileTypeEnum.BUSINESS);
             }}
           >
             <div className="flex gap-2 items-center">
@@ -43,7 +43,7 @@ export function RegisterClientPage() {
             className="bg-secondary flex flex-col rounded-4xl md:w-[405px] md:h-[154px] md:p-8 p-4 flex-1"
             onClick={() => {
               setRenderForm(true);
-              setRegisterType(RegisterTypeEnum.INDIVIDUAL);
+              setRegisterType(ProfileTypeEnum.INDIVIDUAL);
             }}
           >
             <div className="flex gap-2 items-center">

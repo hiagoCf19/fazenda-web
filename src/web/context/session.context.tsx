@@ -18,12 +18,12 @@ export const SessionProvider = ({
   useEffect(() => {
     // Recupera os dados do localStorage ao iniciar o app
     const user = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+    const access_token = localStorage.getItem("access_token");
 
-    if (user && token) {
+    if (user && access_token) {
       try {
         const parsedUser = JSON.parse(user);
-        setSession({ user: parsedUser, token }); // depende de como está seu tipo `Session`
+        setSession({ user: parsedUser, access_token });
       } catch (err) {
         console.error("Erro ao parsear user do localStorage", err);
       }

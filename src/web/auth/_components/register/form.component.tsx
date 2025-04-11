@@ -15,17 +15,22 @@ import { CodigoStep } from "./form/_components/step-2.component";
 import { useStep } from "../../../context/form-steps-register.context";
 import { Button } from "../../../../shadcn/ui/button";
 import { useNavigate } from "react-router";
-import { RegisterTypeEnum } from "../../register.page";
+import { ProfileTypeEnum } from "../../register.page";
+
 import { StepNif } from "./form/_components/step-0.component";
 import { EmailAndPhoneStep } from "./form/_components/step-1.component";
+import { useRegisterUser } from "../../../../hooks/use-register-user.hook";
+import { Loader } from "lucide-react";
+import { formatError } from "../../../../helpers/format-error.helper";
 
 interface RegisterClientFormProps {
-  registerType: RegisterTypeEnum;
+  profile_type: ProfileTypeEnum;
 }
 export default function RegisterClientForm({
-  registerType,
+  profile_type,
 }: RegisterClientFormProps) {
   const navigate = useNavigate();
+  const { mutate: registerUserMutation, error, isPending } = useRegisterUser();
   const { currentStep, setCurrentStep } = useStep();
   const [valueCode, setValueCode] = useState("");
   const [invalidCode, setInvalidCode] = useState(false);
@@ -55,55 +60,52 @@ export default function RegisterClientForm({
     mode: "onSubmit",
   });
   const handleNextStep = async (data: any) => {
-    if (currentStep === 2 && valueCode.length != 4) {
+    // Valida o código no step 2
+    if (currentStep === 2 && valueCode.length !== 4) {
       setInvalidCode(true);
       return;
     }
-    if (currentStep === 4) {
-      if (registerType === RegisterTypeEnum.INDIVIDUAL) {
-        const individual_user = {
-          nif: formData.step0.nif,
-          email: formData.step1.email,
-          phone: formData.step1.phone,
-          code: valueCode,
-          password: formData.step3.password,
-          first_name: formData.step4.firstName,
-          last_name: formData.step4.lastName,
-          photo: "",
-          register_type: registerType,
-        };
-        console.log("Dados  cadastro na api individual", individual_user);
-      } else {
-        const company_user = {
-          nif: formData.step0.nif,
-          email: formData.step1.email,
-          phone: formData.step1.phone,
-          code: valueCode,
-          password: formData.step3.password,
-          designation: formData.step4.activity,
-          activity: formData.step4.designation,
-          companyRepresentative: formData.step4.companyRepresentative,
-          photo: "",
-          register_type: registerType,
-        };
-        console.log("Dados para cadastro na api company", company_user);
-      }
-      //todo: implementar navegação real na integração:
-      navigate({
-        pathname: "/login",
-      });
-    }
-
-    // Atualiza o estado com os dados do passo atual
-    setFormData((prevData: any) => ({
-      ...prevData,
+    // Atualiza o formData antes de qualquer lógica
+    const updatedFormData = {
+      ...formData,
       [`step${currentStep}`]: data,
-    }));
+    };
+    setFormData(updatedFormData);
 
-    // Atualiza o passo para o próximo
-    if (currentStep < stepSchemas.length - 1) {
-      setCurrentStep(currentStep + 1);
+    // Verifica se é o último passo
+    const isLastStep = currentStep === stepSchemas.length - 1;
+    // if () {
+
+    // }
+    if (isLastStep) {
+      const registerData = {
+        email: updatedFormData.step1.email,
+        password: updatedFormData.step3.password,
+        phone: updatedFormData.step1.phone,
+        nif: updatedFormData.step0.nif,
+        profile_type: profile_type,
+        first_name: updatedFormData.step4.firstName,
+        last_name: updatedFormData.step4.lastName,
+        photo: "",
+      };
+
+      registerUserMutation(registerData, {
+        onSuccess: ({ user_id }) => {
+          console.log("Usuário registrado com sucesso:", user_id);
+          navigate(
+            location.pathname.includes("admin") ? "/admin/login" : "/login"
+          );
+        },
+        onError: (error: any) => {
+          console.error(error);
+        },
+      });
+
+      return; // Evita ir para o próximo step
     }
+
+    // Avança para o próximo passo
+    setCurrentStep(currentStep + 1);
   };
 
   return (
@@ -126,7 +128,7 @@ export default function RegisterClientForm({
         {currentStep === 0 && <StepNif register={register} errors={errors} />}
         {currentStep === 1 && (
           <EmailAndPhoneStep
-            registerType={registerType}
+            profile_type={profile_type}
             register={register}
             errors={errors}
           />
@@ -145,19 +147,25 @@ export default function RegisterClientForm({
         )}
         {currentStep === 4 && (
           <NameAndPhotoStep
-            registerType={registerType}
+            profile_type={profile_type}
             register={register}
             errors={errors}
           />
         )}
-
+        {error && (
+          <p className="text-center py-2 text-red-500">{formatError(error)}</p>
+        )}
         <div className="mt-4 flex justify-center items-center">
-          <Button
-            type="submit"
-            className="bg-secondary rounded-3xl h-[48px] text-secondary-foreground w-full"
-          >
-            {currentStep === 4 ? "Finalizar" : "Próximo"}
-          </Button>
+          {isPending ? (
+            <Loader className="text-primary my-4 animate-spin size-8" />
+          ) : (
+            <Button
+              type="submit"
+              className="bg-secondary rounded-3xl h-[48px] text-secondary-foreground w-full"
+            >
+              {currentStep === 4 ? "Finalizar" : "Próximo"}
+            </Button>
+          )}
         </div>
       </form>
     </>

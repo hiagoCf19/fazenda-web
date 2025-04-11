@@ -7,17 +7,17 @@ import {
 import { User } from "lucide-react";
 
 import { useState } from "react";
-import { RegisterTypeEnum } from "../../../../register.page";
+import { ProfileTypeEnum } from "../../../../register.page";
 interface NameAndPhotoStepProps {
   register: UseFormRegister<NameSchema | CompanySchema>;
   errors: FieldErrors<NameSchema | CompanySchema>;
-  registerType: RegisterTypeEnum;
+  profile_type: ProfileTypeEnum;
 }
 
 export function NameAndPhotoStep({
   register,
   errors,
-  registerType,
+  profile_type,
 }: NameAndPhotoStepProps) {
   const [buttonText, setButtonText] = useState("Selecionar uma foto");
 
@@ -29,11 +29,11 @@ export function NameAndPhotoStep({
   return (
     <div>
       <h2 className="text-3xl text-secondary-foreground text-center font-semibold">
-        {registerType === RegisterTypeEnum.INDIVIDUAL
+        {profile_type === ProfileTypeEnum.INDIVIDUAL
           ? "  Insira seu nome e escolha \n uma foto de perfil"
           : "Insira o nome da empresa e \n escolha uma foto e perfil"}
       </h2>
-      {registerType === RegisterTypeEnum.INDIVIDUAL ? (
+      {profile_type === ProfileTypeEnum.INDIVIDUAL ? (
         <div className="mt-4 w-full mx-auto flex flex-col gap-2 px-2">
           <InputFormComponente
             register={register as InputFormComponenteProps["register"]}

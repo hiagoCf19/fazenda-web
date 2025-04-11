@@ -3,6 +3,7 @@ import { useSession } from "../../context/session.context";
 import { Button } from "../../../shadcn/ui/button";
 import { DeliveryOptionList } from "./delivery-option-list.component";
 import { DeliveryOptions } from "../../../../types/delivery-options";
+import { useUserAddress } from "../../../hooks/use-user.hook";
 
 interface DeliveryOptionsComponentProps {
   selectedDeliveryOption: DeliveryOptions | null;
@@ -16,6 +17,7 @@ export function DeliveryOptionsComponent({
 }: DeliveryOptionsComponentProps) {
   const { session } = useSession();
   const user = session?.user;
+  const { data: address } = useUserAddress(user?.id || 0);
 
   const deliveryOptionsList = [
     {
@@ -47,10 +49,10 @@ export function DeliveryOptionsComponent({
             {session ? (
               <div className="flex flex-col">
                 <p className="text-lg text-zinc-800">
-                  {user?.endereco.logradouro}, {user?.endereco.number}
+                  {address[0].street}, {address[0].number}
                 </p>
                 <p className="text-zinc-700">
-                  {user?.endereco.city} - {user?.endereco.country}
+                  {address[0].city} - {address[0].country}
                 </p>
               </div>
             ) : (

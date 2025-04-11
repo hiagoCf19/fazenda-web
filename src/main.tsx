@@ -6,14 +6,19 @@ import { router } from "./routes.tsx";
 import { SessionProvider } from "./web/context/session.context.tsx";
 import { OpenOrdersProvider } from "./web/context/open-orders.context.tsx";
 import { Toaster } from "./shadcn/ui/sonner.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <SessionProvider>
-      <OpenOrdersProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </OpenOrdersProvider>
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider>
+        <OpenOrdersProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </OpenOrdersProvider>
+      </SessionProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

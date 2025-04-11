@@ -6,6 +6,7 @@ import { HeaderAuthenticaded } from "../_components/header-authenticated.compone
 import NotFound from "../_components/not-found.component";
 import { useSession } from "../context/session.context";
 import { MyAccountFormComponent } from "./_components/my-account.form.component";
+import { generateFallback } from "../../helpers/create-fallback.helper";
 
 export function MyAccountPage() {
   const { session } = useSession();
@@ -29,7 +30,9 @@ export function MyAccountPage() {
                   className="object-cover"
                   src={session?.user.photo}
                 />
-                <AvatarFallback>JO</AvatarFallback>
+                <AvatarFallback className="bg-[#fe6e009e] text-secondary-foreground text-4xl size-38">
+                  {generateFallback(session?.user)}
+                </AvatarFallback>
               </Avatar>
               <div className="rounded-full bg-secondary p-2 absolute top-2 right-0 ">
                 <Edit2 className="text-secondary-foreground" />
