@@ -7,6 +7,7 @@ import { Session } from "../../../../types/session.type";
 import { updateAccountSchema } from "./zod/update-account.schema";
 import { Button } from "../../../shadcn/ui/button";
 import { toast } from "sonner";
+import { StandardizationName } from "../../../helpers/standardization-name.helper";
 
 interface UpdateAccountForm {
   first_name: string;
@@ -20,14 +21,14 @@ export function MyAccountFormComponent({
   session,
 }: MyAccountFormComponentProps) {
   const form = useForm<UpdateAccountForm>({
-    resolver: zodResolver(updateAccountSchema),
+    resolver: zodResolver<UpdateAccountForm>(updateAccountSchema),
     defaultValues: {
-      first_name: session?.user.name,
-      last_name: "",
-      phone: "",
+      first_name: session?.user.first_name || "",
+      last_name: session?.user.last_name || "",
+      phone: session?.user.phone || "",
     },
   });
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: UpdateAccountForm) => {
     console.log(data);
     toast.success("Dados atualizados com sucesso!");
   };
@@ -40,24 +41,27 @@ export function MyAccountFormComponent({
           name="first_name"
           render={({ field }) => (
             <InputFormComponent
-              placeholder={session?.user.name}
+              placeholder={StandardizationName(session.user)}
               label="Nome"
               field={field}
             />
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="last_name"
-          render={({ field }) => (
-            <InputFormComponent
-              label="Sobrenome"
-              placeholder={session?.user.name}
-              field={field}
+        {session.user.profile_type === "business" ||
+          (session.user.profile_type === "individual" && (
+            <FormField
+              control={form.control}
+              name="last_name"
+              render={({ field }) => (
+                <InputFormComponent
+                  label="Sobrenome"
+                  placeholder={session?.user.last_name as string}
+                  field={field}
+                />
+              )}
             />
-          )}
-        />
+          ))}
 
         <FormField
           control={form.control}
@@ -65,7 +69,7 @@ export function MyAccountFormComponent({
           render={({ field }) => (
             <InputFormComponent
               field={field}
-              placeholder={""}
+              placeholder={session?.user.phone}
               label="Telefone"
             />
           )}

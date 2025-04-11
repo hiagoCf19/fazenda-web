@@ -1,0 +1,15 @@
+export enum ExceptionsEnum {
+  USER_NOT_FOUND = "User not found",
+  USER_ALREADY_EXISTS = "User already exists",
+  INVALID_CREDENTIALS = "Invalid credentials",
+  INVALID_NIF = "Invalid NIF",
+  NIF_ALREADY_REGISTERED = "NIF already registered",
+  EMAIL_ALREADY_REGISTERED = "Email already registered",
+  USER_TYPE_ALREADY_REGISTERED = "User type already registered and cannot be changed",
+  USER_TYPE_NOT_REGISTERED = "User type not registered",
+  USER_NOT_ACTIVE = "User is not active",
+  USER_DELETED = "User has been deleted",
+  USER_NOT_SUBSCRIBED = "User is not subscribed",
+  EXPIRED_TOKEN = "Expired token",
+  INVALID_TOKEN = "Invalid token",
+}

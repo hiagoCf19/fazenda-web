@@ -1,6 +1,6 @@
 import { Input } from "../../shadcn/ui/input";
 import { Button } from "../../shadcn/ui/button";
-import { KeyRound, Mail } from "lucide-react";
+import { KeyRound, Loader, Mail } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,9 +12,10 @@ import {
   FormLabel,
   FormMessage,
 } from "../../shadcn/ui/form";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useSession } from "../../web/context/session.context";
-import { login } from "../../service/auth.service";
+import { useLogin } from "../../hooks/use-login.hook";
+import { formatError } from "../../helpers/format-error.helper";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
@@ -22,8 +23,8 @@ const formSchema = z.object({
 });
 export const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { setSession } = useSession();
+  const { mutate: loginMutation, isPending, error } = useLogin();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -32,27 +33,24 @@ export const Login = () => {
       password: "",
     },
   });
-
+  console.log(import.meta.env.VITE_INTEGRATION_IN_PROGRESS);
   function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values)
-      .then(({ token, user }) => {
-        setSession({
-          token: token,
-          user,
-        });
+    loginMutation(values, {
+      onSuccess: ({ access_token, user }) => {
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+        setSession({ access_token, user });
 
-        if (location.pathname.includes("admin")) {
+        if (user.role === "ADMIN") {
           navigate("/admin/dashboard");
         } else {
           navigate("/");
         }
-      })
-      .catch((error) => {
+      },
+      onError: (error: any) => {
         console.error("Erro no login:", error);
-        form.setError("email", {
-          message: "Credenciais inválidas ou erro ao autenticar",
-        });
-      });
+      },
+    });
   }
 
   return (
@@ -82,14 +80,12 @@ export const Login = () => {
             <div className="md:hidden mb-6 flex justify-center">
               <img src="/logo.png" alt="Fazenda Online Logo" className="h-8" />
             </div>
-
             <div className="mb-8">
               <p className="text-gray-600 text-sm">Acesse sua conta</p>
               <h2 className="text-2xl font-bold text-gray-800">
                 Seja bem vindo de volta!
               </h2>
             </div>
-
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
@@ -147,17 +143,25 @@ export const Login = () => {
                     </FormItem>
                   )}
                 />
-
-                <Button
-                  type="submit"
-                  className=" mt-4 w-full bg-primary text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-                >
-                  Acessar
-                </Button>
+                {isPending ? (
+                  <div className="w-full  flex justify-center">
+                    <Loader className=" text-primary my-4 animate-spin size-7" />
+                  </div>
+                ) : (
+                  <Button
+                    type="submit"
+                    className=" mt-4 w-full bg-primary text-white font-medium py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                  >
+                    Acessar
+                  </Button>
+                )}
               </form>
             </Form>
 
             <div className="mt-4 text-center">
+              {error && (
+                <p className="text-red-500 text-sm">{formatError(error)}</p>
+              )}
               <p className="text-sm text-gray-600">
                 Esqueceu sua senha?{" "}
                 <Button variant={"link"} className=" p-0 text-[#FE7000]">

@@ -22,10 +22,6 @@ import { SearchPage } from "./web/search/search.page";
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
   {
-    path: "admin/login",
-    element: <Login />, // Renderiza o layout ao acessar /admin
-  },
-  {
     path: "admin",
     element: <AdminLayout />, // Renderiza o layout ao acessar /admin
     children: [
