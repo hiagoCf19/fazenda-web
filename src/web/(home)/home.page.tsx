@@ -94,9 +94,23 @@ export const HomePage = () => {
       priceT: "Kz 90.000/T",
     },
     {
-      id: "7",
-      name: "Tomate",
-      image: "/mock/tomate.png",
+      id: "6",
+      name: "Cebola roxa",
+      image: "/mock/cebola.png",
+      priceKg: "Kz 96/Kg",
+      priceT: "Kz 90.000/T",
+    },
+    {
+      id: "6",
+      name: "Cebola roxa",
+      image: "/mock/cebola.png",
+      priceKg: "Kz 96/Kg",
+      priceT: "Kz 90.000/T",
+    },
+    {
+      id: "3",
+      name: "Bacalhau",
+      image: "/mock/bacalhau.png",
       priceKg: "Kz 180/Kg",
       priceT: "Kz 140.000/T",
     },
@@ -110,6 +124,36 @@ export const HomePage = () => {
     {
       businessName: "Fazenda Filter",
       image: "/mock/filter.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Farm fresh - Organic",
+      image: "/mock/fresh.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Império das colunas",
+      image: "/mock/imperio_col.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Chicken Farm",
+      image: "/mock/chicken.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Fazenda Aviação",
+      image: "/mock/aviacao.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Ouro da Serra",
+      image: "/mock/ouro.png",
+      assessment: 5,
+    },
+    {
+      businessName: "Farm fresh - Organic",
+      image: "/mock/fresh.png",
       assessment: 5,
     },
     {

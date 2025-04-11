@@ -8,7 +8,6 @@ import {
   TriangleAlert,
   Wallet,
 } from "lucide-react";
-import { Input } from "../../shadcn/ui/input";
 import { Button } from "../../shadcn/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import {
@@ -89,24 +88,24 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
   isError && toast.error("Erro ao carregar endereço");
 
   return (
-    <header className="bg-[#E4EAE7] md:-m-12 p-4 md:p-12 md:mb-12 pb-4 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
+    <header className="bg-[#E4EAE7] md:-m-12 md:px-8 md:p-12 p-2 flex gap-8 items-center fixed w-full z-50 md:h-[128px] h-[75px]">
       {/* Logo e busca */}
-      <div className="md:flex gap-4 w-[50%] hidden">
+      <div className="md:flex gap-4 hidden ">
         <Link to={"/"}>
           <img
             src="/full_logo.svg"
             alt="Fazenda online"
-            className="md:w-[166px] md:h-[48px] w-28"
+            className="md:w-[166px] md:h-[48px] w-[166px]"
           />
         </Link>
 
         <div
-          className={`bg-white md:flex items-center space-x-3 rounded-4xl border w-full hidden ${
+          className={`bg-white md:flex items-center space-x-3 rounded-4xl border md:w-[683px] hidden ${
             error && "border-red-500/50"
           }`}
         >
           <Search className="ml-2" />
-          <Input
+          <input
             type="text"
             className="flex-1 p-2 focus:ring-0 focus:outline-0 shadow-none"
             value={search}
@@ -133,8 +132,10 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       </div>
 
       {/* Endereço */}
-      <div className="w-[20%] hidden md:block">
-        <p className="text-zinc-800 text-lg">Endereço de entrega</p>
+      <div className="w-[273px] hidden md:block">
+        <p className="text-zinc-800 text-base font-medium">
+          Endereço de entrega
+        </p>
         {isLoading ? (
           <span className="flex text-zinc-600 items-center gap-2">
             <Skeleton className="w-32 h-2 bg-sidebar-accent-foreground/20" />,{" "}
@@ -153,86 +154,86 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       </div>
 
       {/* User info e carrinho */}
-      <div className="flex gap-4 md:w-[30%] items-center justify-between w-full relative">
-        <div className="flex gap-2 items-center">
-          <Avatar className="md:size-20 size-12">
-            <AvatarImage className="object-cover" src={session?.user.photo} />
-            <AvatarFallback className="text-secondary-foreground bg-secondary text-3xl">
-              {generateFallback(session.user)}
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex justify-baseline items-start flex-col">
-            <p className="md:text-lg tetx-sm text-secondary-foreground">
-              Olá, <strong>{StandardizationName(session.user)}</strong>!
-            </p>
 
-            <Popover>
-              <PopoverTrigger className="hidden md:block text-[#FE7000]">
-                Editar perfil
-              </PopoverTrigger>
-              <PopoverContent className="w-full rounded-3xl rounded-t-none flex flex-col gap-4">
-                <div className="w-2 h-4" />
-                {EditProfileActions.map((action) => (
-                  <Link
-                    to={action.navigate}
-                    className="flex flex-col"
-                    key={action.title}
-                  >
-                    <div className="flex items-center gap-3 border-b pb-2">
-                      <action.icon className="size-7 text-accent-foreground/50" />
-                      <div>
-                        <p className="text-zinc-800">{action.title}</p>
-                        <span className="text-foreground">
-                          {action.description}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-                <a
-                  onClick={() => {
-                    logout();
-                    navigate("/landing-access");
-                    setSession(null);
-                  }}
+      <div className="flex gap-2 items-center">
+        <Avatar className="md:size-16 size-12">
+          <AvatarImage className="object-cover" src={session?.user.photo} />
+          <AvatarFallback className="text-secondary-foreground bg-secondary text-3xl">
+            {generateFallback(session.user)}
+          </AvatarFallback>
+        </Avatar>
+        <div className="flex justify-baseline items-start flex-col ">
+          <p className="md:text-lg tetx-sm text-secondary-foreground line-clamp-1 min-w-[110px]">
+            Olá,
+            <strong className=""> {StandardizationName(session.user)}</strong>
+          </p>
+
+          <Popover>
+            <PopoverTrigger className="hidden md:block text-[#FE7000]">
+              Editar perfil
+            </PopoverTrigger>
+            <PopoverContent className="w-full rounded-3xl rounded-t-none flex flex-col gap-4">
+              <div className="w-2 h-4" />
+              {EditProfileActions.map((action) => (
+                <Link
+                  to={action.navigate}
                   className="flex flex-col"
+                  key={action.title}
                 >
                   <div className="flex items-center gap-3 border-b pb-2">
-                    <LogOut className="size-7 text-accent-foreground/50" />
+                    <action.icon className="size-7 text-accent-foreground/50" />
                     <div>
-                      <p className="text-zinc-800">Sair</p>
-                      <span className="text-foreground">Sair da conta</span>
+                      <p className="text-zinc-800">{action.title}</p>
+                      <span className="text-foreground">
+                        {action.description}
+                      </span>
                     </div>
                   </div>
-                </a>
-
-                <div className="flex items-center flex-col">
-                  <Link className="text-zinc-600" to={"/terms-of-use"}>
-                    Termos de uso
-                  </Link>
-                  <Link className="text-zinc-600" to={"privacy-policy"}>
-                    Políticas de privacidade
-                  </Link>
+                </Link>
+              ))}
+              <a
+                onClick={() => {
+                  logout();
+                  navigate("/landing-access");
+                  setSession(null);
+                }}
+                className="flex flex-col"
+              >
+                <div className="flex items-center gap-3 border-b pb-2">
+                  <LogOut className="size-7 text-accent-foreground/50" />
+                  <div>
+                    <p className="text-zinc-800">Sair</p>
+                    <span className="text-foreground">Sair da conta</span>
+                  </div>
                 </div>
-              </PopoverContent>
-            </Popover>
-            <p className="text-zinc-800 text-sm md:hidden">
-              {address?.[0]?.street}
-            </p>
-          </div>
-        </div>
+              </a>
 
-        <Sheet open={isOpenOrders} onOpenChange={setIsOpenOrders}>
-          <Button
-            className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg"
-            onClick={() => setIsOpenOrders(!isOpenOrders)}
-          >
-            <ShoppingCart className="text-secondary-foreground md:size-7" />
-            Carrinho
-          </Button>
-          <OrdersCartComponent onOpenChange={setIsOpenOrders} />
-        </Sheet>
+              <div className="flex items-center flex-col">
+                <Link className="text-zinc-600" to={"/terms-of-use"}>
+                  Termos de uso
+                </Link>
+                <Link className="text-zinc-600" to={"privacy-policy"}>
+                  Políticas de privacidade
+                </Link>
+              </div>
+            </PopoverContent>
+          </Popover>
+          <p className="text-zinc-800 text-sm md:hidden">
+            {address?.[0]?.street}
+          </p>
+        </div>
       </div>
+
+      <Sheet open={isOpenOrders} onOpenChange={setIsOpenOrders}>
+        <Button
+          className="bg-secondary text-secondary-foreground rounded-3xl md:w-[184px] h-[48px] md:text-lg"
+          onClick={() => setIsOpenOrders(!isOpenOrders)}
+        >
+          <ShoppingCart className="text-secondary-foreground md:size-7" />
+          Carrinho
+        </Button>
+        <OrdersCartComponent onOpenChange={setIsOpenOrders} />
+      </Sheet>
     </header>
   );
 }
