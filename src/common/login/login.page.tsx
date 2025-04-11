@@ -17,6 +17,48 @@ import { useSession } from "../../web/context/session.context";
 import { useLogin } from "../../hooks/use-login.hook";
 import { formatError } from "../../helpers/format-error.helper";
 
+//MOCK
+
+const clientSession = {
+  user: {
+    id: 6,
+    email: "fazenda@gmail.com",
+    phone: "+244 912 345 678",
+    nif: "986453675",
+    role: "COMMON",
+    profile_type: "individual",
+    photo:
+      "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+    created_at: "2025-04-11T13:03:20.000Z",
+    isActive: true,
+    twoFactorEnabled: false,
+    first_name: "Fazenda",
+    last_name: "Client",
+  },
+  access_token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpYWdvZmVycmVpcmEyQGlkLnVmZi5iciIsInN1YiI6NiwicHJvZmlsZV9pZCI6Mywicm9sZSI6IkNPTU1PTiIsImlhdCI6MTc0NDM3NjYyNiwiZXhwIjoxNzQ0NDE5ODI2fQ.mYiDtU9ASInsFkMucF4hYvR0v779t4wHQSwsKtUBkxM",
+};
+const adminSesison = {
+  user: {
+    id: 6,
+    email: "admin@gmail.com",
+    phone: "+244 912 345 678",
+    nif: "986453675",
+    role: "ADMIN",
+    profile_type: "individual",
+    photo:
+      "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+    created_at: "2025-04-11T13:03:20.000Z",
+    isActive: true,
+    twoFactorEnabled: false,
+    first_name: "Fazenda",
+    last_name: "Admin",
+  },
+  access_token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhpYWdvZmVycmVpcmEyQGlkLnVmZi5iciIsInN1YiI6NiwicHJvZmlsZV9pZCI6Mywicm9sZSI6IkNPTU1PTiIsImlhdCI6MTc0NDM3NjYyNiwiZXhwIjoxNzQ0NDE5ODI2fQ.mYiDtU9ASInsFkMucF4hYvR0v779t4wHQSwsKtUBkxM",
+};
+//---------------
+
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
   password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres"),
@@ -35,22 +77,75 @@ export const Login = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    loginMutation(values, {
-      onSuccess: ({ access_token, user }) => {
-        localStorage.setItem("access_token", access_token);
-        localStorage.setItem("user", JSON.stringify(user));
-        setSession({ access_token, user });
+    if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS) {
+      if (values.email === "admin@gmail.com") {
+        localStorage.setItem("access_token", adminSesison.access_token);
+        localStorage.setItem("user", JSON.stringify(adminSesison.user));
+        setSession({
+          access_token: adminSesison.access_token,
+          user: {
+            id: 6,
+            email: "admin@gmail.com",
+            phone: "+244 912 345 678",
+            nif: "986453675",
+            role: "ADMIN",
+            profile_type: "individual",
+            photo:
+              "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+            created_at: "2025-04-11T13:03:20.000Z",
+            isActive: true,
+            twoFactorEnabled: false,
+            first_name: "Fazenda",
+            last_name: "Admin",
+          },
+        });
 
-        if (user.role === "ADMIN") {
+        if (adminSesison.user.role === "ADMIN") {
           navigate("/admin/dashboard");
         } else {
           navigate("/");
         }
-      },
-      onError: (error: any) => {
-        console.error("Erro no login:", error);
-      },
-    });
+      } else {
+        localStorage.setItem("access_token", clientSession.access_token);
+        localStorage.setItem("user", JSON.stringify(clientSession.user));
+        setSession({
+          access_token: adminSesison.access_token,
+          user: {
+            id: 6,
+            email: "fazenda@gmail.com",
+            phone: "+244 912 345 678",
+            nif: "986453675",
+            role: "COMMON",
+            profile_type: "individual",
+            photo:
+              "https://blog4.mfrural.com.br/wp-content/uploads/2020/02/fazendas-1024x660.jpg",
+            created_at: "2025-04-11T13:03:20.000Z",
+            isActive: true,
+            twoFactorEnabled: false,
+            first_name: "Fazenda",
+            last_name: "Client",
+          },
+        });
+        navigate("/");
+      }
+    } else {
+      loginMutation(values, {
+        onSuccess: ({ access_token, user }) => {
+          localStorage.setItem("access_token", access_token);
+          localStorage.setItem("user", JSON.stringify(user));
+          setSession({ access_token, user });
+
+          if (user.role === "ADMIN") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/");
+          }
+        },
+        onError: (error: any) => {
+          console.error("Erro no login:", error);
+        },
+      });
+    }
   }
 
   return (

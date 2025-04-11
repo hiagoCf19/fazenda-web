@@ -40,13 +40,12 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
   const [error, setError] = useState(false);
   const [search, setSearch] = useState(query);
   const navigate = useNavigate();
-  console.log(session);
   const {
     data: address,
     isLoading,
     isError,
   } = useUserAddress(session?.user.id);
-
+  console.log(session);
   const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
 
   const EditProfileActions = [

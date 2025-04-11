@@ -11,9 +11,9 @@ export type User = {
   created_at: string; // ISO 8601 date string
   isActive: boolean;
   twoFactorEnabled: boolean;
-  recoveryEmail: string | null;
-  recoveryPhone: string | null;
-  isSubscribed: boolean;
+  recoveryEmail?: string | null;
+  recoveryPhone?: string | null;
+  isSubscribed?: boolean;
   role: "ADMIN" | "COMMON";
 };
 export type Session = {
