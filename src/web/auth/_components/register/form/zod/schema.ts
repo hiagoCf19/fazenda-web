@@ -29,7 +29,17 @@ export const companySchema = z.object({
 
 export const emailPhoneSchema = z.object({
   email: z.string().email("E-mail inválido"),
-  phone: z.string().min(9, "Telefone inválido"),
+  phone: z
+    .string()
+    .min(13, {
+      message: "O número de telefone deve ter pelo menos 13 caracteres",
+    })
+    .max(18, {
+      message: "O número de telefone não pode ter mais de 18 caracteres",
+    })
+    .regex(/^\+244 \d{3} \d{3} \d{3}$/, {
+      message: "O número de telefone deve seguir o formato: +244 912 345 678",
+    }),
 });
 
 export const codeSchema = z.object({

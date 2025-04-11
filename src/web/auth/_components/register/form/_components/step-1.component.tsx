@@ -4,23 +4,23 @@ import {
   InputFormComponente,
   InputFormComponenteProps,
 } from "./input-form.component";
-import { RegisterTypeEnum } from "../../../../register.page";
+import { ProfileTypeEnum } from "../../../../register.page";
 
 interface EmailAndPhoneStepProps {
   register: UseFormRegister<EmailPhoneSchema>;
   errors: FieldErrors<EmailPhoneSchema>;
-  registerType: RegisterTypeEnum;
+  profile_type: ProfileTypeEnum;
 }
 
 export function EmailAndPhoneStep({
   register,
   errors,
-  registerType,
+  profile_type,
 }: EmailAndPhoneStepProps) {
   return (
     <>
       <h2 className="md:text-3xl text-2xl  text-secondary-foreground text-center font-medium">
-        {registerType === RegisterTypeEnum.INDIVIDUAL
+        {profile_type === ProfileTypeEnum.INDIVIDUAL
           ? "Agora, informe seu email e \n telefone:"
           : "Agora, informe email e \n telefone da empresa"}
       </h2>
