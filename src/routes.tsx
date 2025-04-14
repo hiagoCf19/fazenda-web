@@ -1,11 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import Dashboard from "./admin/home/dashboard";
-import AdminLayout from "./admin/home/layout/layout";
+
+import AdminLayout from "./admin/home/home.layout";
 import { Login } from "./common/login/login.page";
-import { Produtores } from "./admin/home/produtores";
-import { Pedidos } from "./admin/home/pedidos";
-import { Clientes } from "./admin/home/clientes";
-import { Produtos } from "./admin/home/produtos";
+import { Produtos } from "./admin/produtos/produtos.page";
 import { HomePage } from "./web/(home)/home.page";
 import { AccessPageWeb } from "./web/auth/access.page";
 import { AuthLayout } from "./web/layout/auth.layout";
@@ -18,15 +15,19 @@ import { AddressPage } from "./web/adress/address.page";
 import { SecurityPage } from "./web/security/security.page";
 import { MyAccountPage } from "./web/my-account/my-account.page";
 import { SearchPage } from "./web/search/search.page";
+import Dashboard from "./admin/dashboard/dashboard.page";
+import { Pedidos } from "./admin/pedidos/pedidos.page";
+import { Produtores } from "./admin/produtores/produtores.page";
+import { Clientes } from "./admin/clientes/clientes.page";
 
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
   {
     path: "admin",
-    element: <AdminLayout />, // Renderiza o layout ao acessar /admin
+    element: <AdminLayout />,
     children: [
       {
-        index: true, // Quando acessar /admin, renderiza algo dentro do layout
+        index: true,
         element: <Dashboard />,
       },
       {
