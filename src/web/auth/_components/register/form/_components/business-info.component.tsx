@@ -1,18 +1,19 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { NameSchema } from "../zod/schema";
+
+import { User } from "lucide-react";
+
+import { useState } from "react";
+import { CompanySchema } from "../zod/schema";
 import {
   InputFormComponente,
   InputFormComponenteProps,
 } from "./input-form.component";
-import { User } from "lucide-react";
-
-import { useState } from "react";
 interface NameAndPhotoStepProps {
-  register: UseFormRegister<NameSchema>;
-  errors: FieldErrors<NameSchema>;
+  register: UseFormRegister<CompanySchema>;
+  errors: FieldErrors<CompanySchema>;
 }
 
-export function NameAndPhotoStep({ register, errors }: NameAndPhotoStepProps) {
+export function BusinessInfoStep({ register, errors }: NameAndPhotoStepProps) {
   const [buttonText, setButtonText] = useState("Selecionar uma foto");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,24 +24,29 @@ export function NameAndPhotoStep({ register, errors }: NameAndPhotoStepProps) {
   return (
     <div>
       <h2 className="text-3xl text-secondary-foreground text-center font-semibold">
-        Insira seu nome e escolha <br /> uma foto de perfil
+        Insira o nome da empresa e <br /> esolha uma foto de perfil
       </h2>
-
       <div className="mt-4 w-full mx-auto flex flex-col gap-2 px-2">
         <InputFormComponente
           register={register as InputFormComponenteProps["register"]}
           errors={errors}
-          label="Nome"
-          name="firstName" // Usando o nome do campo
+          label="Designação"
+          name="designation" // Usando o nome do campo
         />
         <InputFormComponente
           register={register as InputFormComponenteProps["register"]}
           errors={errors}
-          label="Sobrenome"
-          name="lastName" // Usando o nome do campo
+          label="Área de atuação"
+          name="activity" // Usando o nome do campo
+        />
+        <InputFormComponente
+          register={register as InputFormComponenteProps["register"]}
+          errors={errors}
+          label="Representante da empresa"
+          name="companyRepresentative" // Usando o nome do campo
         />
       </div>
-
+      ;
       <div className="flex items-center gap-2 w-full mt-4 ">
         {/* Ícone de perfil */}
         <div className="w-[20%] h-[60px] flex items-center justify-center rounded-full bg-zinc-50 shadow-md">
@@ -60,24 +66,3 @@ export function NameAndPhotoStep({ register, errors }: NameAndPhotoStepProps) {
     </div>
   );
 }
-
-// <div className="mt-4 w-full mx-auto flex flex-col gap-2 px-2">
-//   <InputFormComponente
-//     register={register as InputFormComponenteProps["register"]}
-//     errors={errors}
-//     label="Designação"
-//     name="designation" // Usando o nome do campo
-//   />
-//   <InputFormComponente
-//     register={register as InputFormComponenteProps["register"]}
-//     errors={errors}
-//     label="Área de atuação"
-//     name="activity" // Usando o nome do campo
-//   />
-//   <InputFormComponente
-//     register={register as InputFormComponenteProps["register"]}
-//     errors={errors}
-//     label="Representante da empresa"
-//     name="companyRepresentative" // Usando o nome do campo
-//   />
-// </div>;

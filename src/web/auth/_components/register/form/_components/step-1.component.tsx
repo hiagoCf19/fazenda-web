@@ -9,20 +9,20 @@ import { ProfileTypeEnum } from "../../../../register.page";
 interface EmailAndPhoneStepProps {
   register: UseFormRegister<EmailPhoneSchema>;
   errors: FieldErrors<EmailPhoneSchema>;
-  profile_type: ProfileTypeEnum;
 }
 
 export function EmailAndPhoneStep({
   register,
   errors,
-  profile_type,
 }: EmailAndPhoneStepProps) {
+  const path = window.location.pathname;
+
   return (
     <>
       <h2 className="md:text-3xl text-2xl  text-secondary-foreground text-center font-medium">
-        {profile_type === ProfileTypeEnum.INDIVIDUAL
-          ? "Agora, informe seu email e \n telefone:"
-          : "Agora, informe email e \n telefone da empresa"}
+        {path.endsWith(ProfileTypeEnum.BUSINESS)
+          ? "Agora, informe o email e \n telefone da empresa:"
+          : "Agora, informe seu email e \n telefone:"}
       </h2>
       <div className="mt-4 w-full max-w-md mx-auto flex flex-col gap-2 px-2">
         <InputFormComponente
