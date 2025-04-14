@@ -23,12 +23,7 @@ import { useRegisterUser } from "../../../../hooks/use-register-user.hook";
 import { Loader } from "lucide-react";
 import { formatError } from "../../../../helpers/format-error.helper";
 
-interface RegisterClientFormProps {
-  profile_type: ProfileTypeEnum;
-}
-export default function RegisterClientForm({
-  profile_type,
-}: RegisterClientFormProps) {
+export default function RegisterClientForm() {
   const navigate = useNavigate();
   const { mutate: registerUserMutation, error, isPending } = useRegisterUser();
   const { currentStep, setCurrentStep } = useStep();
@@ -40,7 +35,6 @@ export default function RegisterClientForm({
     codeSchema,
     passwordSchema,
     nameSchema,
-    //TODO VALIDAR TAMBÉM O CDASTRO BUSINESS
   ];
 
   const [formData, setFormData] = useState<any>({
@@ -59,6 +53,7 @@ export default function RegisterClientForm({
     resolver: zodResolver(stepSchemas[currentStep] as any),
     mode: "onSubmit",
   });
+
   const handleNextStep = async (data: any) => {
     // Valida o código no step 2
     if (currentStep === 2 && valueCode.length !== 4) {
@@ -74,16 +69,14 @@ export default function RegisterClientForm({
 
     // Verifica se é o último passo
     const isLastStep = currentStep === stepSchemas.length - 1;
-    // if () {
-
-    // }
     if (isLastStep) {
+      console.log("Dados do formulário:", updatedFormData);
       const registerData = {
         email: updatedFormData.step1.email,
         password: updatedFormData.step3.password,
         phone: updatedFormData.step1.phone,
         nif: updatedFormData.step0.nif,
-        profile_type: profile_type,
+        profile_type: ProfileTypeEnum.INDIVIDUAL,
         first_name: updatedFormData.step4.firstName,
         last_name: updatedFormData.step4.lastName,
         photo: "",
@@ -127,11 +120,7 @@ export default function RegisterClientForm({
       >
         {currentStep === 0 && <StepNif register={register} errors={errors} />}
         {currentStep === 1 && (
-          <EmailAndPhoneStep
-            profile_type={profile_type}
-            register={register}
-            errors={errors}
-          />
+          <EmailAndPhoneStep register={register} errors={errors} />
         )}
         {currentStep === 2 && (
           <CodigoStep
@@ -146,11 +135,7 @@ export default function RegisterClientForm({
           <PasswordStep register={register} errors={errors} />
         )}
         {currentStep === 4 && (
-          <NameAndPhotoStep
-            profile_type={profile_type}
-            register={register}
-            errors={errors}
-          />
+          <NameAndPhotoStep register={register} errors={errors} />
         )}
         {error && (
           <p className="text-center py-2 text-red-500">{formatError(error)}</p>
