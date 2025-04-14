@@ -95,40 +95,39 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
           <img
             src="/full_logo.svg"
             alt="Fazenda online"
-            className="md:w-[166px] md:h-[48px] w-[166px]"
+            className="md:min-w-[166px] md:h-[48px] w-[166px]"
           />
         </Link>
-
-        <div
-          className={`bg-white md:flex items-center space-x-3 rounded-4xl border md:w-[683px] hidden ${
-            error && "border-red-500/50"
-          }`}
-        >
-          <Search className="ml-2" />
-          <input
-            type="text"
-            className="flex-1 p-2 focus:ring-0 focus:outline-0 shadow-none"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setError(false);
-            }}
-          />
-          {search ? (
-            <Link to={`/search/${search}`}>
-              <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
-                Pesquisar
-              </Button>
-            </Link>
-          ) : (
-            <Button
-              className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl"
-              onClick={() => search === "" && setError(!error)}
-            >
+      </div>
+      <div
+        className={`bg-white md:flex items-center space-x-3 rounded-4xl border md:flex-1 hidden ${
+          error && "border-red-500/50"
+        }`}
+      >
+        <Search className="ml-2" />
+        <input
+          type="text"
+          className="flex-1 p-2 focus:ring-0 focus:outline-0 shadow-none"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setError(false);
+          }}
+        />
+        {search ? (
+          <Link to={`/search/${search}`}>
+            <Button className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl">
               Pesquisar
             </Button>
-          )}
-        </div>
+          </Link>
+        ) : (
+          <Button
+            className="bg-secondary-foreground hover:bg-secondary-foreground/70 py-6 px-12 rounded-4xl"
+            onClick={() => search === "" && setError(!error)}
+          >
+            Pesquisar
+          </Button>
+        )}
       </div>
 
       {/* Endereço */}
