@@ -31,13 +31,11 @@ export function AccessPageWeb() {
       title: "Conectando você ao campo",
       description:
         "Descubra alimentos frescos e de qualidade diretamente dos pequenos produtores de Angola.",
-      image:
-        "https://s3-alpha-sig.figma.com/img/731e/c215/ccdbb7ba3539729ead7febb9c421fdb2?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=omcQ6ySMdbVITApOG9bOfc0HHLoZrqGy2iIODXz-d1DV58RhqbsqDCYYdCO5mCneU5J188RoCrT62Aki3VqRrqCEMGXpLRaatHFg1ckUgm1yunClzHoTsayhNh1havpJQf7quwNlqb76mxnU9uzjgqQXHj-VhhT33Bc27llv4OdVvU3cqi5lxJNjYEC3H4UEH36-GZujQU6-cjfy5o0n-7JBHAwlxFsmKvSFzeZ0EAWei1DdeYkcP1QKNSpHYNgASYCDP464P74BmBTdB7uP1TMLzcXkVam0FS8EysgsJzMdhtsDjbhqcKKhmcq5RPQITu5nAAuuuKc0iRhLRbqfHA__",
+      image: "/landing-1.png",
     },
     {
       title: "Sustentabilidade em cada entrega",
-      image:
-        "https://s3-alpha-sig.figma.com/img/2169/0356/2277e59de3e1363d91798d12b65c8353?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=j76Vu9Xm076C1YjmmoX5wMsN0WVkpuaNXhFk9hyJaciZVSUBEpAxxIGUFBu7pb~~2SL0M9tEaJg5QC03mgKZIYdZuIcKVtGoI9O-~jyXxIBkDcuhuqDtZBzqTS1KDSs8bk09ofTfs9mUe2~PIi9StvZJcisnrUiYOo5xZLy75bJ0zE4i1nhJsOzSBDw3pBGB0M6RovgSFbKcMLFBE7d7wNBFXJeigftUguIOLhPzTyiZSfEisOtG5b2FYrjykYCOHwDNTjZam1WAev71ppkojWHGh7ZYhf8ZOAbvrNWOGYwxE3v2yHaswAOVSZvhM6Re2H-eVW8YnbeUkkmXHbGPzQ__",
+      image: "/landing-2.png",
       description:
         "Apoie práticas agrícolas responsáveis e receba produtos que respeitam o meio ambiente.",
     },
@@ -45,8 +43,7 @@ export function AccessPageWeb() {
       title: "Alimentos frescos, impacto positivo",
       description:
         "Fortalecendo a economia local e valorizando o trabalho dos produtores rurais.",
-      image:
-        "https://s3-alpha-sig.figma.com/img/72e5/098d/9e1cd37642f46cf8716549e9ef1689f7?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=WUTVCMGOtkf9CRYPRfDrLzsJzKSZtlm5ieL7p4CxVW58pyLBkVw9t9vWejM2Jl-LbpjOQRPTU9bgPua2wnO5vuy2mKxeJYOO9VB6~nputO6mI3SETIcDnFJc8PS~nmjRIR2ujSJNuyNCH9wmlOakx-Bciknbm6EaiYZ-NYOtaLHEHM4QNDEFyaVSu~TsSTXj-5xf5cc~-nd8I-iPC792XQ1MAONyHS8tNnwSeacCpVoE6iIRVoAipeptXwKtCTymp5SW~kfg5UJJbe0MQG9r0dqPW2TNFCGvFlpwAYAfDYYG4k5TjjJ6KKoHkyJohjodP95Zx9egL9Y5ToYqA25w1Q__",
+      image: "landing-3.png",
     },
   ];
   return (
