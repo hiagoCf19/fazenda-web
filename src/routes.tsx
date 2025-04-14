@@ -19,6 +19,8 @@ import Dashboard from "./admin/dashboard/dashboard.page";
 import { Pedidos } from "./admin/pedidos/pedidos.page";
 import { Produtores } from "./admin/produtores/produtores.page";
 import { Clientes } from "./admin/clientes/clientes.page";
+import RegisterClientForm from "./web/auth/_components/register/individual-profile.form";
+import { RegisterBusinessProfile } from "./web/auth/_components/register/business-profile.form";
 
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
@@ -88,14 +90,18 @@ export const router = createBrowserRouter([
       {
         path: "client",
         element: <RegisterClientPage />,
+        index: true, // opcional, se quiser que /register/client sem nada caia aqui
       },
       {
-        path: "business",
-        element: <div>empresa</div>,
+        path: "client/business",
+        element: <RegisterBusinessProfile />,
+      },
+      {
+        path: "client/individual",
+        element: <RegisterClientForm />,
       },
     ],
   },
-
   {
     path: "confirm-order",
     element: <ConfirmOrderPage />,

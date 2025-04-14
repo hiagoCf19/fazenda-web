@@ -1,6 +1,6 @@
 import { ChevronLeft } from "lucide-react";
 import { Button } from "../../shadcn/ui/button";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { StepProvider, useStep } from "../context/form-steps-register.context";
 export function AuthLayout() {
   return (
@@ -11,7 +11,8 @@ export function AuthLayout() {
 }
 function AuthLayoutContent() {
   const { currentStep, setCurrentStep } = useStep();
-
+  const navigate = useNavigate();
+  const path = window.location.pathname;
   return (
     <section className="md:p-12 p-4 flex justify-center flex-col items-center md:space-y-12">
       <header className="border-b w-full flex items-center md:w-[80%] md:justify-between ">
@@ -19,8 +20,13 @@ function AuthLayoutContent() {
           variant={"ghost"}
           className="hover:bg-background hover:underline border-none mb-2 z-40"
           onClick={() => {
-            console.log(currentStep);
-            currentStep != 0 && setCurrentStep(currentStep - 1);
+            if (currentStep !== 0) {
+              setCurrentStep(currentStep - 1);
+            } else if (!path.endsWith("client")) {
+              navigate("client");
+            } else {
+              navigate("/landing-access");
+            }
           }}
         >
           <ChevronLeft className="size-7" />
