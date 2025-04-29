@@ -45,6 +45,32 @@ export const Categorias = () => {
       created_at: "10/09/2024",
       status: "Ativo",
     },
+
+    {
+      titulo: "Peixes",
+      quantidade: 6,
+      created_at: "10/09/2024",
+      status: "Inativo",
+    },
+    {
+      titulo: "Peixes",
+      quantidade: 6,
+      created_at: "10/09/2024",
+      status: "Inativo",
+    },
+
+    {
+      titulo: "Peixes",
+      quantidade: 6,
+      created_at: "10/09/2024",
+      status: "Inativo",
+    },
+    {
+      titulo: "Peixes",
+      quantidade: 6,
+      created_at: "10/09/2024",
+      status: "Inativo",
+    },
   ];
   return (
     <Table>

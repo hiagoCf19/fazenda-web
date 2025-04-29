@@ -142,9 +142,25 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
             <Skeleton className="w-6 h-2 bg-sidebar-accent-foreground/20" />
           </span>
         ) : address?.[0] ? (
-          <span className="flex text-zinc-600">
-            {address[0].street}, {address[0].number} - {address[0].province}
-          </span>
+          <Popover>
+            <PopoverTrigger asChild>
+              <span
+                className="block max-w-[200px] truncate cursor-pointer text-zinc-600 hover:underline"
+                title="Clique para ver o endereço completo"
+              >
+                {address[0].street}, {address[0].number} - {address[0].province}
+              </span>
+            </PopoverTrigger>
+            <PopoverContent side="bottom" className="text-sm z-50 bg-[#E4EAE7]">
+              <p>
+                {address[0].street}, {address[0].number}
+                <br />
+                {address[0].province} - {address[0].city}, {address[0].state}
+                <br />
+                CEP: {address[0].postalCode}
+              </p>
+            </PopoverContent>
+          </Popover>
         ) : (
           <Link to={"/address"} className="text-[#FE7000]">
             Clique para adicionar um endereço

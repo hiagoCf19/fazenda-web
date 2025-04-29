@@ -2,9 +2,12 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "../../../shadcn/ui/carousel";
 import { Product } from "../../../../types/product";
 import { ProductCard } from "./product-card.component";
+import { Link } from "react-router";
 
 interface ProductListProps {
   products: Product[];
@@ -13,8 +16,13 @@ interface ProductListProps {
 export function ProductList({ products, title }: ProductListProps) {
   return (
     <div className="space-y-4 p-4 pb-0">
-      <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
-      <Carousel className="-mr-16">
+      <div className="flex items-center justify-between">
+        <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
+        <Link to={`/All${title}`} className="text-[#FE7000]">
+          Ver todos
+        </Link>
+      </div>
+      <Carousel className="">
         <CarouselContent className="">
           {products.map((product, i) => (
             <CarouselItem className="basis-auto ml-4" key={i}>
@@ -22,6 +30,8 @@ export function ProductList({ products, title }: ProductListProps) {
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselNext />
+        <CarouselPrevious />
       </Carousel>
     </div>
   );
