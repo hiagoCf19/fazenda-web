@@ -8,11 +8,98 @@ import { HeaderAuthenticaded } from "../_components/header-authenticated.compone
 import { Footer } from "./_components/footer.component";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
 import { Banners } from "./_components/banners.component";
+import { useRef, useState } from "react";
 
 export const HomePage = () => {
   const { session } = useSession();
-
+  const [showCategories, setShowCategories] = useState(false);
   const categories = [
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/vegetable.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/vegetable.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/vegetable.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
     {
       category: "Vegetais",
       image: "/carrot.png",
@@ -87,6 +174,27 @@ export const HomePage = () => {
       priceT: "Kz 300.000/T",
     },
     {
+      id: "1",
+      name: "Milho verde",
+      image: "/mock/milho.png",
+      priceKg: "Kz 150/Kg",
+      priceT: "Kz 130.000/T",
+    },
+    {
+      id: "2",
+      name: "Lentilha",
+      image: "/mock/lentilha.png",
+      priceKg: "Kz 180/Kg",
+      priceT: "Kz 140.000/T",
+    },
+    {
+      id: "3",
+      name: "Bacalhau",
+      image: "/mock/bacalhau.png",
+      priceKg: "Kz 180/Kg",
+      priceT: "Kz 140.000/T",
+    },
+    {
       id: "6",
       name: "Cebola roxa",
       image: "/mock/cebola.png",
@@ -120,74 +228,78 @@ export const HomePage = () => {
       businessName: "Fazenda esperança",
       image: "/mock/vilela.png",
       assessment: 5,
+      id: "1",
     },
     {
       businessName: "Fazenda Filter",
       image: "/mock/filter.png",
       assessment: 5,
+      id: "2",
     },
     {
       businessName: "Farm fresh - Organic",
       image: "/mock/fresh.png",
       assessment: 5,
+      id: "3",
     },
     {
       businessName: "Império das colunas",
       image: "/mock/imperio_col.png",
       assessment: 5,
+      id: "4",
     },
     {
       businessName: "Chicken Farm",
       image: "/mock/chicken.png",
       assessment: 5,
+      id: "5",
     },
     {
       businessName: "Fazenda Aviação",
       image: "/mock/aviacao.png",
       assessment: 5,
+      id: "6",
     },
     {
       businessName: "Ouro da Serra",
       image: "/mock/ouro.png",
       assessment: 5,
+      id: "7",
     },
     {
       businessName: "Farm fresh - Organic",
       image: "/mock/fresh.png",
       assessment: 5,
+      id: "8",
+    },
+
+    {
+      businessName: "Fazenda Filter",
+      image: "/mock/filter.png",
+      assessment: 5,
+      id: "9",
     },
     {
       businessName: "Farm fresh - Organic",
       image: "/mock/fresh.png",
       assessment: 5,
+      id: "10",
     },
     {
       businessName: "Império das colunas",
       image: "/mock/imperio_col.png",
       assessment: 5,
-    },
-    {
-      businessName: "Chicken Farm",
-      image: "/mock/chicken.png",
-      assessment: 5,
-    },
-    {
-      businessName: "Fazenda Aviação",
-      image: "/mock/aviacao.png",
-      assessment: 5,
-    },
-    {
-      businessName: "Ouro da Serra",
-      image: "/mock/ouro.png",
-      assessment: 5,
-    },
-    {
-      businessName: "Farm fresh - Organic",
-      image: "/mock/fresh.png",
-      assessment: 5,
+      id: "11",
     },
   ];
+  const scrollRef = useRef<HTMLDivElement>(null);
 
+  const handleScroll = () => {
+    scrollRef.current?.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
+  };
   return (
     <section className="md:p-12 overflow-x-hidden relative min-h-screen">
       {!session ? (
@@ -200,15 +312,50 @@ export const HomePage = () => {
           session ? "md:h-[129px] h-[88px]" : "md:h-0 h-[25px]"
         } `}
       />
-      <main className="md:mb-12 md:space-y-8  h-full">
-        <Banners />
-        <ChooseByCategory
-          title="Explore por categoria"
-          categories={categories}
+      <main className="md:mb-12 md:space-y-8 h-full">
+        <Banners
+          showCategories={showCategories}
+          setShowCategories={setShowCategories}
         />
-        <ProductList title="Mais pedidos" products={products} />
-        <ProductList title="Novidades" products={products} />
-        <ProducersList title="Produtores" producers={producers} />
+        {!showCategories && (
+          <ChooseByCategory
+            title="Explore por categoria"
+            categories={categories}
+          />
+        )}
+
+        <div className="space-y-2 relative">
+          <div ref={scrollRef} className="overflow-x-auto pr-8 pl-8">
+            <ProductList title="populares" products={products} />
+          </div>
+
+          <div
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
+            onClick={handleScroll}
+          ></div>
+
+          <div className="flex justify-end pr-4"></div>
+        </div>
+
+        <div className="space-y-2 relative">
+          <div ref={scrollRef} className="overflow-x-auto pr-8 pl-8">
+            <ProductList title="News" products={products} />
+          </div>
+
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
+
+          <div className="flex justify-end pr-4"></div>
+        </div>
+
+        <div className="space-y-2 relative">
+          <div ref={scrollRef} className="overflow-x-auto pr-12 pl-12">
+            <ProducersList title="Produtores" producers={producers} />
+          </div>
+
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
+
+          <div className="flex justify-end pr-4"></div>
+        </div>
       </main>
 
       <BottomNav />

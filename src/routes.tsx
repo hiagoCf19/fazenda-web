@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 
 import AdminLayout from "./admin/home/home.layout";
 import { Login } from "./common/login/login.page";
-import { Produtos } from "./admin/produtos/produtos.page";
 import { HomePage } from "./web/(home)/home.page";
 import { AccessPageWeb } from "./web/auth/access.page";
 import { AuthLayout } from "./web/layout/auth.layout";
@@ -21,6 +20,12 @@ import { Produtores } from "./admin/produtores/produtores.page";
 import { Clientes } from "./admin/clientes/clientes.page";
 import RegisterClientForm from "./web/auth/_components/register/individual-profile.form";
 import { RegisterBusinessProfile } from "./web/auth/_components/register/business-profile.form";
+import { RecommendedProductsPage } from "./web/(home)/recommended-products.page";
+import { NewProductsPage } from "./web/(home)/new-products.page";
+import { AllProducersPage } from "./web/(home)/all-producers.page";
+import ProducerPage from "./web/(home)/producer/(id)/components/producer.page";
+import { AllNews } from "./web/(home)/products/all-news";
+import { AllPopulares } from "./web/(home)/products/all-products";
 
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
@@ -54,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "produtos",
-        element: <Produtos />,
+        element: <ProducerPage />,
       },
       {
         path: "emissao-relatorio",
@@ -132,7 +137,38 @@ export const router = createBrowserRouter([
   },
 
   {
+    path: "products/recommended",
+    element: <RecommendedProductsPage />, // Página de produtos recomendados
+  },
+  {
+    path: "products/new",
+    element: <NewProductsPage />, // Página de novos produtos
+  },
+  {
+    path: "producers",
+    element: <AllProducersPage />, // Página de todos os produtores
+  },
+
+  {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: "Fazenda-esperanca",
+    element: <ProducerPage />,
+  },
+
+  {
+    path: "AllPopulares", // Lista de mais pedidos
+    element: <AllPopulares />,
+  },
+
+  {
+    path: "AllNews", // Lista de mais pedidos
+    element: <AllNews />,
+  },
+  {
+    path: "/produtor/:slug", // Rota dinâmica para um produtor específico
+    element: <ProducerPage />,
   },
 ]);

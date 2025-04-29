@@ -10,7 +10,7 @@ enum ProdutosTelas {
   CATEGORIAS = "Categorias",
   ITENS = "Itens",
 }
-export const Produtos = () => {
+export const ProductPage = () => {
   const [selectedValue, setSelectedValue] = useState(ProdutosTelas.CATEGORIAS);
   function renderContent() {
     switch (selectedValue) {

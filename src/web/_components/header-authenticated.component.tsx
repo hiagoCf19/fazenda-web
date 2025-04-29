@@ -1,4 +1,5 @@
 import {
+  ChevronDown,
   LogOut,
   MapIcon,
   Search,
@@ -142,9 +143,29 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
             <Skeleton className="w-6 h-2 bg-sidebar-accent-foreground/20" />
           </span>
         ) : address?.[0] ? (
-          <span className="flex text-zinc-600">
-            {address[0].street}, {address[0].number} - {address[0].province}
-          </span>
+          <Popover>
+            <PopoverTrigger asChild>
+              <div className=" flex ">
+                <span
+                  className="max-w-[225px] truncate cursor-pointer text-zinc-600 hover:underline"
+                  title="Clique para ver o endereço completo"
+                >
+                  {address[0].street}, {address[0].number} -{" "}
+                  {address[0].province}
+                </span>
+                <ChevronDown />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent side="bottom" className="text-sm z-50 bg-[#E4EAE7]">
+              <p>
+                {address[0].street}, {address[0].number}
+                <br />
+                {address[0].province} - {address[0].neighborhood},{" "}
+                {address[0].country}
+                <br />
+              </p>
+            </PopoverContent>
+          </Popover>
         ) : (
           <Link to={"/address"} className="text-[#FE7000]">
             Clique para adicionar um endereço
