@@ -2,8 +2,12 @@ import { StarIcon } from "lucide-react";
 import { useParams } from "react-router";
 import BottomNav from "../../../../_components/bottom-navigator-mobile.component";
 import { Footer } from "../../../_components/footer.component";
-import ProdutorImage from "./restaurant-image";
+import ProducerImage from "./restaurant-image";
 import DeliveryInfo from "./delivery-info";
+import { UnauthenticatedHeader } from "../../../../_components/unauthenticated-header.component";
+import { HeaderAuthenticaded } from "../../../../_components/header-authenticated.component";
+import { useSession } from "../../../../context/session.context";
+import { ProductList } from "../../../_components/product-list.component";
 
 // Array de produtores
 const produtores = [
@@ -90,6 +94,92 @@ const produtores = [
     ],
   },
 ];
+const products = [
+  {
+    id: "1",
+    name: "Milho verde",
+    image: "/mock/milho.png",
+    priceKg: "Kz 150/Kg",
+    priceT: "Kz 130.000/T",
+  },
+  {
+    id: "2",
+    name: "Lentilha",
+    image: "/mock/lentilha.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "4",
+    name: "Noz pecan",
+    image: "/mock/castanha.png",
+    priceKg: "Kz 2.850/Kg",
+    priceT: "Kz 2.800.000/T",
+  },
+  {
+    id: "5",
+    name: "Melancia",
+    image: "/mock/melancia.png",
+    priceKg: "Kz 500/Kg",
+    priceT: "Kz 300.000/T",
+  },
+  {
+    id: "1",
+    name: "Milho verde",
+    image: "/mock/milho.png",
+    priceKg: "Kz 150/Kg",
+    priceT: "Kz 130.000/T",
+  },
+  {
+    id: "2",
+    name: "Lentilha",
+    image: "/mock/lentilha.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+];
 
 export default function ProducerPage() {
   // Obtém o slug da URL
@@ -102,13 +192,23 @@ export default function ProducerPage() {
     produtores.find((p) => {
       return p.id === slug;
     }) || produtores[0]; // Fallback para o primeiro produtor se nenhum for encontrado
-
+  const { session } = useSession();
   return (
-    <>
-      <div className="flex flex-col min-h-screen justify-between">
-        <div className="sm:flex sm:px-20 mt-6 sm:mt-10">
-          <ProdutorImage produtor={produtor} />
-          <div className="flex flex-col overflow-hidden sm:max-w-[35%] pt-5 z-50 relative p-5 rounded-t-xl bg-white">
+    <section className="md:p-12 overflow-x-hidden relative min-h-screen">
+      {!session ? (
+        <UnauthenticatedHeader />
+      ) : (
+        <HeaderAuthenticaded session={session} />
+      )}
+      <div
+        className={`w-full ${
+          session ? "md:h-[129px] h-[88px]" : "md:h-0 h-[25px]"
+        } `}
+      />
+      <div className="">
+        <div className="sm:flex sm:px-20 mt-6 sm:mt-10 gap-12">
+          <ProducerImage produtor={produtor} />
+          <div className="flex flex-col overflow-hidden sm:max-w-[35%] pt-5 z-50 relative p-5 rounded-t-xl">
             <div className="flex justify-between items-center ">
               {/* titulo */}
               <div className="flex items-center gap-[0.375rem] sm:justify-between">
@@ -116,10 +216,12 @@ export default function ProducerPage() {
                   <img //imagem que vem antes do titulo
                     src={produtor.imageUrl}
                     alt={produtor.name}
-                    className="rounded-full object-cover"
+                    className="rounded-full  "
                   />
                 </div>
-                <h1 className="text-xl font-semibold">{produtor.name}</h1>
+                <h1 className="text-xl font-semibold text-secondary-foreground">
+                  {produtor.name}
+                </h1>
               </div>
               <div className=" gap-[3px]  bg-foreground text-zinc-50 px-2 py-1 rounded-full flex items-center ">
                 <StarIcon
@@ -155,9 +257,14 @@ export default function ProducerPage() {
             </div>
           </div>
         </div>
+        <div className="p-12">
+          <h1 className="text-zinc-800 text-3xl font-medium"></h1>
+          <ProductList title="Produtos" products={products} />
+        </div>
+
         <BottomNav />
         <Footer />
       </div>
-    </>
+    </section>
   );
 }

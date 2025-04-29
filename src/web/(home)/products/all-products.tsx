@@ -96,9 +96,9 @@ export const AllPopulares = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="md:p-12 overflow-x-hidden relative min-h-screen">
       <div className="flex-1 flex flex-col overflow-y-auto">
-        <section className="md:p-12 overflow-x-hidden flex-1 flex flex-col">
+        <section className=" overflow-x-hidden flex-1 flex flex-col">
           {!session ? (
             <UnauthenticatedHeader />
           ) : (

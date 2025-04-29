@@ -99,37 +99,60 @@ export const ChooseByCategory = ({
     </div>
   );
 };
+interface BannerProps {
+  showCategories: boolean;
+  setShowCategories: (show: boolean) => void;
+}
 
 // Componente Banners com controle para ChooseByCategory
-export function Banners() {
-  const [mostrarCategoriasNoTopo, setMostrarCategoriasNoTopo] = useState(false);
+export function Banners({ showCategories, setShowCategories }: BannerProps) {
   const [bannerSelecionado, setBannerSelecionado] = useState<number | null>(
     null
   );
-  const categorias = ["Vegetais", "Frutas", "Carnes", "Peixes", "Verduras"];
+  const [selectedCategory, setSelectedCategory] = useState("Vegetais");
+  const categorias = [
+    "Vegetais",
+    "Frutas",
+    "Carnes",
+    "Peixes",
+    "Verduras",
+    "Carnes",
+    "Frutas",
+    "Carnes",
+    "Peixes",
+    "Verduras",
+    "Frutas",
+    "Carnes",
+    "Peixes",
+  ];
 
   // Função para lidar com o clique no banner
   const handleBannerClick = (index: number) => {
     // Se o banner clicado já está selecionado, restaura estado inicial
     if (bannerSelecionado === index) {
       setBannerSelecionado(null);
-      setMostrarCategoriasNoTopo(false);
+      setShowCategories(false);
     } else {
       // Caso contrário, seleciona o banner e mostra categorias no topo
       setBannerSelecionado(index);
-      setMostrarCategoriasNoTopo(true);
+      setShowCategories(true);
     }
   };
 
   return (
     <div className="relative ">
       {/* CATEGORIAS NO TOPO – só aparecem após o clique no banner */}
-      {mostrarCategoriasNoTopo && (
-        <div className="sticky top-0 z-50 py-2 flex justify-center gap-3">
+      {showCategories && (
+        <div className="z-50 py-2 space-x-6 mb-5">
           {categorias.map((categoria) => (
             <button
+              onClick={() => setSelectedCategory(categoria)}
               key={categoria}
-              className="px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-700"
+              className={`px-3 py-1 text-sm font-medium rounded-full  w-[116px] h-[34px]  ${
+                selectedCategory === categoria
+                  ? "bg-primary text-zinc-50"
+                  : "bg-green-100 text-secondary-foreground"
+              }`}
             >
               {categoria}
             </button>

@@ -6,8 +6,8 @@ interface DeliveryInfoProps {
 }
 const DeliveryInfo = ({ restaurant }: DeliveryInfoProps) => {
   return (
-    <Card className="flex justify-around py-2 sm:py-4 mt-6 rounded-sm  shadow-none">
-      <div className="flex flex-col items-center">
+    <Card className="flex flex-row py-2 sm:py-4 mt-6 rounded-sm  shadow-none border justify-between ">
+      <div className="flex flex-1 border-r-1 flex-col items-center">
         {/* custo */}
         <div className="flex items-center gap-1 text-muted-foreground">
           <BikeIcon size={14} />
@@ -15,14 +15,14 @@ const DeliveryInfo = ({ restaurant }: DeliveryInfoProps) => {
         </div>
         {Number(restaurant.deliveryFee) > 0 ? (
           <p className="text-xs font-semibold">
-            {/*  {formatCurrency(Number(restaurant.deliveryFee))} */} 2
+            {/*  {formatCurrency(Number(restaurant.deliveryFee))} */} 30 Min
           </p>
         ) : (
           <p className="text-xs font-semibold"> Grátis</p>
         )}
       </div>
       {/* tempo */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-1 flex-col items-center">
         {/* custo */}
         <div className="flex items-center gap-1 text-muted-foreground">
           <TimerIcon size={14} />

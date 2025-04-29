@@ -1,4 +1,5 @@
 import {
+  ChevronDown,
   LogOut,
   MapIcon,
   Search,
@@ -144,20 +145,24 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
         ) : address?.[0] ? (
           <Popover>
             <PopoverTrigger asChild>
-              <span
-                className="block max-w-[200px] truncate cursor-pointer text-zinc-600 hover:underline"
-                title="Clique para ver o endereço completo"
-              >
-                {address[0].street}, {address[0].number} - {address[0].province}
-              </span>
+              <div className=" flex ">
+                <span
+                  className="max-w-[225px] truncate cursor-pointer text-zinc-600 hover:underline"
+                  title="Clique para ver o endereço completo"
+                >
+                  {address[0].street}, {address[0].number} -{" "}
+                  {address[0].province}
+                </span>
+                <ChevronDown />
+              </div>
             </PopoverTrigger>
             <PopoverContent side="bottom" className="text-sm z-50 bg-[#E4EAE7]">
               <p>
                 {address[0].street}, {address[0].number}
                 <br />
-                {address[0].province} - {address[0].city}, {address[0].state}
+                {address[0].province} - {address[0].neighborhood},{" "}
+                {address[0].country}
                 <br />
-                CEP: {address[0].postalCode}
               </p>
             </PopoverContent>
           </Popover>

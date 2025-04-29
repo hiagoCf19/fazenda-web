@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 
 import AdminLayout from "./admin/home/home.layout";
 import { Login } from "./common/login/login.page";
-import { Produtos } from "./admin/produtos/produtos.page";
 import { HomePage } from "./web/(home)/home.page";
 import { AccessPageWeb } from "./web/auth/access.page";
 import { AuthLayout } from "./web/layout/auth.layout";
@@ -60,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "produtos",
-        element: <Produtos />,
+        element: <ProducerPage />,
       },
       {
         path: "emissao-relatorio",

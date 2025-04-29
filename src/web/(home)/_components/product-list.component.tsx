@@ -22,7 +22,7 @@ export function ProductList({ products, title }: ProductListProps) {
           Ver todos
         </Link>
       </div>
-      <Carousel className="">
+      <Carousel className="[&::-webkit-scrollbar]">
         <CarouselContent className="">
           {products.map((product, i) => (
             <CarouselItem className="basis-auto ml-4" key={i}>

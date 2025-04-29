@@ -8,11 +8,11 @@ import { HeaderAuthenticaded } from "../_components/header-authenticated.compone
 import { Footer } from "./_components/footer.component";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
 import { Banners } from "./_components/banners.component";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export const HomePage = () => {
   const { session } = useSession();
-
+  const [showCategories, setShowCategories] = useState(false);
   const categories = [
     {
       category: "Vegetais",
@@ -313,11 +313,16 @@ export const HomePage = () => {
         } `}
       />
       <main className="md:mb-12 md:space-y-8 h-full">
-        <Banners />
-        <ChooseByCategory
-          title="Explore por categoria"
-          categories={categories}
+        <Banners
+          showCategories={showCategories}
+          setShowCategories={setShowCategories}
         />
+        {!showCategories && (
+          <ChooseByCategory
+            title="Explore por categoria"
+            categories={categories}
+          />
+        )}
 
         <div className="space-y-2 relative">
           <div ref={scrollRef} className="overflow-x-auto pr-8 pl-8">

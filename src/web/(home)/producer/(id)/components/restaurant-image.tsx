@@ -5,9 +5,9 @@ interface ProdutorImageProps {
   produtor: any;
 }
 
-const ProdutorImage = ({ produtor }: ProdutorImageProps) => {
+const ProducerImage = ({ produtor }: ProdutorImageProps) => {
   return (
-    <div className="relative w-full sm:w-[60%] h-[250px] sm:h-[380px]">
+    <div className="relative  w-[50%]">
       <img
         src="/mock/fazenda-web1.jpeg"
         alt={produtor?.nome ?? "fazenda esperança"}
@@ -23,4 +23,4 @@ const ProdutorImage = ({ produtor }: ProdutorImageProps) => {
   );
 };
 
-export default ProdutorImage;
+export default ProducerImage;
