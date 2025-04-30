@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import { useSession } from "../../application.client/context/session.context";
 import { Card, CardContent, CardHeader, CardTitle } from "../../shadcn/ui/card";
 import { generateFallback } from "../../helpers/create-fallback.helper";
-import { MyAccountFormComponent } from "../../application.client/profile-client/_components/my-account.form.component";
 
 export function ProfileProducer() {
   const { session } = useSession();
