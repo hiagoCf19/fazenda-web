@@ -1,6 +1,4 @@
-import { BarChart3, ClipboardList } from "lucide-react";
-import { RiHome5Line } from "react-icons/ri";
-import { PiReceipt } from "react-icons/pi";
+import { BarChart3, ClipboardList, Home, Receipt } from "lucide-react";
 
 export function MobileNavigator() {
   const path = window.location.pathname;
@@ -12,11 +10,11 @@ export function MobileNavigator() {
           path.includes("home") && "bg-secondary/50"
         }`}
       >
-        <RiHome5Line size={20} />
+        <Home size={20} />
         <span className="text-xs mt-1">Inicio</span>
       </div>
       <div className="flex flex-col items-center justify-center text-zinc-800  w-16 h-16 rounded-full">
-        <PiReceipt size={20} />
+        <Receipt size={20} />
         <span className="text-xs mt-1">Pedidos</span>
       </div>
       <div className="flex flex-col items-center justify-center text-zinc-800  w-16 h-16 rounded-full">
