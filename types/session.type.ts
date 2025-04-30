@@ -15,6 +15,7 @@ export type User = {
   recoveryPhone?: string | null;
   isSubscribed?: boolean;
   role: "ADMIN" | "COMMON";
+  is_approved?: boolean | null;
 };
 export type Session = {
   access_token: string;
