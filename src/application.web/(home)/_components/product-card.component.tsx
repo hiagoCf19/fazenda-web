@@ -6,7 +6,11 @@ import {
 import { PlusIcon, X } from "lucide-react";
 import { Button } from "../../../shadcn/ui/button";
 import { Product } from "../../../../types/product";
-import { DialogClose } from "@radix-ui/react-dialog";
+import {
+  DialogClose,
+  DialogDescription,
+  DialogTitle,
+} from "@radix-ui/react-dialog";
 interface ProductCardProps {
   product: Product;
 }
@@ -14,20 +18,19 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="md:w-[160px] md:h-[160px]  w-[160px] h-[160px] rounded-3xl shadow-md border relative">
+        <DialogTrigger className="md:w-[160px] md:h-[160px]  w-[160px] h-[160px] rounded-3xl shadow-md border relative ">
           <img
             src={product.image}
             alt={product.name}
             className="aspect-square rounded-3xl content-center object-fit"
           />
-          <Button
-            className=" rounded-full bg-background absolute flex items-center justify-center bottom-0 m-2 right-0 size-10 hover:bg-zinc-50 "
-            size={"icon"}
-          >
-            <PlusIcon className="text-secondary-foreground size-6" />
-          </Button>
+          <div className=" rounded-full bg-background absolute flex items-center justify-center bottom-0 m-2 right-0 size-10 hover:bg-zinc-50 z-50 ">
+            <PlusIcon className="text-secondary-foreground" />
+          </div>
         </DialogTrigger>
         <DialogContent className="flex h-[40%] md:h-[512px] md:min-w-[1083px] ">
+          <DialogTitle hidden />
+          <DialogDescription hidden />
           {/* image */}
           <div className=" w-1/2 flex justify-center">
             <img

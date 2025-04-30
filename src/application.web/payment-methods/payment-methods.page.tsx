@@ -1,14 +1,14 @@
 import { CreditCard, Trash2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../shadcn/ui/card";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
-import NotFound from "../_components/not-found.component";
+import NotFound from "../../common/not-found.page";
 import { useSession } from "../context/session.context";
 import { Button } from "../../shadcn/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent } from "../../shadcn/ui/dialog";
 import { AdicionarCartaoForm } from "./_components/payment-methods.form.component";
 import { toast } from "sonner";
-import BottomNav from "../_components/bottom-navigator-mobile.component";
+import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
 interface MetodoPagamento {
   id: string;

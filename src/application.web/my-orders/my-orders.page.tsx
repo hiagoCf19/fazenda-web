@@ -6,8 +6,8 @@ import { Order } from "../../../types/order.type";
 
 import { MyOrderDetails } from "./_components/my-order-details.component";
 import { OrderStatusEnum } from "../../../enums/order-status.enum";
-import BottomNav from "../_components/bottom-navigator-mobile.component";
-import NotFound from "../_components/not-found.component";
+import NotFound from "../../common/not-found.page";
+import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 const pendingOrders = [
   {
     id: 7,

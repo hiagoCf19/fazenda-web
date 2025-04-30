@@ -11,7 +11,7 @@ import {
 } from "../../../shadcn/ui/card";
 import { Form, FormField } from "../../../shadcn/ui/form";
 import { cartaoSchema } from "./zod/payment-method-form.schema";
-import { InputFormComponent } from "../../_components/input-form.component";
+import { InputFormComponent } from "../../../common/_components/input-form.component";
 
 type CartaoFormValues = z.infer<typeof cartaoSchema>;
 

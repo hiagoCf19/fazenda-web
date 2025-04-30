@@ -3,12 +3,12 @@ import { ChooseByCategory } from "./_components/choose-by-category.component";
 import { ProductList } from "./_components/product-list.component";
 import { ProducersList } from "./_components/producers-list.component";
 import { useSession } from "../context/session.context";
-import BottomNav from "../_components/bottom-navigator-mobile.component";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
 import { Footer } from "./_components/footer.component";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
 import { Banners } from "./_components/banners.component";
 import { useRef, useState } from "react";
+import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
 export const HomePage = () => {
   const { session } = useSession();

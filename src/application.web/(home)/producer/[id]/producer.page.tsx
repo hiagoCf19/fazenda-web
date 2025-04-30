@@ -1,6 +1,5 @@
 import { StarIcon } from "lucide-react";
 import { useParams } from "react-router";
-import BottomNav from "../../../_components/bottom-navigator-mobile.component";
 import { Footer } from "../../_components/footer.component";
 
 import { UnauthenticatedHeader } from "../../../_components/unauthenticated-header.component";
@@ -10,6 +9,7 @@ import ProducerImage from "../components/producer-image.component";
 import DeliveryInfo from "../components/delivery-info.component";
 import { SeeAllProducts } from "../../see-all/see-all-products.page";
 import { mockProducts } from "../../../../mock/mock";
+import BottomNav from "../../../../common/_components/bottom-navigator-mobile.component";
 
 // Array de produtores
 const produtores = [

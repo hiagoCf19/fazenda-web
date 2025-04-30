@@ -1,4 +1,4 @@
-import { Progress } from "../shadcn/ui/progress";
+import { Progress } from "../../shadcn/ui/progress";
 
 interface LoadingComponentProps {
   progress: number;

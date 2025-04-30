@@ -1,10 +1,10 @@
 import { useSession } from "../context/session.context";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
-import BottomNav from "../_components/bottom-navigator-mobile.component";
 import type { Producer } from "../../../types/producer";
 import { ProducersList } from "./_components/producers-list.component";
 import { Footer } from "./_components/footer.component";
+import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
 export const AllProducersPage = () => {
   const { session } = useSession();

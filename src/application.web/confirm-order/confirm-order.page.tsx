@@ -6,7 +6,7 @@ import { DeliveryOptions } from "../../../types/delivery-options";
 import { DeliveryOptionsComponent } from "./_components/delivery-options.component";
 import { Button } from "../../shadcn/ui/button";
 import { OrderResumeComponent } from "./_components/order-resume.component";
-import { LoadingComponent } from "../../common/loading.component";
+import { LoadingComponent } from "../../common/_components/loading.component";
 //import { useNavigate } from "react-router";
 
 export function ConfirmOrderPage() {

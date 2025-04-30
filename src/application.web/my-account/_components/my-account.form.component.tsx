@@ -1,13 +1,13 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { Form, FormField } from "../../../shadcn/ui/form";
-import { InputFormComponent } from "../../_components/input-form.component";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Session } from "../../../../types/session.type";
 import { updateAccountSchema } from "./zod/update-account.schema";
 import { Button } from "../../../shadcn/ui/button";
 import { toast } from "sonner";
 import { StandardizationName } from "../../../helpers/standardization-name.helper";
+import { InputFormComponent } from "../../../common/_components/input-form.component";
 
 interface UpdateAccountForm {
   first_name: string;

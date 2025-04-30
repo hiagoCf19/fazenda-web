@@ -18,17 +18,19 @@ import {
 } from "../../shadcn/ui/popover";
 import { Link, useNavigate, useParams } from "react-router";
 import { Sheet } from "../../shadcn/ui/sheet";
-import { OrdersCartComponent } from "../(home)/_components/cart-sheet/orders-cart-sheet.component";
-import { useOpenOrders } from "../context/open-orders.context";
+
 import { useState } from "react";
 import { logout } from "../../service/auth.service";
-import { useSession } from "../context/session.context";
+
 import { generateFallback } from "../../helpers/create-fallback.helper";
 import { useUserAddress } from "../../hooks/use-user.hook";
 import { Skeleton } from "../../shadcn/ui/skeleton";
 import { toast } from "sonner";
 import { Session } from "../../../types/session.type";
 import { StandardizationName } from "../../helpers/standardization-name.helper";
+import { useSession } from "../context/session.context";
+import { useOpenOrders } from "../context/open-orders.context";
+import { OrdersCartComponent } from "../(home)/_components/cart-sheet/orders-cart-sheet.component";
 interface HeaderAuthenticadedProps {
   session: Session;
 }
@@ -45,7 +47,6 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
     isLoading,
     isError,
   } = useUserAddress(session?.user.id);
-  console.log(session);
   const { isOpenOrders, setIsOpenOrders } = useOpenOrders();
 
   const EditProfileActions = [

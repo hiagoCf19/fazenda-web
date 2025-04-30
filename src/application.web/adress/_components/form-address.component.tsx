@@ -18,10 +18,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../shadcn/ui/select";
-import { InputFormComponent } from "../../_components/input-form.component";
 import { DialogClose } from "../../../shadcn/ui/dialog";
 import { X } from "lucide-react";
 import { createAddressSchema } from "./zod/address.schema";
+import { InputFormComponent } from "../../../common/_components/input-form.component";
 
 type AdressFormValues = z.infer<typeof createAddressSchema>;
 

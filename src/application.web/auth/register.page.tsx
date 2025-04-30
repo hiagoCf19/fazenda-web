@@ -4,6 +4,7 @@ import { Link } from "react-router";
 export enum ProfileTypeEnum {
   INDIVIDUAL = "individual",
   BUSINESS = "business",
+  PRODUCER = "producer",
 }
 export function RegisterClientPage() {
   return (

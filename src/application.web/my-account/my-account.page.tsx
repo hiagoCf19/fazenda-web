@@ -1,12 +1,12 @@
 import { Edit2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "../../shadcn/ui/card";
-import BottomNav from "../_components/bottom-navigator-mobile.component";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
-import NotFound from "../_components/not-found.component";
+import NotFound from "../../common/not-found.page";
 import { useSession } from "../context/session.context";
 import { MyAccountFormComponent } from "./_components/my-account.form.component";
 import { generateFallback } from "../../helpers/create-fallback.helper";
+import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
 export function MyAccountPage() {
   const { session } = useSession();

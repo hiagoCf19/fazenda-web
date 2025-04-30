@@ -3,7 +3,7 @@ import {
   FileUp,
   Home,
   ImagePlus,
-  Package,
+  LogOut,
   ShoppingBag,
   ShoppingCart,
   Truck,
@@ -13,6 +13,7 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -20,7 +21,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../../../shadcn/ui/sidebar";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { Avatar, AvatarImage } from "../../../shadcn/ui/avatar";
+import { AvatarFallback } from "@radix-ui/react-avatar";
+import { Button } from "../../../shadcn/ui/button";
+import { generateFallback } from "../../../helpers/create-fallback.helper";
+import { useSession } from "../../../application.web/context/session.context";
+import { logout } from "../../../service/auth.service";
 
 // Menu items.
 const items = [
@@ -50,11 +57,6 @@ const items = [
     icon: Truck,
   },
   {
-    title: "Produtos",
-    url: "/admin/produtos",
-    icon: Package,
-  },
-  {
     title: "Emissão de relatório",
     url: "/admin/emissao-relatorio",
     icon: FileUp,
@@ -73,6 +75,10 @@ const items = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const { session, setSession } = useSession();
+  if (!session) return null;
   return (
     <Sidebar
       className="border-none w-[320px] "
@@ -114,6 +120,35 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <SidebarFooter className=" my-8 absolute bottom-0 w-full flex justify-center items-center  ">
+          <div
+            className=" rounded-full h-16 w-[95%] bg-background shadow-lg flex items-center justify-between
+          "
+          >
+            <div className=" p-2 gap-2 flex items-center">
+              <Avatar className="size-10">
+                <AvatarImage src={session.user.photo} />
+                <AvatarFallback className="flex items-center justify-center w-full bg-secondary text-secondary-foreground">
+                  {generateFallback(session.user)}
+                </AvatarFallback>
+              </Avatar>
+              <p className="text-secondary-foreground text-lg font-medium">
+                {session.user.first_name} {session.user.last_name}
+              </p>
+            </div>
+            <Button
+              onClick={() => {
+                logout();
+                navigate("/landing-access");
+                setSession(null);
+              }}
+              size={"icon"}
+              className="mr-5 bg-transparent rounded-full hover:bg-transparent shadow-none"
+            >
+              <LogOut className=" text-destructive round size-6" />
+            </Button>
+          </div>
+        </SidebarFooter>
       </SidebarContent>
     </Sidebar>
   );

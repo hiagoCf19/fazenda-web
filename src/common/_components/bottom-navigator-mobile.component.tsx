@@ -1,6 +1,6 @@
 import { Home, SearchIcon, ShoppingCart, User } from "lucide-react";
 import { Link, useLocation } from "react-router";
-import { useOpenOrders } from "../context/open-orders.context";
+import { useOpenOrders } from "../../application.web/context/open-orders.context";
 
 // SOMENTE MOBILE
 const BottomNav = () => {

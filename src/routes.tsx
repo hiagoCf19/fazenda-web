@@ -8,7 +8,7 @@ import { AuthLayout } from "./application.web/layout/auth.layout";
 import { RegisterClientPage } from "./application.web/auth/register.page";
 import { ConfirmOrderPage } from "./application.web/confirm-order/confirm-order.page";
 import { MyOrders } from "./application.web/my-orders/my-orders.page";
-import NotFound from "./application.web/_components/not-found.component";
+import NotFound from "./common/not-found.page";
 import { PaymentMethodsPage } from "./application.web/payment-methods/payment-methods.page";
 import { AddressPage } from "./application.web/adress/address.page";
 import { SecurityPage } from "./application.web/security/security.page";
