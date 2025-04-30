@@ -20,7 +20,6 @@ import { Produtores } from "./application.admin/produtores/produtores.page";
 import { Clientes } from "./application.admin/clientes/clientes.page";
 import RegisterClientForm from "./application.web/auth/_components/register/individual-profile.form";
 import { RegisterBusinessProfile } from "./application.web/auth/_components/register/business-profile.form";
-import { RecommendedProductsPage } from "./application.web/(home)/recommended-products.page";
 import ProducerPage from "./application.web/(home)/producer/components/producer.page";
 import { SeeAllLayout } from "./application.web/(home)/see-all/(layout)/see-all.layout";
 import { SeeAllProducts } from "./application.web/(home)/see-all/see-all-products.page";
@@ -135,11 +134,6 @@ export const router = createBrowserRouter([
   {
     path: "search/:query",
     element: <SearchPage />,
-  },
-
-  {
-    path: "products/recommended",
-    element: <RecommendedProductsPage />, // Página de produtos recomendados
   },
   {
     path: "see-all",

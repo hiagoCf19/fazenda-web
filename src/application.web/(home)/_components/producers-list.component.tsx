@@ -1,10 +1,8 @@
-import { StarIcon } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
 } from "../../../shadcn/ui/carousel";
 import { Producer } from "../../../../types/producer";
 import { Link } from "react-router";
