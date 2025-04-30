@@ -13,10 +13,10 @@ import {
   FormMessage,
 } from "../../shadcn/ui/form";
 import { useNavigate } from "react-router";
-import { useSession } from "../../application.web/context/session.context";
+import { useSession } from "../../application.client/context/session.context";
 import { useLogin } from "../../hooks/use-login.hook";
 import { formatError } from "../../helpers/format-error.helper";
-import { ProfileTypeEnum } from "../../application.web/auth/register.page";
+import { ProfileTypeEnum } from "../../application.client/auth/register.page";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
