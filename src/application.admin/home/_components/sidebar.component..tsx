@@ -26,7 +26,7 @@ import { Avatar, AvatarImage } from "../../../shadcn/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Button } from "../../../shadcn/ui/button";
 import { generateFallback } from "../../../helpers/create-fallback.helper";
-import { useSession } from "../../../application.web/context/session.context";
+import { useSession } from "../../../application.client/context/session.context";
 import { logout } from "../../../service/auth.service";
 
 // Menu items.
