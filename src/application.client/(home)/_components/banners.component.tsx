@@ -143,20 +143,24 @@ export function Banners({ showCategories, setShowCategories }: BannerProps) {
     <div className="relative ">
       {/* CATEGORIAS NO TOPO – só aparecem após o clique no banner */}
       {showCategories && (
-        <div className="z-50 py-2 space-x-6 mb-5">
-          {categorias.map((categoria) => (
-            <button
-              onClick={() => setSelectedCategory(categoria)}
-              key={categoria}
-              className={`px-3 py-1 text-sm font-medium rounded-full  w-[116px] h-[34px]  ${
-                selectedCategory === categoria
-                  ? "bg-primary text-zinc-50"
-                  : "bg-[#E1F3E4] text-secondary-foreground"
-              }`}
-            >
-              {categoria}
-            </button>
-          ))}
+        <div className="z-50 py-2 space-x-6 mb-5 line-clamp-1">
+          <Carousel>
+            <CarouselContent className="">
+              {categorias.map((categoria) => (
+                <CarouselItem
+                  onClick={() => setSelectedCategory(categoria)}
+                  key={categoria}
+                  className={`pl-0 ml-5 rounded-full font-medium flex items-center justify-center basis-auto min-w-[116px] h-[34px]  ${
+                    selectedCategory === categoria
+                      ? "bg-primary text-zinc-50"
+                      : "bg-[#E1F3E4] text-secondary-foreground"
+                  }`}
+                >
+                  {categoria}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       )}
 
@@ -164,13 +168,14 @@ export function Banners({ showCategories, setShowCategories }: BannerProps) {
       {bannerSelecionado !== null ? (
         // tamanho do banner ao clicar
         <div
-          className="w-full h-80 flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out cursor-pointer"
+          className="w-full h-80 flex items-center justify-center rounded-xl overflow-hidden transition-all duration-300 ease-in-out cursor-pointer "
           onClick={() => handleBannerClick(bannerSelecionado)}
         >
           <img
             src={`/banner${bannerSelecionado + 1}-xl.png`}
             alt={`Banner ${bannerSelecionado + 1}`}
-            className="h-full w-full "
+            className="h-full w-[96%] "
+            loading="lazy"
           />
         </div>
       ) : (
