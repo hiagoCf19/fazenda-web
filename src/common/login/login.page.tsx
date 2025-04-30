@@ -41,10 +41,15 @@ export const Login = () => {
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("user", JSON.stringify(user));
         setSession({ access_token, user });
-
+        console.log(user);
         if (user.role === "ADMIN") {
+          console.log("admin");
           navigate("/admin/dashboard");
         } else if (user.profile_type === ProfileTypeEnum.PRODUCER) {
+          console.log("producer");
+          navigate("/producer/home");
+        } else {
+          console.log("client");
           navigate("/");
         }
       },

@@ -12,7 +12,7 @@ import NotFound from "./common/not-found.page";
 import { PaymentMethodsPage } from "./application.client/payment-methods/payment-methods.page";
 import { AddressPage } from "./application.client/adress/address.page";
 import { SecurityPage } from "./application.client/security/security.page";
-import { MyAccountPage } from "./application.client/my-account/my-account.page";
+import { MyAccountPage } from "./application.client/profile-client/profile-client.page";
 import { SearchPage } from "./application.client/search/search.page";
 import Dashboard from "./application.admin/dashboard/dashboard.page";
 import { Pedidos } from "./application.admin/pedidos/pedidos.page";
@@ -24,6 +24,9 @@ import ProducerPage from "./application.client/(home)/producer/components/produc
 import { SeeAllLayout } from "./application.client/(home)/see-all/(layout)/see-all.layout";
 import { SeeAllProducts } from "./application.client/(home)/see-all/see-all-products.page";
 import { mockProducts } from "./mock/mock";
+
+import { HomeProducer } from "./application.producer/home/home.page";
+import { ProfileProducer } from "./application.producer/profile/profile-producer.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -75,11 +78,13 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // ROTAS DE USUARIO COMUM
+  // HOME
   {
     path: "/",
     element: <HomePage />,
   },
+
+  //ROTAS DE AUTH
   {
     path: "login",
     element: <Login />,
@@ -107,6 +112,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  //ROTAS DE CLIENT
   {
     path: "confirm-order",
     element: <ConfirmOrderPage />,
@@ -157,5 +164,15 @@ export const router = createBrowserRouter([
   {
     path: "/produtor/:slug", // Rota dinâmica para um produtor específico
     element: <ProducerPage />,
+  },
+  // ROTAS DE PRODUCER
+
+  {
+    path: "producer/home",
+    element: <HomeProducer />,
+  },
+  {
+    path: "/producer/profile",
+    element: <ProfileProducer />,
   },
 ]);
