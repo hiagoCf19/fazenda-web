@@ -1,7 +1,7 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { NifSchema } from "../zod/schema";
-import { InputFormComponenteProps } from "../_components/input-form.component";
-import { InputFormComponente } from "../_components/input-form.component";
+import { InputFormComponenteProps } from "./input-form.component";
+import { InputFormComponente } from "./input-form.component";
 
 interface StepNifProps {
   register: UseFormRegister<NifSchema>;

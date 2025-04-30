@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <>
+    <div>
       <Dialog>
         <DialogTrigger className="md:w-[160px] md:h-[160px]  w-[160px] h-[160px] rounded-3xl shadow-md border relative">
           <img
@@ -111,6 +111,6 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </div>
-    </>
+    </div>
   );
 }

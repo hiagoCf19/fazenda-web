@@ -1,7 +1,7 @@
 import { Producer } from "../../../types/producer";
 import { ChooseByCategory } from "./_components/choose-by-category.component";
 import { ProductList } from "./_components/product-list.component";
-import { ProducersList } from "./_components/producers.component";
+import { ProducersList } from "./_components/producers-list.component";
 import { useSession } from "../context/session.context";
 import BottomNav from "../_components/bottom-navigator-mobile.component";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
@@ -325,8 +325,12 @@ export const HomePage = () => {
         )}
 
         <div className="space-y-2 relative">
-          <div ref={scrollRef} className="overflow-x-auto pr-8 pl-8">
-            <ProductList title="populares" products={products} />
+          <div ref={scrollRef} className=" pr-9">
+            <ProductList
+              seeAllPath="best-selling-products"
+              title="Mais pedidos"
+              products={products}
+            />
           </div>
 
           <div
@@ -338,8 +342,12 @@ export const HomePage = () => {
         </div>
 
         <div className="space-y-2 relative">
-          <div ref={scrollRef} className="overflow-x-auto pr-8 pl-8">
-            <ProductList title="News" products={products} />
+          <div ref={scrollRef} className=" pr-9">
+            <ProductList
+              title="Novidades"
+              seeAllPath={"news"}
+              products={products}
+            />
           </div>
 
           <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
@@ -348,10 +356,7 @@ export const HomePage = () => {
         </div>
 
         <div className="space-y-2 relative">
-          <div ref={scrollRef} className="overflow-x-auto pr-12 pl-12">
-            <ProducersList title="Produtores" producers={producers} />
-          </div>
-
+          <ProducersList title="Produtores" producers={producers} />
           <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
 
           <div className="flex justify-end pr-4"></div>

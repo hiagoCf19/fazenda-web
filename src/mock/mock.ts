@@ -1,0 +1,88 @@
+import { Product } from "../../types/product";
+
+export const mockProducts: Product[] = [
+  {
+    id: "1",
+    name: "Milho verde",
+    image: "/mock/milho.png",
+    priceKg: "Kz 150/Kg",
+    priceT: "Kz 130.000/T",
+  },
+  {
+    id: "2",
+    name: "Lentilha",
+    image: "/mock/lentilha.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "4",
+    name: "Noz pecan",
+    image: "/mock/castanha.png",
+    priceKg: "Kz 2.850/Kg",
+    priceT: "Kz 2.800.000/T",
+  },
+  {
+    id: "5",
+    name: "Melancia",
+    image: "/mock/melancia.png",
+    priceKg: "Kz 500/Kg",
+    priceT: "Kz 300.000/T",
+  },
+  {
+    id: "1",
+    name: "Milho verde",
+    image: "/mock/milho.png",
+    priceKg: "Kz 150/Kg",
+    priceT: "Kz 130.000/T",
+  },
+  {
+    id: "2",
+    name: "Lentilha",
+    image: "/mock/lentilha.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "6",
+    name: "Cebola roxa",
+    image: "/mock/cebola.png",
+    priceKg: "Kz 96/Kg",
+    priceT: "Kz 90.000/T",
+  },
+  {
+    id: "3",
+    name: "Bacalhau",
+    image: "/mock/bacalhau.png",
+    priceKg: "Kz 180/Kg",
+    priceT: "Kz 140.000/T",
+  },
+];

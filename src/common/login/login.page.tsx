@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "../../shadcn/ui/form";
 import { useNavigate } from "react-router";
-import { useSession } from "../../web/context/session.context";
+import { useSession } from "../../application.web/context/session.context";
 import { useLogin } from "../../hooks/use-login.hook";
 import { formatError } from "../../helpers/format-error.helper";
 

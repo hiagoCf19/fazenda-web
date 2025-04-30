@@ -1,32 +1,33 @@
 import { createBrowserRouter } from "react-router";
 
-import AdminLayout from "./admin/home/home.layout";
+import AdminLayout from "./application.admin/home/home.layout";
 import { Login } from "./common/login/login.page";
-import { HomePage } from "./web/(home)/home.page";
-import { AccessPageWeb } from "./web/auth/access.page";
-import { AuthLayout } from "./web/layout/auth.layout";
-import { RegisterClientPage } from "./web/auth/register.page";
-import { ConfirmOrderPage } from "./web/confirm-order/confirm-order.page";
-import { MyOrders } from "./web/my-orders/my-orders.page";
-import NotFound from "./web/_components/not-found.component";
-import { PaymentMethodsPage } from "./web/payment-methods/payment-methods.page";
-import { AddressPage } from "./web/adress/address.page";
-import { SecurityPage } from "./web/security/security.page";
-import { MyAccountPage } from "./web/my-account/my-account.page";
-import { SearchPage } from "./web/search/search.page";
-import Dashboard from "./admin/dashboard/dashboard.page";
-import { Pedidos } from "./admin/pedidos/pedidos.page";
-import { Produtores } from "./admin/produtores/produtores.page";
-import { Clientes } from "./admin/clientes/clientes.page";
-import RegisterClientForm from "./web/auth/_components/register/individual-profile.form";
-import { RegisterBusinessProfile } from "./web/auth/_components/register/business-profile.form";
-import { RecommendedProductsPage } from "./web/(home)/recommended-products.page";
-import { NewProductsPage } from "./web/(home)/new-products.page";
-import { AllProducersPage } from "./web/(home)/all-producers.page";
-import ProducerPage from "./web/(home)/producer/(id)/components/producer.page";
-import { AllNews } from "./web/(home)/products/all-news";
-import { AllPopulares } from "./web/(home)/products/all-products";
+import { HomePage } from "./application.web/(home)/home.page";
+import { AccessPageWeb } from "./application.web/auth/access.page";
+import { AuthLayout } from "./application.web/layout/auth.layout";
+import { RegisterClientPage } from "./application.web/auth/register.page";
+import { ConfirmOrderPage } from "./application.web/confirm-order/confirm-order.page";
+import { MyOrders } from "./application.web/my-orders/my-orders.page";
+import NotFound from "./application.web/_components/not-found.component";
+import { PaymentMethodsPage } from "./application.web/payment-methods/payment-methods.page";
+import { AddressPage } from "./application.web/adress/address.page";
+import { SecurityPage } from "./application.web/security/security.page";
+import { MyAccountPage } from "./application.web/my-account/my-account.page";
+import { SearchPage } from "./application.web/search/search.page";
+import Dashboard from "./application.admin/dashboard/dashboard.page";
+import { Pedidos } from "./application.admin/pedidos/pedidos.page";
+import { Produtores } from "./application.admin/produtores/produtores.page";
+import { Clientes } from "./application.admin/clientes/clientes.page";
+import RegisterClientForm from "./application.web/auth/_components/register/individual-profile.form";
+import { RegisterBusinessProfile } from "./application.web/auth/_components/register/business-profile.form";
+import { RecommendedProductsPage } from "./application.web/(home)/recommended-products.page";
+import ProducerPage from "./application.web/(home)/producer/components/producer.page";
+import { SeeAllLayout } from "./application.web/(home)/see-all/(layout)/see-all.layout";
+import { SeeAllProducts } from "./application.web/(home)/see-all/see-all-products.page";
+import { mockProducts } from "./mock/mock";
 
+const best_selling_products = mockProducts;
+const new_products = mockProducts;
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
   {
@@ -141,31 +142,23 @@ export const router = createBrowserRouter([
     element: <RecommendedProductsPage />, // Página de produtos recomendados
   },
   {
-    path: "products/new",
-    element: <NewProductsPage />, // Página de novos produtos
-  },
-  {
-    path: "producers",
-    element: <AllProducersPage />, // Página de todos os produtores
+    path: "see-all",
+    element: <SeeAllLayout />,
+    children: [
+      {
+        path: "best-selling-products",
+        element: <SeeAllProducts products={best_selling_products} />,
+      },
+      {
+        path: "news",
+        element: <SeeAllProducts products={new_products} />,
+      },
+    ],
   },
 
   {
     path: "*",
     element: <NotFound />,
-  },
-  {
-    path: "Fazenda-esperanca",
-    element: <ProducerPage />,
-  },
-
-  {
-    path: "AllPopulares", // Lista de mais pedidos
-    element: <AllPopulares />,
-  },
-
-  {
-    path: "AllNews", // Lista de mais pedidos
-    element: <AllNews />,
   },
   {
     path: "/produtor/:slug", // Rota dinâmica para um produtor específico

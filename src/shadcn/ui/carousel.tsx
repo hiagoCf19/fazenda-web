@@ -212,9 +212,9 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full border-none shadow-none",
+        "absolute size-8 rounded-full shadow-none border-none ",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
+          ? "top-1/3 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -222,7 +222,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ChevronRight className="size-8" />
+      <ChevronRight className="size-12 text-muted-foreground/20" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

@@ -1,5 +1,5 @@
 import { BikeIcon, TimerIcon } from "lucide-react";
-import { Card } from "../../../../../shadcn/ui/card";
+import { Card } from "../../../../shadcn/ui/card";
 
 interface DeliveryInfoProps {
   restaurant: any;

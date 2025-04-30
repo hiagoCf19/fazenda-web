@@ -1,13 +1,15 @@
 import { StarIcon } from "lucide-react";
 import { useParams } from "react-router";
-import BottomNav from "../../../../_components/bottom-navigator-mobile.component";
-import { Footer } from "../../../_components/footer.component";
-import ProducerImage from "./restaurant-image";
-import DeliveryInfo from "./delivery-info";
-import { UnauthenticatedHeader } from "../../../../_components/unauthenticated-header.component";
-import { HeaderAuthenticaded } from "../../../../_components/header-authenticated.component";
-import { useSession } from "../../../../context/session.context";
-import { ProductList } from "../../../_components/product-list.component";
+import BottomNav from "../../../_components/bottom-navigator-mobile.component";
+import { Footer } from "../../_components/footer.component";
+
+import { UnauthenticatedHeader } from "../../../_components/unauthenticated-header.component";
+import { HeaderAuthenticaded } from "../../../_components/header-authenticated.component";
+import { useSession } from "../../../context/session.context";
+import ProducerImage from "../components/producer-image.component";
+import DeliveryInfo from "../components/delivery-info.component";
+import { SeeAllProducts } from "../../see-all/see-all-products.page";
+import { mockProducts } from "../../../../mock/mock";
 
 // Array de produtores
 const produtores = [
@@ -94,92 +96,6 @@ const produtores = [
     ],
   },
 ];
-const products = [
-  {
-    id: "1",
-    name: "Milho verde",
-    image: "/mock/milho.png",
-    priceKg: "Kz 150/Kg",
-    priceT: "Kz 130.000/T",
-  },
-  {
-    id: "2",
-    name: "Lentilha",
-    image: "/mock/lentilha.png",
-    priceKg: "Kz 180/Kg",
-    priceT: "Kz 140.000/T",
-  },
-  {
-    id: "3",
-    name: "Bacalhau",
-    image: "/mock/bacalhau.png",
-    priceKg: "Kz 180/Kg",
-    priceT: "Kz 140.000/T",
-  },
-  {
-    id: "4",
-    name: "Noz pecan",
-    image: "/mock/castanha.png",
-    priceKg: "Kz 2.850/Kg",
-    priceT: "Kz 2.800.000/T",
-  },
-  {
-    id: "5",
-    name: "Melancia",
-    image: "/mock/melancia.png",
-    priceKg: "Kz 500/Kg",
-    priceT: "Kz 300.000/T",
-  },
-  {
-    id: "1",
-    name: "Milho verde",
-    image: "/mock/milho.png",
-    priceKg: "Kz 150/Kg",
-    priceT: "Kz 130.000/T",
-  },
-  {
-    id: "2",
-    name: "Lentilha",
-    image: "/mock/lentilha.png",
-    priceKg: "Kz 180/Kg",
-    priceT: "Kz 140.000/T",
-  },
-  {
-    id: "3",
-    name: "Bacalhau",
-    image: "/mock/bacalhau.png",
-    priceKg: "Kz 180/Kg",
-    priceT: "Kz 140.000/T",
-  },
-  {
-    id: "6",
-    name: "Cebola roxa",
-    image: "/mock/cebola.png",
-    priceKg: "Kz 96/Kg",
-    priceT: "Kz 90.000/T",
-  },
-  {
-    id: "6",
-    name: "Cebola roxa",
-    image: "/mock/cebola.png",
-    priceKg: "Kz 96/Kg",
-    priceT: "Kz 90.000/T",
-  },
-  {
-    id: "6",
-    name: "Cebola roxa",
-    image: "/mock/cebola.png",
-    priceKg: "Kz 96/Kg",
-    priceT: "Kz 90.000/T",
-  },
-  {
-    id: "3",
-    name: "Bacalhau",
-    image: "/mock/bacalhau.png",
-    priceKg: "Kz 180/Kg",
-    priceT: "Kz 140.000/T",
-  },
-];
 
 export default function ProducerPage() {
   // Obtém o slug da URL
@@ -259,7 +175,7 @@ export default function ProducerPage() {
         </div>
         <div className="p-12">
           <h1 className="text-zinc-800 text-3xl font-medium"></h1>
-          <ProductList title="Produtos" products={products} />
+          <SeeAllProducts products={mockProducts} />
         </div>
 
         <BottomNav />

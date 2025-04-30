@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from "lucide-react";
-import { Button } from "../../../../../shadcn/ui/button";
+import { Button } from "../../../../shadcn/ui/button";
 
 interface ProdutorImageProps {
   produtor: any;

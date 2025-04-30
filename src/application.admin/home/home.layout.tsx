@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router";
 import { AppSidebar } from "./_components/sidebar.component.";
 import { SidebarProvider } from "../../shadcn/ui/sidebar";
-import { useSession } from "../../web/context/session.context";
-import NotFound from "../../web/_components/not-found.component";
+import { useSession } from "../../application.web/context/session.context";
+import NotFound from "../../application.web/_components/not-found.component";
 
 export default function AdminLayout() {
   const navigate = useNavigate();

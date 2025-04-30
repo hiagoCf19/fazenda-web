@@ -29,10 +29,10 @@ export const ChooseByCategory = ({ categories, title }: SectionProps) => {
   );
 
   return (
-    <div className="space-y-4 p-4 pb-0">
+    <div className="space-y-4 p-4 pb-0 ">
       <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
       <Carousel
-        className="-mx-4"
+        className=" -mx-16"
         plugins={[autoplayRef.current]}
         opts={{
           align: "start",
@@ -46,9 +46,12 @@ export const ChooseByCategory = ({ categories, title }: SectionProps) => {
         /* onMouseEnter={() => autoplayRef.current.stop()}
         onMouseLeave={() => autoplayRef.current.play()} */
       >
-        <CarouselContent className="">
+        <CarouselContent className="space-x-2 ml-2">
           {categories.map((category, i) => (
-            <CarouselItem className="basis-auto ml-4" key={i}>
+            <CarouselItem
+              className=" pl-0 basis-auto flex flex-col items-center justify-center"
+              key={i}
+            >
               <div
                 key={i}
                 className="bg-[#E1F3E4] size-24 flex items-center justify-center rounded-3xl"
