@@ -1,4 +1,4 @@
-import { ProfileTypeEnum } from "../src/web/auth/register.page";
+import { ProfileTypeEnum } from "../src/application.web/auth/register.page";
 
 export type RegisterPayload = {
   email: string;

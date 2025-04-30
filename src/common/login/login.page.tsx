@@ -13,9 +13,10 @@ import {
   FormMessage,
 } from "../../shadcn/ui/form";
 import { useNavigate } from "react-router";
-import { useSession } from "../../web/context/session.context";
+import { useSession } from "../../application.web/context/session.context";
 import { useLogin } from "../../hooks/use-login.hook";
 import { formatError } from "../../helpers/format-error.helper";
+import { ProfileTypeEnum } from "../../application.web/auth/register.page";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
@@ -43,7 +44,7 @@ export const Login = () => {
 
         if (user.role === "ADMIN") {
           navigate("/admin/dashboard");
-        } else {
+        } else if (user.profile_type === ProfileTypeEnum.PRODUCER) {
           navigate("/");
         }
       },
