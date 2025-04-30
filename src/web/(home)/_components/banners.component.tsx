@@ -151,7 +151,7 @@ export function Banners({ showCategories, setShowCategories }: BannerProps) {
               className={`px-3 py-1 text-sm font-medium rounded-full  w-[116px] h-[34px]  ${
                 selectedCategory === categoria
                   ? "bg-primary text-zinc-50"
-                  : "bg-green-100 text-secondary-foreground"
+                  : "bg-[#E1F3E4] text-secondary-foreground"
               }`}
             >
               {categoria}
@@ -168,9 +168,9 @@ export function Banners({ showCategories, setShowCategories }: BannerProps) {
           onClick={() => handleBannerClick(bannerSelecionado)}
         >
           <img
-            src={`/banner${bannerSelecionado + 1}.png`}
+            src={`/banner${bannerSelecionado + 1}-xl.png`}
             alt={`Banner ${bannerSelecionado + 1}`}
-            className="h-full w-auto object-contain"
+            className="h-full w-full "
           />
         </div>
       ) : (
