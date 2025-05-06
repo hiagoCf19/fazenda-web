@@ -10,7 +10,7 @@ import { Banners } from "./_components/banners.component";
 import { useRef, useState } from "react";
 import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
-export const HomePage = () => {
+export const ClientHomePage = () => {
   const { session } = useSession();
   const [showCategories, setShowCategories] = useState(false);
   const categories = [

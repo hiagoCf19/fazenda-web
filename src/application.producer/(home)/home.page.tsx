@@ -1,7 +1,7 @@
 import { useSession } from "../../application.client/context/session.context";
 import { PendingApprovalComponent } from "./pending-approval/pendding-approval.component";
 
-export function HomeProducer() {
+export function ProducerHomePage() {
   const { session } = useSession();
   if (!session?.user.is_approved) return <PendingApprovalComponent />;
 
