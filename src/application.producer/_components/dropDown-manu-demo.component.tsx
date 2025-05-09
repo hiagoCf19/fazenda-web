@@ -8,7 +8,6 @@ import {
   User,
 } from "lucide-react";
 
-import { Button } from "../../shadcn/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
