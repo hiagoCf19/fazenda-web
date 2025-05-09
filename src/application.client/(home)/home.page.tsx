@@ -7,10 +7,10 @@ import { HeaderAuthenticaded } from "../_components/header-authenticated.compone
 import { Footer } from "./_components/footer.component";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
 import { Banners } from "./_components/banners.component";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 
-export const HomePage = () => {
+export const ClientHomePage = () => {
   const { session } = useSession();
   const [showCategories, setShowCategories] = useState(false);
   const categories = [
@@ -34,10 +34,7 @@ export const HomePage = () => {
       category: "Vegetais",
       image: "/vegetable.png",
     },
-    {
-      category: "Vegetais",
-      image: "/carrot.png",
-    },
+
     {
       category: "Frutas",
       image: "/apple.png",
@@ -49,19 +46,6 @@ export const HomePage = () => {
     {
       category: "Peixes",
       image: "/fish.png",
-    },
-
-    {
-      category: "Peixes",
-      image: "/fish.png",
-    },
-    {
-      category: "Vegetais",
-      image: "/vegetable.png",
-    },
-    {
-      category: "Vegetais",
-      image: "/carrot.png",
     },
 
     {
@@ -85,10 +69,6 @@ export const HomePage = () => {
       image: "/vegetable.png",
     },
     {
-      category: "Vegetais",
-      image: "/carrot.png",
-    },
-    {
       category: "Frutas",
       image: "/apple.png",
     },
@@ -120,9 +100,39 @@ export const HomePage = () => {
       category: "Vegetais",
       image: "/vegetable.png",
     },
+
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+
     {
       category: "Vegetais",
       image: "/carrot.png",
+    },
+    {
+      category: "Frutas",
+      image: "/apple.png",
+    },
+    {
+      category: "Carnes",
+      image: "/meat.png",
+    },
+    {
+      category: "Peixes",
+      image: "/fish.png",
+    },
+    {
+      category: "Vegetais",
+      image: "/vegetable.png",
     },
     {
       category: "Frutas",
@@ -292,14 +302,7 @@ export const HomePage = () => {
       id: "11",
     },
   ];
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = () => {
-    scrollRef.current?.scrollBy({
-      left: 300,
-      behavior: "smooth",
-    });
-  };
   return (
     <section className="md:p-12 overflow-x-hidden relative min-h-screen">
       {!session ? (
@@ -324,43 +327,19 @@ export const HomePage = () => {
           />
         )}
 
-        <div className="space-y-2 relative">
-          <div ref={scrollRef} className=" pr-9">
-            <ProductList
-              seeAllPath="best-selling-products"
-              title="Mais pedidos"
-              products={products}
-            />
-          </div>
+        <ProductList
+          seeAllPath="best-selling-products"
+          title="Mais pedidos"
+          products={products}
+        />
 
-          <div
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
-            onClick={handleScroll}
-          ></div>
+        <ProductList
+          title="Novidades"
+          seeAllPath={"news"}
+          products={products}
+        />
 
-          <div className="flex justify-end pr-4"></div>
-        </div>
-
-        <div className="space-y-2 relative">
-          <div ref={scrollRef} className=" pr-9">
-            <ProductList
-              title="Novidades"
-              seeAllPath={"news"}
-              products={products}
-            />
-          </div>
-
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
-
-          <div className="flex justify-end pr-4"></div>
-        </div>
-
-        <div className="space-y-2 relative">
-          <ProducersList title="Produtores" producers={producers} />
-          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none"></div>
-
-          <div className="flex justify-end pr-4"></div>
-        </div>
+        <ProducersList title="Produtores" producers={producers} />
       </main>
 
       <BottomNav />
