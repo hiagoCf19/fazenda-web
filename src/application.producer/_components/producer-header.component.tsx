@@ -11,7 +11,7 @@ export function ProducerHeader() {
   const { session } = useSession();
   if (!session) return null;
   return (
-    <header className="m-8 md:mx-[200px]">
+    <header className="m-4 md:mx-[200px] h-[50px] ">
       <div className="flex justify-between items-center">
         <Link to={"/"} className="hidden md:block">
           <img
