@@ -7,7 +7,7 @@ export function PendingApprovalBanner() {
         <h3 className="text-xl md:text-4xl  text-zinc-50 font-extrabold">
           Logo seu perfil <br className="md:hidden" /> será aprovado
         </h3>
-        <p className="text-sm md:text-xl text-zinc-50 p-2 text-pretty font-semibold">
+        <p className=" ml-2 md:ml-0 text-sm md:text-xl text-zinc-50 p-2 text-pretty md:font-semibold">
           Seu perfil passa por uma avaliação, entraremos em contato até 72h para{" "}
           explicar os <br className="hidden md:block" />
           próximos passos.

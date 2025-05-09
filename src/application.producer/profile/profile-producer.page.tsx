@@ -5,13 +5,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import { useSession } from "../../application.client/context/session.context";
 import { Card, CardContent, CardHeader, CardTitle } from "../../shadcn/ui/card";
 import { generateFallback } from "../../helpers/create-fallback.helper";
+import { FormUpdateProfile } from "./form/update-profile.form";
 
 export function ProfileProducer() {
   const { session } = useSession();
   if (!session) return null;
   const navigate = useNavigate();
   return (
-    <div className="m-8">
+    <div className="mt-8">
       <header className="relative flex items-center">
         <Button
           size={"icon"}
@@ -31,7 +32,7 @@ export function ProfileProducer() {
         <CardContent className="space-y-4">
           <div className="flex items-center justify-center relative">
             <div className="flex items-center justify-center size-40  relative">
-              <Avatar className="size-34 ">
+              <Avatar className="size-34 mb-8 ">
                 <AvatarImage
                   className="object-cover"
                   src={session?.user.photo}
@@ -45,10 +46,8 @@ export function ProfileProducer() {
               </div>
             </div>
           </div>
-          <div>
-            em processo...
-            {/* <MyAccountFormComponent session={session} /> */}
-          </div>
+
+          <FormUpdateProfile session={session} />
         </CardContent>
       </Card>
     </div>

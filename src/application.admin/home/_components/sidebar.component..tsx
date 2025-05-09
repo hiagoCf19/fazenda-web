@@ -7,6 +7,7 @@ import {
   ShoppingBag,
   ShoppingCart,
   Truck,
+  User,
   UserRoundCheck,
 } from "lucide-react";
 
@@ -21,13 +22,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../../../shadcn/ui/sidebar";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Avatar, AvatarImage } from "../../../shadcn/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Button } from "../../../shadcn/ui/button";
 import { generateFallback } from "../../../helpers/create-fallback.helper";
 import { useSession } from "../../../application.client/context/session.context";
 import { logout } from "../../../service/auth.service";
+import { TooltipDemo } from "./tooltipDemo.component";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../../../shadcn/ui/dropdown-menu";
 
 // Menu items.
 const items = [
@@ -125,17 +136,32 @@ export function AppSidebar() {
             className=" rounded-full h-16 w-[95%] bg-background shadow-lg flex items-center justify-between
           "
           >
-            <div className=" p-2 gap-2 flex items-center">
-              <Avatar className="size-10">
-                <AvatarImage src={session.user.photo} />
-                <AvatarFallback className="flex items-center justify-center w-full bg-secondary text-secondary-foreground">
-                  {generateFallback(session.user)}
-                </AvatarFallback>
-              </Avatar>
-              <p className="text-secondary-foreground text-lg font-medium">
-                {session.user.first_name} {session.user.last_name}
-              </p>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="p-2 gap-2 flex items-center ">
+                <Avatar className="size-10">
+                  <AvatarImage src={session.user.photo} />
+                  <AvatarFallback className="flex items-center justify-center w-full bg-secondary text-secondary-foreground">
+                    {generateFallback(session.user)}
+                  </AvatarFallback>
+                </Avatar>
+                <p className="text-secondary-foreground text-lg font-medium">
+                  {session.user.first_name} {session.user.last_name}
+                </p>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[250px] ml-8">
+                <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link
+                    className="flex items-center gap-2 text-sm font-semibold text-zinc-700"
+                    to={"/admin/profile"}
+                  >
+                    <User /> Perfil
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button
               onClick={() => {
                 logout();
@@ -145,7 +171,14 @@ export function AppSidebar() {
               size={"icon"}
               className="mr-5 bg-transparent rounded-full hover:bg-transparent shadow-none"
             >
-              <LogOut className=" text-destructive round size-6" />
+              <TooltipDemo
+                hover="Sair"
+                button={
+                  <Button variant="outline">
+                    <LogOut className=" text-destructive round size-6" />
+                  </Button>
+                }
+              />
             </Button>
           </div>
         </SidebarFooter>

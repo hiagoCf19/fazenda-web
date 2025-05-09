@@ -10,18 +10,17 @@ import { Link } from "react-router";
 export function ProducerHeader() {
   const { session } = useSession();
   if (!session) return null;
-  console.log(session.user);
   return (
     <header className="m-8 md:mx-[200px]">
       <div className="flex justify-between items-center">
-        <Link to={"/"}>
+        <Link to={"/"} className="hidden md:block">
           <img
             src="/full_logo.svg"
             alt="Fazenda online"
             className="md:min-w-[166px] md:h-[48px] w-[166px]"
           />
         </Link>
-        <div className="flex gap-2 items-center md:hidden">
+        <div className="flex md:hidden gap-2 items-center">
           <Avatar className="size-12">
             <AvatarImage src={session?.user?.photo} alt="Avatar" />
             <AvatarFallback className="bg-secondary text-secondary-foreground">

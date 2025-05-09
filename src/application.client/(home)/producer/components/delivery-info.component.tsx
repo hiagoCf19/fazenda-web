@@ -14,8 +14,8 @@ const DeliveryInfo = ({ restaurant }: DeliveryInfoProps) => {
           <span className="text-xs">Entrega</span>
         </div>
         {Number(restaurant.deliveryFee) > 0 ? (
-          <p className="text-xs font-semibold">
-            {/*  {formatCurrency(Number(restaurant.deliveryFee))} */} 30 Min
+          <p className="text-xs font-semibold text-green-500">
+            {/*  {formatCurrency(Number(restaurant.deliveryFee))} */} Grátis
           </p>
         ) : (
           <p className="text-xs font-semibold"> Grátis</p>

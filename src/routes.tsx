@@ -19,7 +19,7 @@ import { Produtores } from "./application.admin/produtores/produtores.page";
 import { Clientes } from "./application.admin/clientes/clientes.page";
 import RegisterClientForm from "./application.client/auth/_components/register/individual-profile.form";
 import { RegisterBusinessProfile } from "./application.client/auth/_components/register/business-profile.form";
-import ProducerPage from "./application.client/(home)/producer/components/producer.page";
+import ProducerPage from "./application.client/(home)/producer/[id]/producer.page";
 import { SeeAllLayout } from "./application.client/(home)/see-all/(layout)/see-all.layout";
 import { SeeAllProducts } from "./application.client/(home)/see-all/see-all-products.page";
 import { mockProducts } from "./mock/mock";
@@ -28,6 +28,7 @@ import { ProfileProducer } from "./application.producer/profile/profile-producer
 import { RedirectByRole } from "./redirect";
 import { ProducerHomePage } from "./application.producer/(home)/home.page";
 import AdminLayout from "./application.admin/home/home.layout";
+import { ProducerOrdersPage } from "./application.producer/orders/orders.producer.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -179,5 +180,9 @@ export const router = createBrowserRouter([
   {
     path: "/producer/profile",
     element: <ProfileProducer />,
+  },
+  {
+    path: "/producer/orders",
+    element: <ProducerOrdersPage />,
   },
 ]);

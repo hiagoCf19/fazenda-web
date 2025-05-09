@@ -46,8 +46,8 @@ export function PendingApprovalComponent() {
             Beneficios ao Produtor
           </h4>
           {/* cp */}
-          <div className="flex justify-between gap-4 items-center">
-            <div className="space-y-6">
+          <div className="md:flex justify-between gap-4 items-center">
+            <div className="mb-4 space-y-4">
               {topics.slice(0, 2).map((topic) => (
                 <TopicList
                   key={topic.id}
