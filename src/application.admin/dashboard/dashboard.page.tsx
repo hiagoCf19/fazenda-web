@@ -9,7 +9,7 @@ export default function Dashboard() {
   const cards = [
     {
       title: "Ganhos do mês",
-      value: `$ 4.35`,
+      value: `Kz 4.35`,
       icon: DollarSign,
     },
     {

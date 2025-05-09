@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router";
 
-import AdminLayout from "./application.admin/home/home.layout";
 import { Login } from "./common/login/login.page";
-import { HomePage } from "./application.client/(home)/home.page";
+import { ClientHomePage } from "./application.client/(home)/home.page";
 import { AccessPageWeb } from "./application.client/auth/access.page";
 import { AuthLayout } from "./application.client/layout/auth.layout";
 import { RegisterClientPage } from "./application.client/auth/register.page";
@@ -20,16 +19,20 @@ import { Produtores } from "./application.admin/produtores/produtores.page";
 import { Clientes } from "./application.admin/clientes/clientes.page";
 import RegisterClientForm from "./application.client/auth/_components/register/individual-profile.form";
 import { RegisterBusinessProfile } from "./application.client/auth/_components/register/business-profile.form";
-import ProducerPage from "./application.client/(home)/producer/components/producer.page";
+import ProducerPage from "./application.client/(home)/producer/[id]/producer.page";
 import { SeeAllLayout } from "./application.client/(home)/see-all/(layout)/see-all.layout";
 import { SeeAllProducts } from "./application.client/(home)/see-all/see-all-products.page";
 import { mockProducts } from "./mock/mock";
 
-import { HomeProducer } from "./application.producer/home/home.page";
 import { ProfileProducer } from "./application.producer/profile/profile-producer.page";
+import { RedirectByRole } from "./redirect";
+import { ProducerHomePage } from "./application.producer/(home)/home.page";
+import AdminLayout from "./application.admin/home/home.layout";
+import { ProducerOrdersPage } from "./application.producer/orders/orders.producer.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
+
 export const router = createBrowserRouter([
   // ROTAS DE ADMIN
   {
@@ -78,10 +81,9 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // HOME
   {
     path: "/",
-    element: <HomePage />,
+    element: <RedirectByRole />, // ✅ não chama como função, apenas referência o componente
   },
 
   //ROTAS DE AUTH
@@ -114,6 +116,10 @@ export const router = createBrowserRouter([
   },
 
   //ROTAS DE CLIENT
+  {
+    path: "/client",
+    element: <ClientHomePage />,
+  },
   {
     path: "confirm-order",
     element: <ConfirmOrderPage />,
@@ -168,11 +174,15 @@ export const router = createBrowserRouter([
   // ROTAS DE PRODUCER
 
   {
-    path: "producer/home",
-    element: <HomeProducer />,
+    path: "producer",
+    element: <ProducerHomePage />,
   },
   {
     path: "/producer/profile",
     element: <ProfileProducer />,
+  },
+  {
+    path: "/producer/orders",
+    element: <ProducerOrdersPage />,
   },
 ]);

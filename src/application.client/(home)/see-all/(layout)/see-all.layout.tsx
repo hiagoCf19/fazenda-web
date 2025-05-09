@@ -2,6 +2,7 @@ import { Outlet } from "react-router";
 import { useSession } from "../../../context/session.context";
 import { UnauthenticatedHeader } from "../../../_components/unauthenticated-header.component";
 import { HeaderAuthenticaded } from "../../../_components/header-authenticated.component";
+import { Footer } from "../../_components/footer.component";
 
 export function SeeAllLayout() {
   const { session } = useSession();
@@ -18,9 +19,12 @@ export function SeeAllLayout() {
         } `}
       />
       <main className="flex-1 px-8 ">
-        <h1>Mais pedidos</h1>
+        <h1 className="mb-6 text-3xl text-secondary-foreground font-bold">
+          Mais pedidos
+        </h1>
         <Outlet /> {/* Renderiza as rotas filhas */}
       </main>
+      <Footer />
     </section>
   );
 }

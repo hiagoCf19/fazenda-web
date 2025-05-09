@@ -1,5 +1,5 @@
 import { StarIcon } from "lucide-react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { Footer } from "../../_components/footer.component";
 
 import { UnauthenticatedHeader } from "../../../_components/unauthenticated-header.component";
@@ -10,6 +10,11 @@ import DeliveryInfo from "../components/delivery-info.component";
 import { SeeAllProducts } from "../../see-all/see-all-products.page";
 import { mockProducts } from "../../../../mock/mock";
 import BottomNav from "../../../../common/_components/bottom-navigator-mobile.component";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../../shadcn/ui/avatar";
 
 // Array de produtores
 const produtores = [
@@ -32,7 +37,7 @@ const produtores = [
     deliveryTimeMinutes: 25,
     categories: [
       { id: "1", name: "fazenda" },
-      { id: "3", name: "orgânicos" },
+      { id: "3", name: "Vegetais" },
     ],
   },
   {
@@ -42,8 +47,9 @@ const produtores = [
     deliveryFee: "7.50",
     deliveryTimeMinutes: 35,
     categories: [
-      { id: "3", name: "orgânicos" },
-      { id: "4", name: "frescos" },
+      { id: "3", name: "Vegetais" },
+      { id: "4", name: "Frutas" },
+      { id: "5", name: "Peixes" },
     ],
   },
   {
@@ -91,8 +97,9 @@ const produtores = [
     deliveryFee: "7.50",
     deliveryTimeMinutes: 35,
     categories: [
-      { id: "3", name: "orgânicos" },
-      { id: "4", name: "frescos" },
+      { id: "3", name: "Vegetais" },
+      { id: "4", name: "Frutas" },
+      { id: "5", name: "Peixes" },
     ],
   },
 ];
@@ -124,46 +131,50 @@ export default function ProducerPage() {
       <div className="">
         <div className="sm:flex sm:px-20 mt-6 sm:mt-10 gap-12">
           <ProducerImage produtor={produtor} />
-          <div className="flex flex-col overflow-hidden sm:max-w-[35%] pt-5 z-50 relative p-5 rounded-t-xl">
+          <div className="flex flex-col overflow-hidden sm:max-w-[35%] pt-5 relative p-5 rounded-t-xl">
             <div className="flex justify-between items-center ">
               {/* titulo */}
               <div className="flex items-center gap-[0.375rem] sm:justify-between">
-                <div className="relative h-8 w-8">
-                  <img //imagem que vem antes do titulo
-                    src={produtor.imageUrl}
-                    alt={produtor.name}
-                    className="rounded-full  "
-                  />
-                </div>
+                <Avatar className="size-10">
+                  <AvatarFallback className="bg-secondary text-secondary-foreground ">
+                    CN
+                  </AvatarFallback>
+                  <AvatarImage src={session?.user.phone} />
+                </Avatar>
                 <h1 className="text-xl font-semibold text-secondary-foreground">
                   {produtor.name}
                 </h1>
               </div>
-              <div className=" gap-[3px]  bg-foreground text-zinc-50 px-2 py-1 rounded-full flex items-center ">
+              <div className=" gap-[3px]  text-zinc-50 px-2 py-1 rounded-full flex items-center ">
                 <StarIcon
                   size={12}
                   className="fill-yellow-500 text-yellow-500"
                 />
-                <span className="font-semibold text-xs">5.0</span>
+                <span className="font-semibold text-zinc-800 text-xs">5.0</span>
               </div>
             </div>
             {/* TEMPO E CUSTO DE ENTREGA */}
             <DeliveryInfo restaurant={produtor} />
             {/* tags */}
+            <h3 className="mt-5 text-xl font-semibold text-zinc-700">
+              Produtos que oferta
+            </h3>
             <div className="flex gap-4 overflow-x-scroll [&::-webkit-scrollbar]:hidden sm:h-min  mt-3">
               {produtor.categories.map((category) => (
                 <div
                   key={category.id}
-                  className="bg-[#f4f4f4] min-w-[127px] p-1 rounded-sm text-center"
+                  className="bg-[#E1F3E4] min-w-[127px] p-1 rounded-sm text-center"
                 >
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-sm text-muted-foreground">
                     {category.name}
                   </span>
                 </div>
               ))}
             </div>
             <div className="py-5">
-              <h1 className="text-lg font-medium">Sobre {produtor.name}</h1>
+              <h1 className="text-lg font-medium text-zinc-800">
+                Sobre {produtor.name}
+              </h1>
               <span className="text-sm text-muted-foreground text-justify ">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
                 autem maxime nemo deleniti laborum dolorum rem saepe doloribus
@@ -171,10 +182,27 @@ export default function ProducerPage() {
                 pariatur repudiandae?
               </span>
             </div>
+            <div className="">
+              <h1 className="text-lg font-medium text-zinc-800">Endereço</h1>
+              <span className="text-sm text-muted-foreground text-justify ">
+                Talatona, Via c3, zona INST4 no Loteamento <br /> Palncas negras
+                35
+              </span>
+            </div>
           </div>
         </div>
         <div className="p-12">
-          <h1 className="text-zinc-800 text-3xl font-medium"></h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-zinc-800 text-3xl font-medium py-6">
+              Produtos
+            </h1>
+            <Link
+              to={`/see-all/products/producer/1`}
+              className="text-[#FE7000]"
+            >
+              Ver todos
+            </Link>
+          </div>
           <SeeAllProducts products={mockProducts} />
         </div>
 
