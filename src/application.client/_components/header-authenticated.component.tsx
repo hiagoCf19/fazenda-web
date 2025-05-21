@@ -23,7 +23,7 @@ import { useState } from "react";
 import { logout } from "../../service/auth.service";
 
 import { generateFallback } from "../../helpers/create-fallback.helper";
-import { useUserAddress } from "../../hooks/use-user.hook";
+import { useUserAddress } from "../../hooks/user.hook";
 import { Skeleton } from "../../shadcn/ui/skeleton";
 import { toast } from "sonner";
 import { Session } from "../../../types/session.type";

@@ -22,8 +22,6 @@ function AuthLayoutContent() {
           onClick={() => {
             if (currentStep !== 0) {
               setCurrentStep(currentStep - 1);
-            } else if (!path.endsWith("client")) {
-              navigate("client");
             } else {
               navigate("/landing-access");
             }
@@ -34,7 +32,7 @@ function AuthLayoutContent() {
         </Button>
 
         <h1 className="text-2xl text-secondary-foreground  text-center  absolute inset-x-0 z-0">
-          Cadastro Cliente
+          Cadastro {path.endsWith("producer") ? "Produtor" : "Cliente"}
         </h1>
       </header>
 

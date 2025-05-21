@@ -6,7 +6,7 @@ import { useSession } from "../context/session.context";
 import { Button } from "../../shadcn/ui/button";
 import { useState } from "react";
 import { Dialog, DialogContent } from "../../shadcn/ui/dialog";
-import { AdicionarCartaoForm } from "./_components/payment-methods.form.component";
+import { AdicionarCartaoForm } from "./_components/payment-methods.form";
 import { toast } from "sonner";
 import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
 

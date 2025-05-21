@@ -10,7 +10,7 @@ import { InputFormComponent } from "../../../common/_components/input-form.compo
 import {
   updateProfilePRODUCER,
   updateProfilePRODUCERType,
-} from "../../zod/update-profile.schema";
+} from "../../../zod/producer/update-profile.schema";
 
 interface FormUpdateProfileProps {
   session: Session;
