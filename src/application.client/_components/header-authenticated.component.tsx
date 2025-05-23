@@ -1,4 +1,5 @@
 import {
+  Bell,
   ChevronDown,
   LogOut,
   MapIcon,
@@ -80,11 +81,18 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       navigate: "/security",
       icon: ShieldCheck,
     },
+
     {
       title: "Ajude",
       description: "Entre em contato para dúvidas e suporte",
       navigate: "/help",
       icon: TriangleAlert,
+    },
+    {
+      title: "Notificações",
+      description: "Veja suas últimas notificações",
+      navigate: "/notification",
+      icon: Bell,
     },
   ];
   isError && toast.error("Erro ao carregar endereço");

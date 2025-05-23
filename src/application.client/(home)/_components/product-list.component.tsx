@@ -34,10 +34,7 @@ export function ProductList({ products, title, seeAllPath }: ProductListProps) {
       </div>
       <div className="relative group -mr-12  ">
         <Carousel className="[&::-webkit-scrollbar]">
-          <CarouselPrevious
-            hidden={!showPrevius}
-            className="absolute z-40 left-4"
-          />
+          <CarouselPrevious className="absolute z-40 left-4  " />
           <CarouselContent className="mr-12">
             {products.slice(0, 10).map((product, i) => (
               <CarouselItem className="basis-auto ml-4   " key={i}>
