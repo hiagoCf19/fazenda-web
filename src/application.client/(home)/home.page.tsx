@@ -226,11 +226,25 @@ export const ClientHomePage = () => {
       priceT: "Kz 90.000/T",
     },
     {
-      id: "3",
+      id: "7",
       name: "Bacalhau",
       image: "/mock/bacalhau.png",
       priceKg: "Kz 180/Kg",
       priceT: "Kz 140.000/T",
+    },
+    {
+      id: "8",
+      name: "Melancia",
+      image: "/mock/melancia.png",
+      priceKg: "Kz 500/Kg",
+      priceT: "Kz 300.000/T",
+    },
+    {
+      id: "9",
+      name: "Melancia",
+      image: "/mock/melancia.png",
+      priceKg: "Kz 500/Kg",
+      priceT: "Kz 300.000/T",
     },
   ];
   const producers: Producer[] = [

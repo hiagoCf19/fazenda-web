@@ -3,7 +3,7 @@ import { useSession } from "../../context/session.context";
 import { Button } from "../../../shadcn/ui/button";
 import { DeliveryOptionList } from "./delivery-option-list.component";
 import { DeliveryOptions } from "../../../../types/delivery-options";
-import { useUserAddress } from "../../../hooks/use-user.hook";
+import { useUserAddress } from "../../../hooks/user.hook";
 
 interface DeliveryOptionsComponentProps {
   selectedDeliveryOption: DeliveryOptions | null;

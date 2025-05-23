@@ -2,33 +2,35 @@ import { createBrowserRouter } from "react-router";
 
 import { Login } from "./common/login/login.page";
 import { ClientHomePage } from "./application.client/(home)/home.page";
-import { AccessPageWeb } from "./application.client/auth/access.page";
+import { AccessPageWeb } from "./common/login/landing-access.page";
 import { AuthLayout } from "./application.client/layout/auth.layout";
-import { RegisterClientPage } from "./application.client/auth/register.page";
 import { ConfirmOrderPage } from "./application.client/confirm-order/confirm-order.page";
 import { MyOrders } from "./application.client/my-orders/my-orders.page";
 import NotFound from "./common/not-found.page";
 import { PaymentMethodsPage } from "./application.client/payment-methods/payment-methods.page";
 import { AddressPage } from "./application.client/adress/address.page";
 import { SecurityPage } from "./application.client/security/security.page";
-import { MyAccountPage } from "./application.client/profile-client/profile-client.page";
+import { MyAccountPage } from "./application.client/profile-client/my-account.page";
 import { SearchPage } from "./application.client/search/search.page";
 import Dashboard from "./application.admin/dashboard/dashboard.page";
 import { Pedidos } from "./application.admin/pedidos/pedidos.page";
 import { Produtores } from "./application.admin/produtores/produtores.page";
 import { Clientes } from "./application.admin/clientes/clientes.page";
-import RegisterClientForm from "./application.client/auth/_components/register/individual-profile.form";
-import { RegisterBusinessProfile } from "./application.client/auth/_components/register/business-profile.form";
+import RegisterIndividualProfileForm from "./application.client/register/register-individual-profile.form";
+import { RegisterBusinessProfileForm } from "./application.client/register/register-business-profile.form";
 import ProducerPage from "./application.client/(home)/producer/[id]/producer.page";
 import { SeeAllLayout } from "./application.client/(home)/see-all/(layout)/see-all.layout";
 import { SeeAllProducts } from "./application.client/(home)/see-all/see-all-products.page";
 import { mockProducts } from "./mock/mock";
 
-import { ProfileProducer } from "./application.producer/profile/profile-producer.page";
+import { ProfileProducer } from "./application.producer/profile/producer-profile.page";
 import { RedirectByRole } from "./redirect";
 import { ProducerHomePage } from "./application.producer/(home)/home.page";
 import AdminLayout from "./application.admin/home/home.layout";
 import { ProducerOrdersPage } from "./application.producer/orders/orders.producer.page";
+import { ChooseClientType } from "./application.client/register/choose-client-type.page";
+import RegisterProducerProfileForm from "./application.producer/register/register-producer.form";
+import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -101,16 +103,23 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "client",
-        element: <RegisterClientPage />,
-        index: true, // opcional, se quiser que /register/client sem nada caia aqui
+        element: <ChooseClientType />,
       },
       {
         path: "client/business",
-        element: <RegisterBusinessProfile />,
+        element: <RegisterBusinessProfileForm />,
       },
       {
         path: "client/individual",
-        element: <RegisterClientForm />,
+        element: <RegisterIndividualProfileForm />,
+      },
+      {
+        path: "producer",
+        element: <RegisterProducerProfileForm />, // futuro
+      },
+      {
+        path: "producer/documents/:userId",
+        element: <UploadDocumentsPage />,
       },
     ],
   },

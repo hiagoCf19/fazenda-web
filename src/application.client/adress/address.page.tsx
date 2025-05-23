@@ -16,12 +16,12 @@ import {
   DialogContent,
   DialogDescription,
 } from "../../shadcn/ui/dialog";
-import { AdicionarEnderecoForm } from "./_components/form-address.component";
+import { AddAddressForm } from "./_components/add-address.form";
 import {
   useCreateUserAddress,
   useDeleteUserAddress,
   useUserAddress,
-} from "../../hooks/use-user.hook";
+} from "../../hooks/user.hook";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
 import {
@@ -148,7 +148,7 @@ export function AddressPage() {
         <DialogContent className="p-0 bg-transparent border-none shadow-none max-w-md">
           <DialogTitle />
           <DialogDescription />
-          <AdicionarEnderecoForm
+          <AddAddressForm
             onSubmit={handeSubmitAddress}
             onCancel={() => setFormAberto(false)}
           />
