@@ -6,13 +6,27 @@ import {
   NameSchema,
   NifSchema,
 } from "../../../zod/client/register-client.schema";
+import {
+  ProducerBusinessInfoSchema,
+  ProducerDocumentsSchema,
+} from "../../../zod/producer/create-producer.schema";
 
 export interface InputFormComponenteProps {
   register: UseFormRegister<
-    NifSchema | NameSchema | CompanySchema | EmailPhoneSchema
+    | NifSchema
+    | NameSchema
+    | CompanySchema
+    | EmailPhoneSchema
+    | ProducerBusinessInfoSchema
+    | ProducerDocumentsSchema
   >;
   errors: FieldErrors<
-    NifSchema | NameSchema | CompanySchema | EmailPhoneSchema
+    | NifSchema
+    | NameSchema
+    | CompanySchema
+    | EmailPhoneSchema
+    | ProducerBusinessInfoSchema
+    | ProducerDocumentsSchema
   >;
   label: string;
   name: string; // Adicionando esta propriedade para tornar dinâmico

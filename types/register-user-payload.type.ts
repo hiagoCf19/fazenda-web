@@ -5,7 +5,7 @@ export type RegisterPayload = {
   password: string;
   phone: string;
   nif: string;
-  profile_type: ProfileTypeEnum;
+  profile_type?: ProfileTypeEnum;
   first_name?: string;
   last_name?: string;
   photo?: string;

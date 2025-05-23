@@ -1,29 +1,37 @@
 import { useNavigate } from "react-router";
-import { useRegisterUser } from "../../hooks/auth.hook";
 import { useStep } from "../../application.client/context/form-steps-register.context";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ProfileTypeEnum } from "../../application.client/register/choose-client-type.page";
 import { StepNif } from "../../application.client/register/_components/step-0.component";
 import { EmailAndPhoneStep } from "../../application.client/register/_components/step-1.component";
 import { CodigoStep } from "../../application.client/register/_components/step-2.component";
 import { PasswordStep } from "../../application.client/register/_components/step-3.component";
-import { NameAndPhotoStep } from "../../application.client/register/_components/step-4.component";
+
 import { formatError } from "../../helpers/format-error.helper";
 import { Button } from "../../shadcn/ui/button";
 import { Loader } from "lucide-react";
 import {
   codeSchema,
   emailPhoneSchema,
-  nameSchema,
   nifSchema,
   passwordSchema,
 } from "../../zod/client/register-client.schema";
+import { ProducerBusinessInfoStep } from "../../common/_components/register/step-4.producer.component";
+import { producerBusinessInfoSchema } from "../../zod/producer/create-producer.schema";
+import { useRegisterProducer } from "../../hooks/producer.hook";
+import { useSession } from "../../application.client/context/session.context";
 
 const RegisterProducerProfileForm = () => {
   const navigate = useNavigate();
-  const { mutate: registerUserMutation, error, isPending } = useRegisterUser();
+  const { setSession } = useSession();
+
+  const {
+    mutate: registerProducerMutation,
+    error,
+    isPending,
+  } = useRegisterProducer();
+
   const { currentStep, setCurrentStep } = useStep();
   const [valueCode, setValueCode] = useState("");
   const [invalidCode, setInvalidCode] = useState(false);
@@ -32,7 +40,7 @@ const RegisterProducerProfileForm = () => {
     emailPhoneSchema,
     codeSchema,
     passwordSchema,
-    nameSchema,
+    producerBusinessInfoSchema,
   ];
 
   const [formData, setFormData] = useState<any>({
@@ -68,24 +76,24 @@ const RegisterProducerProfileForm = () => {
     // Verifica se é o último passo
     const isLastStep = currentStep === stepSchemas.length - 1;
     if (isLastStep) {
-      console.log("Dados do formulário:", updatedFormData);
+      //comentado para teste
       const registerData = {
         email: updatedFormData.step1.email,
         password: updatedFormData.step3.password,
         phone: updatedFormData.step1.phone,
         nif: updatedFormData.step0.nif,
-        profile_type: ProfileTypeEnum.INDIVIDUAL,
-        first_name: updatedFormData.step4.firstName,
-        last_name: updatedFormData.step4.lastName,
+        company_name: updatedFormData.step4.businessName,
+        responsible_name: updatedFormData.step4.personResponsible,
+        contact_phone: updatedFormData.step4.contactPhone,
         photo: "",
       };
 
-      registerUserMutation(registerData, {
-        onSuccess: ({ user_id }) => {
-          console.log("Usuário registrado com sucesso:", user_id);
-          navigate(
-            location.pathname.includes("admin") ? "/admin/login" : "/login"
-          );
+      registerProducerMutation(registerData, {
+        onSuccess: ({ access_token, user }) => {
+          localStorage.setItem("access_token", access_token);
+          localStorage.setItem("user", JSON.stringify(user));
+          setSession({ access_token, user });
+          navigate(`/register/producer/documents/${user.id}`);
         },
         onError: (error: any) => {
           console.error(error);
@@ -132,8 +140,10 @@ const RegisterProducerProfileForm = () => {
           <PasswordStep register={register} errors={errors} />
         )}
         {currentStep === 4 && (
-          <NameAndPhotoStep register={register} errors={errors} />
+          <ProducerBusinessInfoStep register={register} errors={errors} />
         )}
+
+        {/* Exibe mensagens de erro */}
         {error && (
           <p className="text-center py-2 text-red-500">{formatError(error)}</p>
         )}
@@ -145,7 +155,7 @@ const RegisterProducerProfileForm = () => {
               type="submit"
               className="bg-secondary rounded-3xl h-[48px] text-secondary-foreground w-full"
             >
-              {currentStep === 4 ? "Finalizar" : "Próximo"}
+              {currentStep === 5 ? "Finalizar" : "Próximo"}
             </Button>
           )}
         </div>

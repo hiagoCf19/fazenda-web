@@ -30,6 +30,7 @@ import AdminLayout from "./application.admin/home/home.layout";
 import { ProducerOrdersPage } from "./application.producer/orders/orders.producer.page";
 import { ChooseClientType } from "./application.client/register/choose-client-type.page";
 import RegisterProducerProfileForm from "./application.producer/register/register-producer.form";
+import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -115,6 +116,10 @@ export const router = createBrowserRouter([
       {
         path: "producer",
         element: <RegisterProducerProfileForm />, // futuro
+      },
+      {
+        path: "producer/documents/:userId",
+        element: <UploadDocumentsPage />,
       },
     ],
   },
