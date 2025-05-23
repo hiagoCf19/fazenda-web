@@ -33,10 +33,7 @@ export function ProducersList({ producers, title }: ProducersProps) {
       </div>
       <div className=" relative group -mr-12 ">
         <Carousel className="[&::-webkit-scrollbar]">
-          <CarouselPrevious
-            hidden={!showPrevius}
-            className="absolute z-40 left-4"
-          />
+          <CarouselPrevious className="absolute z-40 left-4" />
           <CarouselContent className=" mr-12">
             {producers.map((producer, i) => (
               <CarouselItem className="basis-auto ml-4" key={i}>
