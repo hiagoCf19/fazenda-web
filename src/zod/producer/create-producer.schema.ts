@@ -1,11 +1,4 @@
 import { z } from "zod";
-const MAX_FILE_SIZE = 8000000;
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
 
 export const producerBusinessInfoSchema = z.object({
   businessName: z.string().min(3, "Insira um nome válido"),
