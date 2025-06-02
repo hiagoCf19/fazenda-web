@@ -1,5 +1,5 @@
 import { Order } from "../../../../types/order.type";
-import { MyOrdersCard } from "./my-orders-card.component";
+import { OrderCard } from "../../../common/_components/card.order.component";
 
 interface MyOrdersListProps {
   list: Order[];
@@ -10,7 +10,7 @@ export function MyOrdersList({ list, setSelectedOrder }: MyOrdersListProps) {
     <div className="flex flex-wrap gap-4">
       {list.map((order) => (
         <div key={order.id} className="basis-full sm:basis-[32%]">
-          <MyOrdersCard order={order} setSelectedOrder={setSelectedOrder} />
+          <OrderCard order={order} setSelectedOrder={setSelectedOrder} />
         </div>
       ))}
     </div>

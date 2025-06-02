@@ -9,35 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "../../../shadcn/ui/table";
+import { producers } from "../../../mock-info";
 
 export const AguardandoAprovacao = () => {
-  const producers = [
-    {
-      empresa: "Organic Farm",
-      responsavel: "João Mbumba",
-      telefone: "+ 244 923 457 789",
-      email: "organicfarm@mail.com",
-    },
-    {
-      empresa: "#Fazenda Esperança",
-      responsavel: "Rodrigo Silva",
-      telefone: "+ 244 923 457 789",
-      email: "esperanca.fazenda@mail.com",
-    },
-    {
-      empresa: "Chicken Farm",
-      responsavel: "Angela Gomes",
-      telefone: "+ 244 923 457 789",
-      email: "chickenfarm@mail.com",
-    },
-    {
-      empresa: "Fazenda luz",
-      responsavel: "Luiz Renato",
-      telefone: "+ 244 923 457 789",
-      email: "fazenda_luz@mail.com",
-    },
-  ];
-
   return (
     <Table>
       <TableCaption className="text-end space-x-2">

@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <>
-      <footer className="bg-[#E4EAE7] -m-12 p-12 mt-12">
+      <footer className="bg-[#E9F4E9] -m-12 p-12 mt-12">
         <div className="flex items-center justify-center flex-col gap-8">
           <img src="/full_logo.svg" />
           <div className="flex flex-col gap-2 text-center text-zinc-600">

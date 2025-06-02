@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "../../shadcn/ui/dropdown-menu";
 import { logout } from "../../service/auth.service";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import { useSession } from "../../application.client/context/session.context";
 
@@ -39,7 +39,9 @@ export function DropdownMenuDemo() {
             <p className=" text-zinc-800 font-semibold">
               {session?.user.company_name}
             </p>
-            <span className="text-zinc-500">{session?.user.email}</span>
+            <Link to="/" className="text-orange">
+              Editar perfil
+            </Link>
           </div>
         </div>
       </DropdownMenuTrigger>

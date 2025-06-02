@@ -1,5 +1,5 @@
-import { MobileNavigator } from "../../_components/navigator.component";
-import { ProducerHeader } from "../../_components/producer-header.component";
+import { MobileNavigator } from "../../_components/navigator.producer.component";
+import { HeaderProducer } from "../../_components/header.producer.component";
 import { PendingApprovalBanner } from "./_components/banner.component";
 import { TopicList } from "./_components/topic-list.component";
 
@@ -29,7 +29,7 @@ export function PendingApprovalComponent() {
 
   return (
     <section>
-      <ProducerHeader />
+      <HeaderProducer />
 
       <main className="space-y-4 md:mx-[200px] md:mt-10">
         <div className="md:flex items-center gap-4 hidden ">
