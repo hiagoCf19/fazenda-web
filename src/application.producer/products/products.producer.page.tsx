@@ -13,18 +13,22 @@ import { Button } from "../../shadcn/ui/button";
 import { useState } from "react";
 import { OrderList } from "../../application.client/(home)/_components/cart-sheet/order-cart-list.component";
 import { products } from "../../mock-info";
+import { MobileNavigator } from "../_components/navigator.producer.component";
 
 const MenuProducerPage = () => {
   const [open, setOpen] = useState(false);
   return (
     <section className="overflow-x-hidden h-screen">
       <HeaderProducer />
-      <div className="md:mx-12">
+      <div className="md:px-0 z-50 top-0 w-full bg-zinc-50 md:bg-[#E9F4E9] py-3 md:mb-8">
+        <MobileNavigator />
+      </div>
+      <div className="px-4 sm:px-6 md:mx-12">
         <h3 className="text-2xl font-bold text-zinc-700 my-4">
           Adicione produtos ao cardárpio
         </h3>
         <Sheet open={open} onOpenChange={setOpen}>
-          <div className="grid grid-cols-8 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-8">
             {products.map((product) => (
               <div className="flex flex-col">
                 <Button

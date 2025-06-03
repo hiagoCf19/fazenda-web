@@ -16,13 +16,13 @@ import {
   ChartTooltipContent,
 } from "../../../../shadcn/ui/chart";
 const chartData = [
-  { day: "Segunda", pedidos: 0 },
-  { day: "Terça", pedidos: 0 },
-  { day: "Quarta", pedidos: 0 },
-  { day: "Quinta", pedidos: 0 },
-  { day: "Sexta", pedidos: 0 },
-  { day: "Sábado", pedidos: 0 },
-  { day: "Domingo", pedidos: 0 },
+  { day: "Segunda", pedidos: 1 },
+  { day: "Terça", pedidos: 2 },
+  { day: "Quarta", pedidos: 8 },
+  { day: "Quinta", pedidos: 3 },
+  { day: "Sexta", pedidos: 4 },
+  { day: "Sábado", pedidos: 10 },
+  { day: "Domingo", pedidos: 7 },
 ];
 
 const chartConfig = {

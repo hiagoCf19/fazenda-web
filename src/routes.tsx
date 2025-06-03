@@ -32,6 +32,7 @@ import { ChooseClientType } from "./application.client/register/choose-client-ty
 import RegisterProducerProfileForm from "./application.producer/register/register-producer.form";
 import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
 import MenuProducerPage from "./application.producer/products/products.producer.page";
+import BusinessPage from "./application.producer/business/business.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -198,5 +199,9 @@ export const router = createBrowserRouter([
   {
     path: "producer/menu",
     element: <MenuProducerPage />,
+  },
+  {
+    path: "producer/business",
+    element: <BusinessPage />,
   },
 ]);

@@ -24,14 +24,24 @@ export function MobileNavigator() {
         <ReceiptText size={20} />
         <span className="text-xs mt-1">Pedidos</span>
       </Link>
-      <div className="flex flex-col items-center justify-center text-zinc-800  w-16 h-16 rounded-full">
+      <Link
+        to="/producer/menu"
+        className={`flex flex-col items-center justify-center text-zinc-800 w-16 h-16 rounded-full ${
+          path.includes("menu") && "bg-secondary/50"
+        }`}
+      >
         <ClipboardList size={20} />
         <span className="text-xs mt-1">Cardápio</span>
-      </div>
-      <div className="flex flex-col items-center justify-center text-zinc-800  w-16 h-16 rounded-full">
+      </Link>
+      <Link
+        to="/producer/company"
+        className={`flex flex-col items-center justify-center text-zinc-800 w-16 h-16 rounded-full ${
+          path.includes("company") && "bg-secondary/50"
+        }`}
+      >
         <BarChart3 size={20} />
         <span className="text-xs mt-1">Empresa</span>
-      </div>
+      </Link>
     </div>
   );
 }

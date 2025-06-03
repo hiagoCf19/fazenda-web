@@ -20,7 +20,7 @@ export function HeaderProducer() {
   const path = window.location.pathname;
   return (
     <>
-      <header className="m-4 md:m-0 z-50 fixed w-full   md:bg-[#E9F4E9] py-3 md:mb-8">
+      <header className=" m-4 md:m-0 z-50 top-0 w-full bg-zinc-50 md:bg-[#E9F4E9] py-3 md:mb-8">
         <div className="flex justify-between items-center md:mx-[40px]">
           {/* logo */}
           <Link to={"/"} className="hidden md:block">
@@ -67,7 +67,7 @@ export function HeaderProducer() {
               </li>
             </ul>
           </nav>
-          <div className=" md:min-w-[20%] flex justify-between md:w-auto w-full">
+          <div className=" md:min-w-[20%] flex justify-between md:justify-between w-full md:w-auto pr-6 gap-2">
             {/* avatar */}
             <div className="flex md:hidden gap-2 items-center">
               <Avatar className="size-12">

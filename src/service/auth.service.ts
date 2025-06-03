@@ -9,7 +9,7 @@ type Credentials = {
 //MOCK
 
 const clientSession = {
-  user: {
+  /*  user: {
     id: 6,
     email: "fazenda@gmail.com",
     phone: "+244 912 345 678",
@@ -23,6 +23,22 @@ const clientSession = {
     twoFactorEnabled: false,
     first_name: "Fazenda",
     last_name: "Client",
+  }, */
+  user: {
+    id: 2,
+    email: "producer@gmail.com",
+    phone: "+244 912 345 678",
+    nif: "264855782",
+    role: "COMMON",
+    profile_type: "producer",
+    photo: "string",
+    created_at: "2025-04-10T19:52:04.000Z",
+    isActive: true,
+    twoFactorEnabled: false,
+    company_name: "Organic Farm",
+    responsible_name: "Organic Farm",
+    contact_phone: "+244 912 345 678",
+    is_approved: true,
   },
   access_token: "eyJhbGciOiJIUzI...",
 };
