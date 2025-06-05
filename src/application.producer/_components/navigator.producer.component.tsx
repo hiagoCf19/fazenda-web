@@ -5,7 +5,7 @@ export function MobileNavigator() {
   const path = window.location.pathname;
 
   return (
-    <div className="md:hidden fixed bottom-0 w-full bg-white z-10 border-t flex justify-around py-2">
+    <div className="md:hidden  fixed bottom-0 w-full  bg-[#E9F4E9] z-50 border-t flex justify-around py-2">
       <Link
         to={"/producer"}
         className={`flex flex-col items-center justify-center text-zinc-800  w-16 h-16 rounded-full ${
@@ -34,7 +34,7 @@ export function MobileNavigator() {
         <span className="text-xs mt-1">Cardápio</span>
       </Link>
       <Link
-        to="/producer/company"
+        to="/producer/business"
         className={`flex flex-col items-center justify-center text-zinc-800 w-16 h-16 rounded-full ${
           path.includes("company") && "bg-secondary/50"
         }`}

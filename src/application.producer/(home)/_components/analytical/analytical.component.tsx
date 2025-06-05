@@ -1,4 +1,4 @@
-import AnalyticalCard from "./card.analytical.component";
+/* import AnalyticalCard from "./card.analytical.component";
 import { AnalyticalChart } from "./chart.orders.analytical.component";
 
 const AnalyticalOrder = () => {
@@ -35,22 +35,33 @@ const AnalyticalOrder = () => {
     { month: "August", valor: 48 },
     { month: "September", valor: 35 },
   ];
+ */
+import { useAnalyticalData } from "../../../../hooks/use.analytical.data";
+import AnalyticalCard from "./card.analytical.component";
+import { AnalyticalChart } from "./chart.orders.analytical.component";
 
-  return (
-    <div>
-      <h3 className="text-zinc-600 font-semibold text-2xl my-4">Analítico</h3>
-      <div className="flex flex-col-reverse md:flex-row gap-12 ">
-        <div className="flex-1 ">
-          <AnalyticalChart />
-        </div>
-        <div className="flex md:flex-col gap-8 md:w-[30%] [&::-webkit-scrollbar]:hidden w-full overflow-x-scroll ">
-          <AnalyticalCard chartData={totalSales} />
-          <AnalyticalCard chartData={invoicing} />
-          <AnalyticalCard chartData={profile_visits} />
+  const AnalyticalOrder = () => {
+    const { data, isLoading, error } = useAnalyticalData();
+
+    if (isLoading) return <p>Carregando dados analíticos...</p>;
+    if (error) return <p>Erro ao carregar dados.</p>;
+    if (isLoading || !data) return <p>Carregando...</p>;
+
+    return (
+      <div>
+        <h3 className="text-zinc-600 font-semibold text-2xl my-4">Analítico</h3>
+        <div className="flex flex-col-reverse md:flex-row gap-12 ">
+          <div className="flex-1 ">
+            <AnalyticalChart />
+          </div>
+          <div className="flex md:flex-col gap-8 md:w-[30%] [&::-webkit-scrollbar]:hidden w-full overflow-x-scroll ">
+            <AnalyticalCard chartData={data.totalSales} />
+            <AnalyticalCard chartData={data.invoicing} />
+            <AnalyticalCard chartData={data.profile_visits} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default AnalyticalOrder;
+  export default AnalyticalOrder;

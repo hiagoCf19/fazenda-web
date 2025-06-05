@@ -1,7 +1,6 @@
 "use client";
 
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -15,15 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../../../shadcn/ui/chart";
-const chartData = [
-  { day: "Segunda", pedidos: 1 },
-  { day: "Terça", pedidos: 2 },
-  { day: "Quarta", pedidos: 8 },
-  { day: "Quinta", pedidos: 3 },
-  { day: "Sexta", pedidos: 4 },
-  { day: "Sábado", pedidos: 10 },
-  { day: "Domingo", pedidos: 7 },
-];
+import { useChartOrders } from "../../../../hooks/use.chart.orders";
 
 const chartConfig = {
   desktop: {
@@ -33,21 +24,24 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function AnalyticalChart() {
+  const { data, isLoading, error } = useChartOrders();
+
+  const totalPedidos = 10;
+
   return (
     <Card>
       <CardHeader>
         <CardDescription>Pedidos</CardDescription>
-        <CardTitle>0</CardTitle>
+        <CardTitle>
+          {isLoading ? "Carregando..." : error ? "Erro" : totalPedidos}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
+            data={data ?? []}
+            margin={{ left: 12, right: 12 }}
           >
             <CartesianGrid vertical={false} />
             <XAxis

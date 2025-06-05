@@ -11,7 +11,7 @@ import {
 } from "../../../shadcn/ui/table";
 import { producers } from "../../../mock-info";
 
-export const AguardandoAprovacao = () => {
+export const AwaitingApproval = () => {
   return (
     <Table>
       <TableCaption className="text-end space-x-2">

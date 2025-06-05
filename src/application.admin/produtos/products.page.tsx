@@ -2,7 +2,7 @@ import { Plus, Search } from "lucide-react";
 import { Button } from "../../shadcn/ui/button";
 import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
 import { useState } from "react";
-import { Categorias } from "./_components/categorias.component";
+import { Categories } from "./_components/categories.component";
 import { Itens } from "./_components/itens.component";
 import { CardOptions } from "../(commons)/card-options";
 
@@ -15,12 +15,12 @@ export const ProductPage = () => {
   function renderContent() {
     switch (selectedValue) {
       case ProdutosTelas.CATEGORIAS:
-        return <Categorias />;
+        return <Categories />;
       case ProdutosTelas.ITENS:
         return <Itens />;
 
       default:
-        return <Categorias />;
+        return <Categories />;
     }
   }
   return (

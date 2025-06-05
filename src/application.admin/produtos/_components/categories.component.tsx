@@ -1,3 +1,4 @@
+// components/categorias/categorias.component.tsx
 import { FileEdit } from "lucide-react";
 import { Button } from "../../../shadcn/ui/button";
 import {
@@ -9,69 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "../../../shadcn/ui/table";
-enum Status {
-  ATIVO = "Ativo",
-  INATIVO = "Inativo",
-}
-export const Categorias = () => {
-  const categories = [
-    {
-      titulo: "Vegetais",
-      quantidade: 24,
-      created_at: "10/09/2024",
-      status: "Ativo",
-    },
-    {
-      titulo: "Frutas",
-      quantidade: 22,
-      created_at: "10/09/2024",
-      status: "Ativo",
-    },
-    {
-      titulo: "Carnes",
-      quantidade: 14,
-      created_at: "10/09/2024",
-      status: "Ativo",
-    },
-    {
-      titulo: "Peixes",
-      quantidade: 6,
-      created_at: "10/09/2024",
-      status: "Inativo",
-    },
-    {
-      titulo: "Grãos",
-      quantidade: 12,
-      created_at: "10/09/2024",
-      status: "Ativo",
-    },
+import { CategorieStatus } from "../../../service/categories-products.service";
+import { useCategories } from "../../../hooks/use.categories-products";
 
-    {
-      titulo: "Peixes",
-      quantidade: 6,
-      created_at: "10/09/2024",
-      status: "Inativo",
-    },
-    {
-      titulo: "Peixes",
-      quantidade: 6,
-      created_at: "10/09/2024",
-      status: "Inativo",
-    },
+export const Categories = () => {
+  const { data: categories = [] } = useCategories();
 
-    {
-      titulo: "Peixes",
-      quantidade: 6,
-      created_at: "10/09/2024",
-      status: "Inativo",
-    },
-    {
-      titulo: "Peixes",
-      quantidade: 6,
-      created_at: "10/09/2024",
-      status: "Inativo",
-    },
-  ];
   return (
     <Table>
       <TableCaption className="text-end space-x-2">
@@ -96,12 +40,11 @@ export const Categorias = () => {
             <TableCell className="font-medium">{category.titulo}</TableCell>
             <TableCell className="text-center">{category.quantidade}</TableCell>
             <TableCell className="text-right">{category.created_at}</TableCell>
-
             <TableCell>
               <div className="flex justify-center">
                 <p
-                  className={` p-2 px-4 w-min rounded-4xl ${
-                    category.status === Status.ATIVO
+                  className={`p-2 px-4 w-min rounded-4xl ${
+                    category.status === CategorieStatus.ATIVO
                       ? "bg-[#A0F4B1]"
                       : "bg-foreground/40"
                   }`}
@@ -110,9 +53,8 @@ export const Categorias = () => {
                 </p>
               </div>
             </TableCell>
-
             <TableCell className="space-x-2 flex justify-center">
-              <Button variant={"outline"} className="">
+              <Button variant={"outline"}>
                 <FileEdit />
                 Editar informações
               </Button>

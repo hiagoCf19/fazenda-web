@@ -9,70 +9,14 @@ import {
   TableHeader,
   TableRow,
 } from "../../../shadcn/ui/table";
-enum Status {
-  INATIVO = "Inativo",
-  RECUSADO = "Recusado",
-}
+import { Status } from "../../../service/inactive-producers.service";
+import { useInactiveProducers } from "../../../hooks/use.inactive.producers";
 
-export const Inativos = () => {
-  const data = [
-    {
-      empresa: "Organic Farm",
-      responsavel: "João Mbumba",
-      telefone: "+ 244 923 457 789",
-      email: "organicfarm@mail.com",
-      status: Status.RECUSADO,
-    },
-    {
-      empresa: "#Fazenda Esperança",
-      responsavel: "Rodrigo Silva",
-      telefone: "+ 244 923 457 789",
-      email: "esperanca.fazenda@mail.com",
-      status: Status.INATIVO,
-    },
-    {
-      empresa: "Chicken Farm",
-      responsavel: "Angela Gomes",
-      telefone: "+ 244 923 457 789",
-      email: "chickenfarm@mail.com",
-      status: Status.INATIVO,
-    },
-    {
-      empresa: "Fazenda luz",
-      responsavel: "Luiz Renato",
-      telefone: "+ 244 923 457 789",
-      email: "fazenda_luz@mail.com",
-      status: Status.INATIVO,
-    },
-    {
-      empresa: "Organic Farm",
-      responsavel: "João Mbumba",
-      telefone: "+ 244 923 457 789",
-      email: "organicfarm@mail.com",
-      status: Status.RECUSADO,
-    },
-    {
-      empresa: "#Fazenda Esperança",
-      responsavel: "Rodrigo Silva",
-      telefone: "+ 244 923 457 789",
-      email: "esperanca.fazenda@mail.com",
-      status: Status.INATIVO,
-    },
-    {
-      empresa: "Chicken Farm",
-      responsavel: "Angela Gomes",
-      telefone: "+ 244 923 457 789",
-      email: "chickenfarm@mail.com",
-      status: Status.INATIVO,
-    },
-    {
-      empresa: "Fazenda luz",
-      responsavel: "Luiz Renato",
-      telefone: "+ 244 923 457 789",
-      email: "fazenda_luz@mail.com",
-      status: Status.INATIVO,
-    },
-  ];
+export const Inactive = () => {
+  const { data = [], isLoading } = useInactiveProducers();
+
+  if (isLoading) return <p>Carregando...</p>;
+
   return (
     <Table>
       <TableCaption className="text-end space-x-2 py-4">
@@ -101,10 +45,10 @@ export const Inativos = () => {
             </TableCell>
             <TableCell className="text-right">{delivery.telefone}</TableCell>
             <TableCell className="text-center">{delivery.email}</TableCell>
-            <TableCell className="">
+            <TableCell>
               <div className="flex justify-center">
                 <p
-                  className={` p-2 px-4 w-min rounded-4xl ${
+                  className={`p-2 px-4 w-min rounded-4xl ${
                     delivery.status === Status.INATIVO
                       ? "bg-[#20202033]"
                       : "bg-[#FF605899]"

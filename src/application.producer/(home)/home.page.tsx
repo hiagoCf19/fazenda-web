@@ -17,11 +17,7 @@ export function HomePageProducer() {
   return (
     <section className="overflow-x-hidden h-screen">
       <HeaderProducer />
-      <div className=" md:px-0 z-50 top-0 w-full bg-zinc-50 md:bg-[#E9F4E9] py-3 md:mb-8">
-        <MobileNavigator />
-      </div>
-
-      <div className="md:mx-12 mx-4 space-y-8 ">
+      <div className="md:mx-12 mx-4 space-y-8 min-h-[50vh] ">
         <BannerProducer />
         <Separator />
         <div className="md:flex gap-12 hidden">
@@ -32,7 +28,7 @@ export function HomePageProducer() {
 
         <AnalyticalOrder />
       </div>
-
+      <MobileNavigator />
       <Footer />
     </section>
   );

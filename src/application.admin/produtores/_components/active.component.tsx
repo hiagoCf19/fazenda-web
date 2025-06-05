@@ -9,82 +9,13 @@ import {
   TableRow,
 } from "../../../shadcn/ui/table";
 import { Button } from "../../../shadcn/ui/button";
+import { useActiveProducers } from "../../../hooks/use.inactive.producers";
 
-export const Ativos = () => {
-  const empresas = [
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-    {
-      empresa: "OrganicFarm",
-      responsavel: "João Mbumba",
-      contato: "+ 244 923 456 789",
-      email: "organicfarm@gmail.com",
-      vendas: "16 vendas",
-      receita: "Kz 24.589,50",
-      avaliacao: 4.3,
-    },
-  ];
+export const Active = () => {
+  const { data = [], isLoading } = useActiveProducers();
+
+  if (isLoading) return <p>Carregando...</p>;
+
   return (
     <Table>
       <TableCaption className="text-end space-x-2">
@@ -105,7 +36,7 @@ export const Ativos = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {empresas.map((producer, index) => (
+        {data.map((producer, index) => (
           <TableRow key={index}>
             <TableCell className="font-medium">
               <div>
