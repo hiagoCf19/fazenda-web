@@ -1,10 +1,10 @@
 import { Search } from "lucide-react";
 import { Card, CardContent, CardHeader } from "../../shadcn/ui/card";
 import { useState } from "react";
-import { Ativos } from "./_components/ativos.component";
-import { Inativos } from "./_components/inativos.component";
-import { AguardandoAprovacao } from "./_components/aguardando-aprovacao.component";
+import { Active } from "./_components/active.component";
+import { Inactive } from "./_components/inactive.component";
 import { CardOptions } from "../(commons)/card-options";
+import { AwaitingApproval } from "./_components/awaiting-approval";
 enum ProdutoresTelas {
   AGUARDANDO_APROVACAO = "Aguardando aprovação",
   ATIVOS = "Ativos",
@@ -17,13 +17,13 @@ export const Produtores = () => {
   function renderContent() {
     switch (selectedValue) {
       case ProdutoresTelas.AGUARDANDO_APROVACAO:
-        return <AguardandoAprovacao />;
+        return <AwaitingApproval />;
       case ProdutoresTelas.ATIVOS:
-        return <Ativos />;
+        return <Active />;
       case ProdutoresTelas.INATIVOS:
-        return <Inativos />;
+        return <Inactive />;
       default:
-        return <AguardandoAprovacao />;
+        return <AwaitingApproval />;
     }
   }
 

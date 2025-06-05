@@ -34,7 +34,7 @@ export function MobileNavigator() {
         <span className="text-xs mt-1">Cardápio</span>
       </Link>
       <Link
-        to="/producer/company"
+        to="/producer/business"
         className={`flex flex-col items-center justify-center text-zinc-800 w-16 h-16 rounded-full ${
           path.includes("company") && "bg-secondary/50"
         }`}

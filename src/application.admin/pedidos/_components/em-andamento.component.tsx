@@ -9,85 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from "../../../shadcn/ui/table";
-enum Status {
-  PENDENTE = "Pendente",
-  PROCESSANDO = "Processando",
-  ENTREGA_SOLICITADA = "Entrega solicitada",
-  ENVIADO = "Enviado",
-}
+import { useInProgressOrders } from "../../../hooks/use.deliveries";
+import { Status } from "../../../service/em-andamento.service";
+
 export const EmAndamento = () => {
-  const orders = [
-    {
-      numero: "#321",
-      cliente: "Carlos Mendes da Silva Filho",
-      valor: "Kz 1.847,50",
-      produtor: "Fazenda Esperança",
-      status: Status.PENDENTE,
-    },
-    {
-      numero: "#321",
-      cliente: "Fernando Oliveira de Souza",
-      valor: "Kz 3.480,00",
-      produtor: "Fazenda Filter",
-      status: Status.PROCESSANDO,
-    },
-    {
-      numero: "#321",
-      cliente: "Lucas Almeida Gomes",
-      valor: "Kz 2.921,50",
-      produtor: "Farm Fresh - Organic",
-      status: Status.PROCESSANDO,
-    },
-    {
-      numero: "#321",
-      cliente: "Fernando Oliveira de Souza",
-      valor: "Kz 850,00",
-      produtor: "ChickenFarm",
-      status: Status.PROCESSANDO,
-    },
-    {
-      numero: "#321",
-      cliente: "Roberto Lima",
-      valor: "Kz 4.100,00",
-      produtor: "Fazenda Aviação",
-      status: Status.PROCESSANDO,
-    },
-    {
-      numero: "#321",
-      cliente: "Carlos Mendes da Silva Filho",
-      valor: "Kz 1.847,50",
-      produtor: "Ouro da Serra",
-      status: Status.ENTREGA_SOLICITADA,
-    },
-    {
-      numero: "#321",
-      cliente: "Fernando Oliveira de Souza",
-      valor: "Kz 3.480,00",
-      produtor: "Farm Fresh - Organic",
-      status: Status.ENTREGA_SOLICITADA,
-    },
-    {
-      numero: "#321",
-      cliente: "Lucas Almeida Gomes",
-      valor: "Kz 2.921,50",
-      produtor: "Fazenda Esperança",
-      status: Status.ENVIADO,
-    },
-    {
-      numero: "#321",
-      cliente: "Fernando Oliveira de Souza",
-      valor: "Kz 850,00",
-      produtor: "Fazenda Filter",
-      status: Status.ENVIADO,
-    },
-    {
-      numero: "#321",
-      cliente: "Roberto Lima",
-      valor: "Kz 4.100,00",
-      produtor: "ChickenFarm",
-      status: Status.ENVIADO,
-    },
-  ];
+  const { data: orders = [], isLoading } = useInProgressOrders();
+
+  if (isLoading) return <p>Carregando...</p>;
 
   return (
     <Table>
@@ -117,7 +45,7 @@ export const EmAndamento = () => {
             <TableCell>{delivery.produtor}</TableCell>
             <TableCell>
               <p
-                className={` p-2 px-4 w-min rounded-4xl ${
+                className={`p-2 px-4 w-min rounded-4xl ${
                   delivery.status === Status.PENDENTE
                     ? "bg-[#A0F4B1]"
                     : delivery.status === Status.PROCESSANDO
@@ -130,9 +58,8 @@ export const EmAndamento = () => {
                 {delivery.status}
               </p>
             </TableCell>
-
             <TableCell className="space-x-2 justify-end items-end flex">
-              <Button variant={"outline"} className="">
+              <Button variant={"outline"}>
                 <Eye />
                 Visualizar
               </Button>
