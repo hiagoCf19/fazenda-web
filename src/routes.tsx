@@ -25,12 +25,14 @@ import { mockProducts } from "./mock/mock";
 
 import { ProfileProducer } from "./application.producer/profile/producer-profile.page";
 import { RedirectByRole } from "./redirect";
-import { ProducerHomePage } from "./application.producer/(home)/home.page";
+import { HomePageProducer } from "./application.producer/(home)/home.page";
 import AdminLayout from "./application.admin/home/home.layout";
-import { ProducerOrdersPage } from "./application.producer/orders/orders.producer.page";
+import { OrdersProducerPage } from "./application.producer/orders/orders.producer.page";
 import { ChooseClientType } from "./application.client/register/choose-client-type.page";
 import RegisterProducerProfileForm from "./application.producer/register/register-producer.form";
 import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
+import MenuProducerPage from "./application.producer/menu/menu.producer.page";
+import BusinessPage from "./application.producer/business/business.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -184,7 +186,7 @@ export const router = createBrowserRouter([
 
   {
     path: "producer",
-    element: <ProducerHomePage />,
+    element: <HomePageProducer />,
   },
   {
     path: "/producer/profile",
@@ -192,6 +194,14 @@ export const router = createBrowserRouter([
   },
   {
     path: "/producer/orders",
-    element: <ProducerOrdersPage />,
+    element: <OrdersProducerPage />,
+  },
+  {
+    path: "producer/menu",
+    element: <MenuProducerPage />,
+  },
+  {
+    path: "producer/business",
+    element: <BusinessPage />,
   },
 ]);

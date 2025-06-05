@@ -19,18 +19,17 @@ export function MyOrderDetails({
       ? "bg-[#20202033]"
       : "bg-[#00BE62]";
   return (
-    <div className=" px-4 md:p-0  overflow-y-auto">
-      <div className="md:hidden flex items-center ">
+    <div className="  md:p-0  overflow-y-auto absolute inset-0 border bg-background w-full h-screen z-40">
+      <div className="w-full h-[130px]" />
+      <div className=" flex items-center ">
         <Button
-          size={"icon"}
           variant={"ghost"}
           onClick={() => setSelectedOrder(null)}
+          className="md:ml-2"
         >
-          <ChevronLeft className="size-6 text-[#FE7000]" />
+          <ChevronLeft className="size-6 md:size-8  text-[#FE7000]" />
+          <span className="hidden md:block text-orange text-lg">Voltar</span>
         </Button>
-        <h1 className="w-full text-center text-zinc-700 font-medium">
-          Detalhes do pedido
-        </h1>
       </div>
       <div className="max-w-md mx-auto pb-6 bg-white shadow-lg rounded-2xl mb-12">
         {/* Cabeçalho do pedido */}
