@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
 import { useSession } from "../context/session.context";
 import { MyOrdersList } from "./_components/my-orders-list.component";
-import { Order } from "../../../types/order.type";
 
-import { MyOrderDetails } from "./_components/my-order-details.component";
 import { OrderStatusEnum } from "../../../enums/order-status.enum";
 import NotFound from "../../common/not-found.page";
 import BottomNav from "../../common/_components/bottom-navigator-mobile.component";
@@ -181,43 +178,31 @@ const deliveredOrders = [
 export function MyOrders() {
   const { session } = useSession();
   if (!session) return <NotFound />;
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   return (
     <section className="md:p-12 overflow-x-hidden relative min-h-screen">
       <HeaderAuthenticaded session={session} />
       <div className="w-full md:h-[128px] h-[88px]" />
-      {selectedOrder ? (
-        <MyOrderDetails
-          order={selectedOrder}
-          setSelectedOrder={setSelectedOrder}
-        />
-      ) : (
-        <div className="md:h-screen md:p-12 p-4 pt-0">
-          {/* Seção: Meus pedidos */}
-          <section className="mb-8 w-full">
-            <h2 className="text-3xl text-secondary-foreground font-semibold mb-4">
-              Meus pedidos
-            </h2>
-            <MyOrdersList
-              setSelectedOrder={setSelectedOrder}
-              list={pendingOrders}
-            />
-          </section>
 
-          {/* Seção: Histórico */}
-          <section className="w-full ">
-            <h2 className="text-2xl text-zinc-700 font-semibold mb-4">
-              Histórico
-            </h2>
+      <div className="md:h-screen md:p-12 p-4 pt-0">
+        {/* Seção: Meus pedidos */}
+        <section className="mb-8 w-full">
+          <h2 className="text-3xl text-secondary-foreground font-semibold mb-4">
+            Meus pedidos
+          </h2>
+          <MyOrdersList list={pendingOrders} />
+        </section>
 
-            <MyOrdersList
-              setSelectedOrder={setSelectedOrder}
-              list={deliveredOrders}
-            />
-          </section>
-        </div>
-      )}
+        {/* Seção: Histórico */}
+        <section className="w-full ">
+          <h2 className="text-2xl text-zinc-700 font-semibold mb-4">
+            Histórico
+          </h2>
+
+          <MyOrdersList list={deliveredOrders} />
+        </section>
+      </div>
+
       <div className="h-16" />
       <BottomNav />
     </section>

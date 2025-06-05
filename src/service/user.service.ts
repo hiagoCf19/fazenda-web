@@ -17,7 +17,7 @@ export async function createAddress({
 }
 export async function getUserAddress(userId: number) {
   //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
-  if (true) {
+  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
     return [
       {
         id: 3,

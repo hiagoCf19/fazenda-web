@@ -1,5 +1,6 @@
 import { RegisterPayload } from "../../types/register-user-payload.type";
 import { Session } from "../../types/session.type";
+import { ProfileTypeEnum } from "../application.client/register/choose-client-type.page";
 import api from "./axios.service";
 
 type Credentials = {
@@ -29,8 +30,8 @@ const clientSession = {
     email: "producer@gmail.com",
     phone: "+244 912 345 678",
     nif: "264855782",
-    role: "COMMON",
-    profile_type: "producer",
+    role: "COMMON" as "COMMON",
+    profile_type: ProfileTypeEnum.PRODUCER,
     photo: "string",
     created_at: "2025-04-10T19:52:04.000Z",
     isActive: true,
@@ -64,8 +65,7 @@ const adminSesison = {
 // service/auth.service.ts
 export async function login(credentials: Credentials): Promise<Session> {
   //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
-  if (true) {
-    console.log("a");
+  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
     localStorage.setItem("access_token", clientSession.access_token);
     localStorage.setItem("user", JSON.stringify(clientSession.user));
     if (credentials.email === "admin@gmail.com") {
@@ -80,7 +80,6 @@ export async function login(credentials: Credentials): Promise<Session> {
       };
     }
   } else {
-    console.log("b");
     const response = await api.post(`/auth/login`, credentials);
     const { access_token, user } = response.data;
     return { access_token, user };
