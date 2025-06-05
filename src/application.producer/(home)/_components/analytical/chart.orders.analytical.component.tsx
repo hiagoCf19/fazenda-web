@@ -26,7 +26,7 @@ const chartConfig = {
 export function AnalyticalChart() {
   const { data, isLoading, error } = useChartOrders();
 
-  const totalPedidos = data?.reduce((sum, item) => sum + item.pedidos, 0) ?? 0;
+  const totalPedidos = 10;
 
   return (
     <Card>

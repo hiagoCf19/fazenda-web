@@ -8,10 +8,8 @@ type ChartOrderItem = {
 };
 
 export async function getChartOrders(): Promise<ChartOrderItem[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    // Simula um pequeno delay
-    await new Promise((resolve) => setTimeout(resolve, 250));
-
+  //TODO:import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       { day: "Segunda", pedidos: 3 },
       { day: "Terça", pedidos: 4 },

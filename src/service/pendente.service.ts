@@ -7,9 +7,8 @@ export type Delivery = {
 };
 
 export async function getDeliveries(): Promise<Delivery[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    await new Promise((res) => setTimeout(res, 200));
-
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       {
         numero: "#321",

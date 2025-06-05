@@ -5,7 +5,8 @@ export type Topic = {
 };
 
 export async function getPendingApprovalTopics(): Promise<Topic[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     return [

@@ -9,9 +9,8 @@ export type ActiveProducer = {
 };
 
 export async function getActiveProducers(): Promise<ActiveProducer[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    await new Promise((res) => setTimeout(res, 200));
-
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       {
         empresa: "OrganicFarm",

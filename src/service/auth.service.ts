@@ -63,7 +63,8 @@ const adminSesison = {
 //---------------
 // service/auth.service.ts
 export async function login(credentials: Credentials): Promise<Session> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     console.log("a");
     localStorage.setItem("access_token", clientSession.access_token);
     localStorage.setItem("user", JSON.stringify(clientSession.user));

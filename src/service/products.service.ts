@@ -7,10 +7,8 @@ export type Product = {
 };
 
 export async function getProducts(): Promise<Product[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    await new Promise((res) => setTimeout(res, 200));
-    console.log("aaa");
-
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       {
         id: "1",
@@ -124,5 +122,4 @@ export async function getProducts(): Promise<Product[]> {
     if (!res.ok) throw new Error("Erro ao buscar produtos");
     return await res.json();
   }
-  
 }

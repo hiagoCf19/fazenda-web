@@ -10,9 +10,9 @@ export type AnalyticalData = {
 
 // Lê a variável de ambiente VITE_USE_MOCK
 export async function getAnalyticalData(): Promise<AnalyticalData> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     // Simula tempo de resposta de rede
-    await new Promise((resolve) => setTimeout(resolve, 500));
 
     return {
       totalSales: [

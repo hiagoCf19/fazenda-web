@@ -3,11 +3,9 @@ export type Category = {
   image: string;
 };
 
-
 export async function getCategories(): Promise<Category[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    await new Promise((res) => setTimeout(res, 200));
-
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       { category: "Vegetais", image: "/carrot.png" },
       { category: "Frutas", image: "/apple.png" },
@@ -44,5 +42,4 @@ export async function getCategories(): Promise<Category[]> {
     if (!res.ok) throw new Error("Erro ao buscar categorias");
     return await res.json();
   }
-
 }

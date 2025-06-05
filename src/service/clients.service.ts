@@ -8,9 +8,8 @@ export type Client = {
 };
 
 export async function getClients(): Promise<Client[]> {
-  if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    await new Promise((res) => setTimeout(res, 200));
-
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
+  if (true) {
     return [
       {
         nome: "João Mbumba",

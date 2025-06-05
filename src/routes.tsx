@@ -31,7 +31,7 @@ import { OrdersProducerPage } from "./application.producer/orders/orders.produce
 import { ChooseClientType } from "./application.client/register/choose-client-type.page";
 import RegisterProducerProfileForm from "./application.producer/register/register-producer.form";
 import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
-import MenuProducerPage from "./application.producer/products/products.producer.page";
+import MenuProducerPage from "./application.producer/menu/menu.producer.page";
 import BusinessPage from "./application.producer/business/business.page";
 
 const best_selling_products = mockProducts;
