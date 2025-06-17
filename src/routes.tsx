@@ -33,6 +33,7 @@ import RegisterProducerProfileForm from "./application.producer/register/registe
 import { UploadDocumentsPage } from "./application.producer/register/resgister-documents.page";
 import MenuProducerPage from "./application.producer/menu/menu.producer.page";
 import BusinessPage from "./application.producer/business/business.page";
+import WalletPage from "./application.producer/business/wallet/wallet.page";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -203,5 +204,9 @@ export const router = createBrowserRouter([
   {
     path: "producer/business",
     element: <BusinessPage />,
+  },
+  {
+    path: "producer/business/wallet",
+    element: <WalletPage />,
   },
 ]);

@@ -59,7 +59,9 @@ export function HeaderProducer() {
               </li>
               <li
                 className={`flex items-center gap-2 ${
-                  path.endsWith("business") ? "text-primary" : "text-zinc-400"
+                  path.endsWith("business") || path.endsWith("wallet")
+                    ? "text-primary"
+                    : "text-zinc-400"
                 }`}
               >
                 <BarChart3 size={28} />
