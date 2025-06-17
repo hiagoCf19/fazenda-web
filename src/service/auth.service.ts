@@ -1,5 +1,6 @@
 import { RegisterPayload } from "../../types/register-user-payload.type";
 import { Session } from "../../types/session.type";
+import { ProfileTypeEnum } from "../application.client/register/choose-client-type.page";
 import api from "./axios.service";
 
 type Credentials = {
@@ -9,7 +10,7 @@ type Credentials = {
 //MOCK
 
 const clientSession = {
-  user: {
+  /*  user: {
     id: 6,
     email: "fazenda@gmail.com",
     phone: "+244 912 345 678",
@@ -23,6 +24,22 @@ const clientSession = {
     twoFactorEnabled: false,
     first_name: "Fazenda",
     last_name: "Client",
+  }, */
+  user: {
+    id: 2,
+    email: "producer@gmail.com",
+    phone: "+244 912 345 678",
+    nif: "264855782",
+    role: "COMMON" as "COMMON",
+    profile_type: ProfileTypeEnum.PRODUCER,
+    photo: "string",
+    created_at: "2025-04-10T19:52:04.000Z",
+    isActive: true,
+    twoFactorEnabled: false,
+    company_name: "Organic Farm",
+    responsible_name: "Organic Farm",
+    contact_phone: "+244 912 345 678",
+    is_approved: true,
   },
   access_token: "eyJhbGciOiJIUzI...",
 };
@@ -47,8 +64,8 @@ const adminSesison = {
 //---------------
 // service/auth.service.ts
 export async function login(credentials: Credentials): Promise<Session> {
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
   if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
-    console.log("a");
     localStorage.setItem("access_token", clientSession.access_token);
     localStorage.setItem("user", JSON.stringify(clientSession.user));
     if (credentials.email === "admin@gmail.com") {
@@ -63,7 +80,6 @@ export async function login(credentials: Credentials): Promise<Session> {
       };
     }
   } else {
-    console.log("b");
     const response = await api.post(`/auth/login`, credentials);
     const { access_token, user } = response.data;
     return { access_token, user };

@@ -3,42 +3,56 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
+  CarouselPrevious,
 } from "../../../shadcn/ui/carousel";
-import { Product } from "../../../../types/product";
-import { ProductCard } from "./product-card.component";
+import type { Product } from "../../../../types/product";
 import { Link } from "react-router";
 import { useState } from "react";
+import { ProductCard } from "./product-card.component";
 
 interface ProductListProps {
   products: Product[];
   title: string;
   seeAllPath: string | null;
 }
+
 export function ProductList({ products, title, seeAllPath }: ProductListProps) {
-  const [showNext, setShowNext] = useState(false);
+  const [hiddenArrow, setHiddenArrow] = useState(true);
   return (
-    <div
-      className="space-y-4  pb-0  "
-      onMouseEnter={() => setShowNext(!showNext)}
-      onMouseLeave={() => setShowNext(!showNext)}
-    >
+    <div className="space-y-4 pb-0">
       <div className="flex items-center justify-between">
         <h2 className="text-zinc-800 font-semibold text-2xl">{title}</h2>
-
-        <Link to={`/see-all/${seeAllPath}`} className="text-[#FE7000]">
-          Ver todos
-        </Link>
+        {seeAllPath && (
+          <Link to={`/see-all/${seeAllPath}`} className="text-[#FE7000]">
+            Ver todos
+          </Link>
+        )}
       </div>
-      <div className=" relative -mr-12 ">
-        <Carousel className="[&::-webkit-scrollbar] ">
-          <CarouselContent className=" mr-12">
+
+      <div
+        className="group -mx-12 relative"
+        onMouseEnter={() => setHiddenArrow(false)}
+        onMouseLeave={() => setHiddenArrow(true)}
+      >
+        <Carousel className="[&::-webkit-scrollbar]  ">
+          <CarouselPrevious
+            hidden={hiddenArrow}
+            className="absolute z-30 left-4 h-12 w-12"
+          />
+
+          <CarouselContent className="mr-12  ">
+            <CarouselItem className="basis-auto ml-4 px-4 "></CarouselItem>
             {products.slice(0, 10).map((product, i) => (
-              <CarouselItem className="basis-auto ml-4" key={i}>
+              <CarouselItem className="basis-auto ml-4 " key={i}>
                 <ProductCard product={product} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselNext className="absolute z-40 right-4 " hidden={!showNext} />
+
+          <CarouselNext
+            hidden={hiddenArrow}
+            className="absolute z-40 right-4 h-12 w-12"
+          />
         </Carousel>
       </div>
     </div>

@@ -2,6 +2,12 @@
 
 import api from "./axios.service";
 import { CreateAddressPayload } from "../../types/address.type";
+import { UpdateAccountPayload } from "../zod/client/update-account.schema";
+
+export async function UpdateUserProfile(payload: UpdateAccountPayload) {
+  const response = await api.put(`/customer`, payload);
+  return response.data;
+}
 export async function createAddress({
   userId,
   ...address
@@ -10,6 +16,7 @@ export async function createAddress({
   return response.data;
 }
 export async function getUserAddress(userId: number) {
+  //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
   if (import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true") {
     return [
       {

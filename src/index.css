@@ -40,8 +40,7 @@
   --chart-2: 160 60% 45%;
   --chart-3: 30 80% 55%;
   --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
-
+  --chart-5: 0 85% 50%;
   /* Verde claro */
   --radius: 0.625rem;
   --sidebar: rgba(255, 255, 255, 1);
@@ -103,4 +102,6 @@
   body {
     @apply bg-background text-foreground;
   }
+  
 }
+

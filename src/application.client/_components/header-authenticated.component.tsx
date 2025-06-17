@@ -1,4 +1,5 @@
 import {
+  Bell,
   ChevronDown,
   LogOut,
   MapIcon,
@@ -23,7 +24,7 @@ import { useState } from "react";
 import { logout } from "../../service/auth.service";
 
 import { generateFallback } from "../../helpers/create-fallback.helper";
-import { useUserAddress } from "../../hooks/use-user.hook";
+import { useUserAddress } from "../../hooks/user.hook";
 import { Skeleton } from "../../shadcn/ui/skeleton";
 import { toast } from "sonner";
 import { Session } from "../../../types/session.type";
@@ -80,11 +81,18 @@ export function HeaderAuthenticaded({ session }: HeaderAuthenticadedProps) {
       navigate: "/security",
       icon: ShieldCheck,
     },
+
     {
       title: "Ajude",
       description: "Entre em contato para dúvidas e suporte",
       navigate: "/help",
       icon: TriangleAlert,
+    },
+    {
+      title: "Notificações",
+      description: "Veja suas últimas notificações",
+      navigate: "/notification",
+      icon: Bell,
     },
   ];
   isError && toast.error("Erro ao carregar endereço");

@@ -13,12 +13,16 @@ import {
 } from "@radix-ui/react-dialog";
 interface ProductCardProps {
   product: Product;
+  setShowNext?: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, setShowNext }: ProductCardProps) {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="md:w-[160px] md:h-[160px]  w-[160px] h-[160px] rounded-3xl shadow-md border relative ">
+        <DialogTrigger
+          className="md:w-[160px] md:h-[160px]  w-[160px] h-[160px] rounded-3xl shadow-md border relative "
+          onClick={() => setShowNext && setShowNext(false)}
+        >
           <img
             src={product.image}
             alt={product.name}
@@ -48,7 +52,10 @@ export function ProductCard({ product }: ProductCardProps) {
                 <h3 className="text-4xl font-bold text-zinc-800">
                   {product.name}
                 </h3>
-                <DialogClose className="text-primary size-8">
+                <DialogClose
+                  className="text-primary size-8"
+                  onClick={() => setShowNext && setShowNext(false)}
+                >
                   <X />
                 </DialogClose>
               </div>

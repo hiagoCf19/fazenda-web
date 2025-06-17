@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { HeaderAuthenticaded } from "../_components/header-authenticated.component";
 import { useSession } from "../context/session.context";
 import { UnauthenticatedHeader } from "../_components/unauthenticated-header.component";
+import { Footer } from "../(home)/_components/footer.component";
 import { ProductCard } from "../(home)/_components/product-card.component";
 
 export function SearchPage() {
@@ -80,6 +81,9 @@ export function SearchPage() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="fixed bottom-6 w-full">
+        <Footer />
       </div>
     </section>
   );

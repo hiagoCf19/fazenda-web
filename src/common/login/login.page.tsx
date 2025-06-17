@@ -14,8 +14,8 @@ import {
 } from "../../shadcn/ui/form";
 import { useNavigate } from "react-router";
 import { useSession } from "../../application.client/context/session.context";
-import { useLogin } from "../../hooks/use-login.hook";
 import { formatError } from "../../helpers/format-error.helper";
+import { useLogin } from "../../hooks/auth.hook";
 
 const formSchema = z.object({
   email: z.string().email("Digite um e-mail válido"),
@@ -33,7 +33,6 @@ export const Login = () => {
       password: "",
     },
   });
-  console.log(import.meta.env.VITE_INTEGRATION_IN_PROGRESS);
   function onSubmit(values: z.infer<typeof formSchema>) {
     loginMutation(values, {
       onSuccess: ({ access_token, user }) => {
@@ -50,8 +49,11 @@ export const Login = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="flex w-full max-w-6xl bg-white rounded-4xl shadow-lg overflow-hidden h-[70vh] items-center border ">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/background.jpg')" }}
+    >
+      <div className="flex w-full max-w-6xl bg-white rounded-4xl shadow-xl shadow-black overflow-hidden h-[70vh] items-center border ">
         {/* Left side with logo and illustration */}
         <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center p-12 bg-white">
           <img
