@@ -7,7 +7,7 @@ import {
 } from "../../../shadcn/ui/dialog";
 import { Textarea } from "../../../shadcn/ui/textarea";
 import { Button } from "../../../shadcn/ui/button";
-import { Pencil } from "lucide-react";
+import { Pencil, X } from "lucide-react";
 
 interface EditProfileModalProps {
   open: boolean;
@@ -49,8 +49,15 @@ export function EditProfileModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="bg-white p-6 rounded-2xl w-full max-w-sm space-y-4">
         <DialogHeader>
-          <DialogTitle className="text-center text-lg font-semibold">
+          <DialogTitle className="text-center text-lg text-zinc-600 font-semibold relative">
             Editar perfil público
+            <Button
+              size={"icon"}
+              onClick={onClose}
+              className=" bg-transparent hover:bg-transparent absolute right-0 top-0 text-orange"
+            >
+              <X />
+            </Button>
           </DialogTitle>
         </DialogHeader>
 
@@ -79,7 +86,7 @@ export function EditProfileModal({
 
         {/* Descrição */}
         <div>
-          <label className="block text-sm text-zinc-600 mb-1">Resumo</label>
+          <label className="block text-sm text-zinc-700 mb-1">Resumo</label>
           <Textarea
             className="rounded-xl border-zinc-300 text-sm"
             value={form.description}
@@ -89,7 +96,7 @@ export function EditProfileModal({
 
         {/* Endereço */}
         <div>
-          <label className="block text-sm text-zinc-600 mb-1">Endereço</label>
+          <label className="block text-sm text-zinc-700 mb-1">Endereço</label>
           <Textarea
             className="rounded-xl border-zinc-300 text-sm"
             value={form.address}
@@ -100,7 +107,7 @@ export function EditProfileModal({
         {/* Botão Salvar */}
         <div className="pt-4">
           <Button
-            className="w-full bg-green-200 text-green-800 hover:bg-green-300 font-semibold"
+            className="w-full bg-secondary text-secondary-foreground font-semibold"
             onClick={() => {
               onSave(form);
               onClose();

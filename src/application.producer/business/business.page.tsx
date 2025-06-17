@@ -12,10 +12,10 @@ const BusinessPage = () => {
   const { data: profile } = usePublicProfile();
 
   return (
-    <section className="overflow-x-hidden min-h-screen bg-[#F8FAF8]">
+    <section className=" overflow-x-hidden h-screen">
       <HeaderProducer />
 
-      <div className="md:mx-12 mx-4 py-6 space-y-6">
+      <div className="md:mx-12 mx-4 py-6  space-y-6">
         {/* Primeira linha - 3 componentes pequenos lado a lado */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <WalletCard

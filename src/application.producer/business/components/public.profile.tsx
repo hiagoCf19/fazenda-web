@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { EditProfileModal } from "./edit.profile.modal";
+import { EditProfileModal } from "./edit-business.component";
 import { useState } from "react";
 
 interface PublicProfileProps {
