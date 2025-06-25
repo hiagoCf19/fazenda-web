@@ -3,10 +3,10 @@ import { Footer } from "../../application.client/(home)/_components/footer.compo
 import AnalyticalOrder from "../(home)/_components/analytical/analytical.component";
 import { PublicProfile } from "./components/public.profile";
 import { MobileNavigator } from "../_components/navigator.producer.component";
-import { BestSellingProduct } from "./components/best.selling.product";
 import { WalletCard } from "./components/wallet.card";
 import { OrdersChart } from "./components/orders.chart";
 import { usePublicProfile } from "../../hooks/use-public-profile";
+import { AnalyticalChart } from "../(home)/_components/analytical/chart.orders.analytical.component";
 
 const BusinessPage = () => {
   const { data: profile } = usePublicProfile();
@@ -31,7 +31,7 @@ const BusinessPage = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-            <BestSellingProduct />
+            <AnalyticalChart />
           </div>
         </div>
 

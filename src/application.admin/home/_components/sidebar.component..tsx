@@ -4,6 +4,7 @@ import {
   Home,
   ImagePlus,
   LogOut,
+  Package,
   ShoppingBag,
   ShoppingCart,
   Truck,
@@ -68,6 +69,11 @@ const items = [
     icon: Truck,
   },
   {
+    title: "Produtos",
+    url: "/admin/produtos",
+    icon: Package,
+  },
+  {
     title: "Emissão de relatório",
     url: "/admin/emissao-relatorio",
     icon: FileUp,
@@ -81,6 +87,11 @@ const items = [
     title: "Notificações",
     url: "/admin/notificacao",
     icon: Bell,
+  },
+  {
+    title: "Usuários",
+    url: "/admin/usuarios",
+    icon: User,
   },
 ];
 

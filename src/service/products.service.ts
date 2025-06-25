@@ -5,6 +5,7 @@ export type Product = {
   priceKg: string;
   priceT: string;
 };
+export type CartItem = Product & { quantity: number };
 
 export async function getProducts(): Promise<Product[]> {
   //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"

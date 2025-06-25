@@ -37,31 +37,35 @@ const AnalyticalOrder = () => {
   ];
  */
 import { useAnalyticalData } from "../../../../hooks/use.analytical.data";
+import { BestSellingProduct } from "../../../business/components/best.selling.product";
 import AnalyticalCard from "./card.analytical.component";
-import { AnalyticalChart } from "./chart.orders.analytical.component";
 
-  const AnalyticalOrder = () => {
-    const { data, isLoading, error } = useAnalyticalData();
+const AnalyticalOrder = () => {
+  const { data, isLoading, error } = useAnalyticalData();
 
-    if (isLoading) return <p>Carregando dados analíticos...</p>;
-    if (error) return <p>Erro ao carregar dados.</p>;
-    if (isLoading || !data) return <p>Carregando...</p>;
+  if (isLoading) return <p>Carregando dados analíticos...</p>;
+  if (error) return <p>Erro ao carregar dados.</p>;
+  if (isLoading || !data) return <p>Carregando...</p>;
 
-    return (
-      <div>
-        <h3 className="text-zinc-600 font-semibold text-2xl my-4">Analítico</h3>
-        <div className="flex flex-col-reverse md:flex-row gap-12 ">
-          <div className="flex-1 ">
-            <AnalyticalChart />
-          </div>
-          <div className="flex md:flex-col gap-8 md:w-[30%] [&::-webkit-scrollbar]:hidden w-full overflow-x-scroll ">
-            <AnalyticalCard chartData={data.totalSales} />
-            <AnalyticalCard chartData={data.invoicing} />
-            <AnalyticalCard chartData={data.profile_visits} />
-          </div>
+  return (
+    <div className="">
+      <h3 className="text-zinc-600 font-semibold text-2xl my-4">Analítico</h3>
+      {/* O contêiner principal agora deve ter uma altura para o flexbox poder distribuir */}
+      <div className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 lg:gap-12 items-stretch">
+        <div className="flex-1 min-w-[65%] lg:min-w-[70%] xl:min-w-[72%] 2xl:min-w-[75%]">
+          <BestSellingProduct />
+        </div>
+        {/* Nova Estrutura para a Coluna de Cards: */}
+        <div className="flex flex-col gap-4 md:w-[35%] lg:w-[30%] xl:w-[28%] 2xl:w-[25%] flex-grow flex-shrink-0 w-full">
+          {" "}
+          {/* Ajuste o XL e adicione 2XL */}
+          <AnalyticalCard chartData={data.totalSales} />
+          <AnalyticalCard chartData={data.invoicing} />
+          <AnalyticalCard chartData={data.profile_visits} />
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default AnalyticalOrder;
+export default AnalyticalOrder;

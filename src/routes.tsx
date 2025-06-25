@@ -34,6 +34,11 @@ import { UploadDocumentsPage } from "./application.producer/register/resgister-d
 import MenuProducerPage from "./application.producer/menu/menu.producer.page";
 import BusinessPage from "./application.producer/business/business.page";
 import WalletPage from "./application.producer/business/wallet/wallet.page";
+import ReportsEmissionPage from "./application.admin/relatorios/reportsEmissionPage.tsx";
+import BannersPage from "./application.admin/banner/BannersPage.tsx";
+import NotificationsPage from "./application.admin/notificacations/notificationsPage.tsx";
+import UsersPage from "./application.admin/users/usersPage.tsx";
+import { ProductPage } from "./application.admin/produtos/products.page.tsx";
 
 const best_selling_products = mockProducts;
 const new_products = mockProducts;
@@ -70,19 +75,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "produtos",
+        element: <ProductPage />,
+      },
+      {
+        path: "produtos",
         element: <ProducerPage />,
       },
       {
         path: "emissao-relatorio",
-        element: <div>Emissão de relatório</div>,
+        element: <ReportsEmissionPage />,
       },
       {
         path: "banners",
-        element: <div>Banners</div>,
+        element: <BannersPage />,
       },
       {
         path: "notificacao",
-        element: <div>Notificações</div>,
+        element: <NotificationsPage />, // Supondo que exista uma página de notificações
+      },
+      {
+        path: "usuarios",
+        element: <UsersPage />,
       },
     ],
   },
