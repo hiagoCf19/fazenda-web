@@ -22,6 +22,7 @@ export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
       image: "/mock/bacalhau.png", // You'll replace this with the actual image URL
       priceKg: "Kz 180/Kg",
       priceT: "Kz 140.000/T",
+      quantity: 1,
     },
     {
       id: "2",
@@ -29,6 +30,7 @@ export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
       image: "/mock/lentilha.png", // You'll replace this with the actual image URL
       priceKg: "Kz 180/Kg",
       priceT: "Kz 140.000/T",
+      quantity: 1,
     },
     {
       id: "6",
@@ -36,6 +38,7 @@ export function OrdersCartComponent({ onOpenChange }: PedidosComponentProps) {
       image: "/mock/cebola.png", // You'll replace this with the actual image URL
       priceKg: "Kz 96/Kg",
       priceT: "Kz 90.000/T",
+      quantity: 1,
     },
   ];
 

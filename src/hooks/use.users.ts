@@ -20,7 +20,7 @@ export function useUsers() {
   // Hook para adicionar um novo usuário
   const addUserMutation = useMutation({
     mutationFn: addUser,
-    onSuccess: (newUser) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       // Opcional: Otimisticamente atualiza o cache
       // queryClient.setQueryData(["users"], (old: User[] | undefined) => [...(old || []), newUser]);
@@ -42,7 +42,7 @@ export function useUsers() {
       );
       return { previousUsers };
     },
-    onError: (err, variables, context) => {
+    onError: (err, _, context) => {
       console.error("Erro ao atualizar status do usuário:", err);
       queryClient.setQueryData(["users"], context?.previousUsers);
     },
@@ -62,7 +62,7 @@ export function useUsers() {
       );
       return { previousUsers };
     },
-    onError: (err, variables, context) => {
+    onError: (err, _, context) => {
       console.error("Erro ao excluir usuário:", err);
       queryClient.setQueryData(["users"], context?.previousUsers);
     },

@@ -20,7 +20,7 @@ export function useBanners() {
   // Hook para adicionar um novo banner
   const addBannerMutation = useMutation({
     mutationFn: addBanner,
-    onSuccess: (newBanner) => {
+    onSuccess: () => {
       // Invalida o cache 'banners' para que a lista seja recarregada ou atualiza o cache diretamente
       queryClient.invalidateQueries({ queryKey: ["banners"] });
     },
@@ -45,7 +45,7 @@ export function useBanners() {
       );
       return { previousBanners }; // Retorna o contexto para o onError
     },
-    onError: (err, variables, context) => {
+    onError: (err, _, context) => {
       console.error("Erro ao atualizar status do banner:", err);
       // Reverte para o estado anterior em caso de erro
       queryClient.setQueryData(["banners"], context?.previousBanners);
@@ -68,7 +68,7 @@ export function useBanners() {
       );
       return { previousBanners };
     },
-    onError: (err, variables, context) => {
+    onError: (err, _variables, context) => {
       console.error("Erro ao excluir banner:", err);
       queryClient.setQueryData(["banners"], context?.previousBanners);
     },
