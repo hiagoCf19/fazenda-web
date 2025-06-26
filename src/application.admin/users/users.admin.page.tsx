@@ -198,10 +198,10 @@ const UsersPage = () => {
           Cadastrados
         </h2>
         <Card>
-          <CardContent className="p-0">
+          <CardContent className="">
             <div className="overflow-x-auto">
               <Table>
-                <TableHeader className="bg-zinc-50">
+                <TableHeader className="">
                   <TableRow>
                     <TableHead className="text-zinc-600 text-left w-[180px]">
                       Nome

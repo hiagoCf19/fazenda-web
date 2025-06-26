@@ -107,7 +107,7 @@ export async function getBanners(): Promise<Banner[]> {
       } else {
         // TODO: Implementar chamada real à API
         console.warn("Implementar fetch real para /api/banners");
-        resolve([]); // Retorna vazio em produção se não houver API
+        resolve([...mockBanners]); // Retorna vazio em produção se não houver API
       }
     }, 500); // 500ms de atraso
   });

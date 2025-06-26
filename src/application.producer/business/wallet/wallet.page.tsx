@@ -1,6 +1,5 @@
 import { Pencil } from "lucide-react";
 import { HeaderProducer } from "../../_components/header.producer.component";
-
 import {
   Table,
   TableBody,
@@ -8,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../../shadcn/ui/table"; // Certifique-se do caminho correto
+} from "../../../shadcn/ui/table";
 import { useWalletTransactions } from "../../../hooks/use.wallet.transactions";
 import { Skeleton } from "../../../shadcn/ui/skeleton";
 
@@ -79,9 +78,9 @@ const WalletPage = () => {
 
         {/* Seção de Histórico */}
         <h2 className="text-xl font-bold text-zinc-600 mb-4">Histórico</h2>
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-white p-4 rounded-lg shadow overflow-hidden">
           <Table>
-            <TableHeader className="bg-zinc-50">
+            <TableHeader className=" ">
               <TableRow>
                 {/* Data: Largura fixa, alinhado à esquerda */}
                 <TableHead className="w-[100px] text-zinc-600 text-left">

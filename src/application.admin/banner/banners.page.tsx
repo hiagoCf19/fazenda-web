@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import { Trash, Edit } from "lucide-react";
-
-// Shadcn UI Components
 import { Card, CardHeader } from "../../shadcn/ui/card";
 import { Button } from "../../shadcn/ui/button";
 import { Label } from "../../shadcn/ui/label";
 import { Skeleton } from "../../shadcn/ui/skeleton";
-
-// Hook de Banners
-//import type { BannerCategory } from "../../service/banners.service";
 import { useBanners } from "../../hooks/use.banner";
 import { Switch } from "../../shadcn/ui/switch";
 import { AddBannerDialog } from "./components/AddBannerDialog";
@@ -28,19 +23,12 @@ const BannersPage = () => {
   } = useBanners();
 
   const [filterActive] = useState<boolean | null>(null);
-  /*  const [filterCategory, setFilterCategory] = useState<BannerCategory | null>(
-    null
-  ); */
   const [isAddBannerDialogOpen, setIsAddBannerDialogOpen] = useState(false);
-
-  // Filtragem dos banners
   const filteredBanners = banners?.filter((banner) => {
     const matchesActive =
       filterActive === null || banner.isActive === filterActive;
     return matchesActive;
   });
-
-  // Função para deletar com confirmação
   const handleDelete = (bannerId: string) => {
     if (window.confirm("Tem certeza que deseja excluir este banner?")) {
       deleteBanner(bannerId);
@@ -48,7 +36,7 @@ const BannersPage = () => {
   };
 
   return (
-    <Card className=" mt-5 pt-0" style={{ fontFamily: "Inter, sans-serif" }}>
+    <Card className=" mt-5  p-4" style={{ fontFamily: "Inter, sans-serif" }}>
       <section className="space-y-6 md:space-y-8 pb-8">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           {/* Header com abas */}

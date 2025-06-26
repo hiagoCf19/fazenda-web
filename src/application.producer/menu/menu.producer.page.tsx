@@ -55,7 +55,7 @@ const MenuProducerPage = () => {
   return (
     <section className="overflow-x-hidden min-h-screen">
       <HeaderProducer />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container px-4 mx-12">
         <h3 className="text-xl sm:text-2xl font-bold text-zinc-700 my-4 sm:my-6">
           Adicione produtos ao cardárpio
         </h3>

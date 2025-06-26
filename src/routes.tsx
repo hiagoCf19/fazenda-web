@@ -34,10 +34,10 @@ import { UploadDocumentsPage } from "./application.producer/register/resgister-d
 import MenuProducerPage from "./application.producer/menu/menu.producer.page";
 import BusinessPage from "./application.producer/business/business.page";
 import WalletPage from "./application.producer/business/wallet/wallet.page";
-import ReportsEmissionPage from "./application.admin/relatorios/reportsEmissionPage.tsx";
-import BannersPage from "./application.admin/banner/BannersPage.tsx";
+import ReportsEmissionPage from "./application.admin/relatorios/report.page.tsx";
+import BannersPage from "./application.admin/banner/banners.page.tsx";
 import NotificationsPage from "./application.admin/notificacations/notificationsPage.tsx";
-import UsersPage from "./application.admin/users/usersPage.tsx";
+import UsersPage from "./application.admin/users/users.admin.page.tsx";
 import { ProductPage } from "./application.admin/produtos/products.page.tsx";
 
 const best_selling_products = mockProducts;

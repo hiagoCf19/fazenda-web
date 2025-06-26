@@ -37,7 +37,7 @@ import { Separator } from "../../shadcn/ui/separator";
 
 const ReportsEmissionPage = () => {
   const [reportType, setReportType] = useState<ReportType>("Pedidos");
-  const [dataBy, setDataBy] = useState<DataBy>("Mês"); // Estado para "Semana", "Mês", "Ano"
+  const [dataBy, setDataBy] = useState<DataBy>("Mês");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
 
@@ -218,7 +218,7 @@ const ReportsEmissionPage = () => {
         {/* --- Seção Histórico --- */}
         <h2 className="text-xl font-bold text-zinc-800 mb-4 pt-6">Histórico</h2>
         <Card>
-          <CardContent className="p-0">
+          <CardContent className="p-4">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader className="bg-zinc-50">

@@ -21,10 +21,9 @@ export function SideChart({ chartData, decreased }: SideChartProps) {
     },
   } satisfies ChartConfig;
   const lineColor = decreased ? "#f87171" : "#00be62";
-  console.log(lineColor);
 
   return (
-    <div className="w-full">
+    <div className="max-w-[230px]">
       <ChartContainer config={chartConfig}>
         <LineChart
           accessibilityLayer

@@ -3,7 +3,8 @@ import {
   User,
   Wallet, // Ícone de carteira para 'Pagamentos'
   ShieldCheck, // Ícone de escudo para 'Segurança'
-  TriangleAlert, // Ícone de alerta para 'Ajuda'
+  TriangleAlert,
+  LogOut, // Ícone de alerta para 'Ajuda'
 } from "lucide-react"; // Importar todos os ícones necessários
 
 import {
@@ -15,7 +16,9 @@ import {
 } from "../../shadcn/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
 import { useSession } from "../../application.client/context/session.context"; // Certifique-se que setSession está disponível no hook
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { Button } from "../../shadcn/ui/button";
+import { logout } from "../../service/auth.service";
 
 const generateFallback = (user: any) => {
   if (!user || !user.name) return "CN";
@@ -64,6 +67,9 @@ const DropdownMenuActions = [
 
 export function DropdownMenuDemo() {
   //const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const { setSession } = useSession();
   const { session } = useSession();
 
   return (
@@ -93,7 +99,7 @@ export function DropdownMenuDemo() {
             <DropdownMenuItem asChild key={action.title}>
               <Link
                 to={action.navigateTo}
-                className="flex w-full min-h-[56px]" // min-h para garantir altura mínima e bom alinhamento
+                className="flex w-full min-h-[56px] hover:bg-zinc-200" // min-h para garantir altura mínima e bom alinhamento
               >
                 <div
                   className={`flex items-center gap-3 w-full py-3 ${
@@ -119,6 +125,29 @@ export function DropdownMenuDemo() {
               </Link>
             </DropdownMenuItem>
           ))}
+          <DropdownMenuItem asChild>
+            <Button
+              onClick={() => {
+                logout();
+                navigate("/landing-access");
+                setSession(null);
+              }}
+              className="flex w-full min-h-[56px] bg-transparent text-start hover:bg-zinc-200" // min-h para garantir altura mínima e bom alinhamento
+            >
+              <div className={`flex items-center gap-3 w-full py-3 `}>
+                <LogOut className="size-6 text-accent-foreground/50 flex-shrink-0" />{" "}
+                {/* Ícone size-6 como no popover, ou size-7 se preferir maior */}
+                <div className="flex-grow">
+                  {" "}
+                  {/* flex-grow para que o texto ocupe o espaço restante */}
+                  <p className="text-zinc-800">Sair</p>
+                  <span className="text-foreground text-sm leading-tight">
+                    Sair da conta
+                  </span>
+                </div>
+              </div>
+            </Button>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
 
         {/* Links de Termos de Uso e Política de Privacidade */}

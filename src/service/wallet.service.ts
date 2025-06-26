@@ -92,6 +92,72 @@ export async function getWalletTransactions(): Promise<Transaction[]> {
     // Em um cenário real, aqui você faria a chamada para sua API de backend
     const response = await fetch("/api/wallet/transactions"); // Exemplo de endpoint
     if (!response.ok) throw new Error("Erro ao buscar histórico da carteira");
-    return await response.json();
+    return [
+      {
+        id: "trans_1",
+        date: "01/02/25",
+        type: "Recebido",
+        value: 1450.89,
+        currency: "Kz",
+        accountOrigin: "Carteira Fazenda Online",
+      },
+      {
+        id: "trans_2",
+        date: "01/02/25",
+        type: "Transferência",
+        value: 1450.0,
+        currency: "Kz",
+        accountOrigin: "**** **** **** 1234",
+      },
+      {
+        id: "trans_3",
+        date: "01/02/25",
+        type: "Recebido",
+        value: 273.99,
+        currency: "Kz",
+        accountOrigin: "Carteira Fazenda Online",
+      },
+      {
+        id: "trans_4",
+        date: "01/02/25",
+        type: "Recebido",
+        value: 358.5,
+        currency: "Kz",
+        accountOrigin: "Carteira Fazenda Online",
+      },
+      {
+        id: "trans_5",
+        date: "01/02/25",
+        type: "Recebido",
+        value: 549.89,
+        currency: "Kz",
+        accountOrigin: "Carteira Fazenda Online",
+      },
+      {
+        id: "trans_6",
+        date: "01/02/25",
+        type: "Transferência",
+        value: 2100.0,
+        currency: "Kz",
+        accountOrigin: "**** **** **** 1234",
+      },
+      {
+        id: "trans_7",
+        date: "01/02/25",
+        type: "Recebido",
+        value: 651.5,
+        currency: "Kz",
+        accountOrigin: "Carteira Fazenda Online",
+      },
+      {
+        id: "trans_8",
+        date: "01/02/25",
+        type: "Transferência",
+        value: 1500.0,
+        currency: "Kz",
+        accountOrigin: "**** **** **** 1234",
+      },
+      // Adicione mais transações se quiser
+    ];
   }
 }

@@ -51,12 +51,12 @@ const AnalyticalOrder = () => {
     <div className="">
       <h3 className="text-zinc-600 font-semibold text-2xl my-4">Analítico</h3>
       {/* O contêiner principal agora deve ter uma altura para o flexbox poder distribuir */}
-      <div className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 lg:gap-12 items-stretch">
+      <div className="flex flex-col-reverse md:flex-row gap-6 md:gap-8 lg:gap-4 items-stretch">
         <div className="flex-1 min-w-[65%] lg:min-w-[70%] xl:min-w-[72%] 2xl:min-w-[75%]">
           <BestSellingProduct />
         </div>
         {/* Nova Estrutura para a Coluna de Cards: */}
-        <div className="flex flex-col gap-4 md:w-[35%] lg:w-[30%] xl:w-[28%] 2xl:w-[25%] flex-grow flex-shrink-0 w-full">
+        <div className="flex flex-col gap-2 md:w-[35%] lg:w-[30%] xl:w-[28%] 2xl:w-[25%] flex-grow flex-shrink-0 w-full">
           {" "}
           {/* Ajuste o XL e adicione 2XL */}
           <AnalyticalCard chartData={data.totalSales} />

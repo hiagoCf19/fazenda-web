@@ -46,7 +46,7 @@ PublicProfileProps) => {
       {/* Card */}
       <div className="bg-white rounded-2xl shadow-md flex flex-col md:flex-row overflow-hidden">
         <img
-          src={profile.imageUrl}
+          src={"/image/fazenda.jpg"}
           alt="Imagem do produtor"
           className="w-full md:w-92 h-48 md:h-auto object-cover"
         />
