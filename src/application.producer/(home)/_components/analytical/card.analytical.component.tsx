@@ -67,7 +67,7 @@ const AnalyticalCard = ({ chartData }: AnalyticalCardProps) => {
         className="hidden md:flex absolute right-0 top-0 bottom-0 justify-center items-center h-full 
   md:w-[50%] lg:w-[70%] pointer-events-none"
       >
-        <div className="w-full h-full">
+        <div className="flex-1 h-full">
           <SideChart chartData={chartData} decreased={decreased} />
         </div>
       </div>

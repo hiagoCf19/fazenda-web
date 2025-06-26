@@ -16,9 +16,13 @@ import {
   CardTitle,
 } from "../../../shadcn/ui/card";
 import { useBestSellingProducts } from "../../../hooks/use.best.selling.products";
+import { useState } from "react";
 
 export function BestSellingProduct() {
   const { data: products = [] } = useBestSellingProducts();
+  const [selectedPeriod, setSelectedPeriod] = useState<
+    "semana" | "mes" | "ano"
+  >("semana");
 
   return (
     <Card className="rounded-2xl shadow-sm">
@@ -28,18 +32,52 @@ export function BestSellingProduct() {
             <p className="text-xs text-muted-foreground">Produtos</p>
             <CardTitle className="text-sm">Mais vendidos</CardTitle>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-green-600 border-green-100 bg-green-300"
-          >
-            Mês
-          </Button>
+          <div className="flex gap-2">
+            {/* 2. Botão "Semana" */}
+            <Button
+              //variant="outline"
+              size="sm"
+              // Aplica classes condicionalmente com base no estado
+              className={`${
+                selectedPeriod === "semana"
+                  ? "text-green-600 border-green-100 bg-green-300" // Classes para selecionado
+                  : "bg-gray-100 text-gray-800" // Classes para não selecionado (ajuste as cores conforme sua paleta)
+              }`}
+              onClick={() => setSelectedPeriod("semana")} // Atualiza o estado ao clicar
+            >
+              Semana
+            </Button>
+            {/* 3. Botão "Mês" */}
+            <Button
+              //variant="outline"
+              size="sm"
+              className={`${
+                selectedPeriod === "mes"
+                  ? "text-green-600 border-green-100 bg-green-300"
+                  : "bg-gray-100 text-gray-800"
+              }`}
+              onClick={() => setSelectedPeriod("mes")}
+            >
+              Mês
+            </Button>
+            {/* 4. Botão "Ano" */}
+            <Button
+              //variant="outline"
+              size="sm"
+              className={`${
+                selectedPeriod === "ano"
+                  ? "text-green-600 border-green-100 bg-green-300"
+                  : "bg-gray-100 text-gray-800"
+              }`}
+              onClick={() => setSelectedPeriod("ano")}
+            >
+              Ano
+            </Button>
+          </div>
         </div>
       </CardHeader>
-
       <CardContent className="pt-0">
-        <ResponsiveContainer width="100%" height={180}>
+        <ResponsiveContainer width="100%" height={534}>
           <BarChart
             data={products}
             margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
