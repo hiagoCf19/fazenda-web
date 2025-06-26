@@ -20,6 +20,9 @@ export function HomePageProducer() {
       <div className="md:mx-12 mx-4 space-y-8 min-h-[50vh] ">
         <BannerProducer />
         <Separator />
+        <h3 className="text-zinc-600 font-semibold text-2xl my-4">
+          Novos pedidos
+        </h3>
         <div className="md:flex gap-12 hidden">
           {pendingOrders.map((order, i) => (
             <OrderCard order={order} key={i} className="w-1/3" />

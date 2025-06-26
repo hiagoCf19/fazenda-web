@@ -10,7 +10,7 @@ export async function getPublicProfile(): Promise<PublicProfileData> {
   //TODO: import.meta.env.VITE_INTEGRATION_IN_PROGRESS === "true"
   if (true) {
     return {
-      imageUrl: "/src/application.producer/business/image/fazenda.jpg",
+      imageUrl: "/image/fazenda.jpg",
       name: "OrganicFarm",
       rating: 5.0,
       description:

@@ -27,8 +27,8 @@ export async function getAnalyticalData(): Promise<AnalyticalData> {
         { month: "September", valor: 186 },
       ],
       invoicing: [
-        { month: "January", valor: 210 },
-        { month: "February", valor: 525 },
+        { month: "January", valor: 510 },
+        { month: "February", valor: 425 },
         { month: "March", valor: 130 },
         { month: "April", valor: 40 },
         { month: "May", valor: 300 },

@@ -1,26 +1,24 @@
-import {
-  BarChart3,
-  Bell,
-  ClipboardList,
-  Home,
-  ReceiptText,
-  ShoppingCart,
-} from "lucide-react";
+import { BarChart3, ClipboardList, Home, ReceiptText } from "lucide-react";
 import { useSession } from "../../application.client/context/session.context";
 import { generateFallback } from "../../helpers/create-fallback.helper";
 import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn/ui/avatar";
-import { Button } from "../../shadcn/ui/button";
-
 import { DropdownMenuDemo } from "./drop-down-menu-demo.component";
 import { Link } from "react-router";
+import { useNotifications } from "../../aplication.notification/notifications.context";
+import { NotificationBadge } from "../../aplication.notification/notification-badge.component";
+import { NotificationsDropdown } from "../../aplication.notification/notifications-dropdown.component";
 
 export function HeaderProducer() {
   const { session } = useSession();
+  const { unreadCount } = useNotifications();
+
   if (!session) return null;
+
   const path = window.location.pathname;
+
   return (
     <>
-      <header className="p-4  md:m-0 z-50 fixed w-full   bg-[#E9F4E9] py-3 md:mb-8">
+      <header className="p-4 md:m-0 z-50 fixed w-full bg-[#E9F4E9] py-3 md:mb-8">
         <div className="flex justify-between items-center md:mx-[40px]">
           {/* logo */}
           <Link to={"/"} className="hidden md:block">
@@ -30,9 +28,10 @@ export function HeaderProducer() {
               className="md:min-w-[166px] md:h-[48px] w-[166px]"
             />
           </Link>
-          {/* navegação  */}
-          <nav className="hidden md:flex   w-full  ">
-            <ul className="flex justify-around gap-4 text-zinc-400 font-semibold  w-full">
+
+          {/* navegação */}
+          <nav className="hidden md:flex w-full ">
+            <ul className="flex justify-around gap-4 text-zinc-400 font-semibold w-full">
               <li
                 className={`flex items-center gap-2 ${
                   path.endsWith("producer") ? "text-primary" : "text-zinc-400"
@@ -72,13 +71,15 @@ export function HeaderProducer() {
           <div className=" md:min-w-[20%] flex justify-between md:justify-between w-full md:w-auto pr-6 gap-2">
             {/* avatar */}
             <div className="flex md:hidden gap-2 items-center">
-              <Avatar className="size-12">
-                <AvatarImage src={session?.user?.photo} alt="Avatar" />
-                <AvatarFallback className="bg-secondary text-secondary-foreground">
-                  {generateFallback(session?.user)}
-                </AvatarFallback>
-              </Avatar>
-
+              <div className="relative">
+                <Avatar className="size-12">
+                  <AvatarImage src={session?.user?.photo} alt="Avatar" />
+                  <AvatarFallback className="bg-secondary text-secondary-foreground">
+                    {generateFallback(session?.user)}
+                  </AvatarFallback>
+                </Avatar>
+                <NotificationBadge count={unreadCount} />
+              </div>
               <div>
                 <p className="font-medium text-zinc-400">
                   {session.user.company_name}
@@ -88,22 +89,15 @@ export function HeaderProducer() {
                 </p>
               </div>
             </div>
+
             {/* foto e editar perfil notificação*/}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-10">
               <div className="hidden md:flex items-center gap-4 w-full">
                 <DropdownMenuDemo />
-                <Button className="bg-secondary rounded-2xl w-28 text-secondary-foreground">
-                  <ShoppingCart />
-                  Pedidos
-                </Button>
               </div>
-              <Button
-                size={"icon"}
-                variant={"outline"}
-                className="rounded-full p-5 md:hidden"
-              >
-                <Bell className="size-6 text-zinc-400" />
-              </Button>
+
+              {/* Notificações - desktop e mobile */}
+              <NotificationsDropdown />
             </div>
           </div>
         </div>
